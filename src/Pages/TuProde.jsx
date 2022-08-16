@@ -17,12 +17,19 @@ export const TuProde = () => {
 
   const handleOnSubmit= (evento) => {
     evento.preventDefault()
-    firestore.createResultados(resultados,1).then(()=>{
+    
+    if(inputbracket['1-a'] === inputbracket['2-a'] || inputbracket['1-b'] === inputbracket['2-b'] || inputbracket['1-c'] === inputbracket['2-c'] || inputbracket['1-d'] === inputbracket['2-d'] || inputbracket['1-e'] === inputbracket['2-e'] || inputbracket['1-f'] === inputbracket['2-f'] || inputbracket['1-g'] === inputbracket['2-g'] || inputbracket['1-h'] === inputbracket['2-h']){
+      alert('No pueden haber dos equipos iguales')
+    } else if(inputbracket['1-a'] === '' || inputbracket['2-a'] === '' || inputbracket['1-b'] === '' || inputbracket['2-b'] === '' || inputbracket['1-c'] === '' || inputbracket['2-c'] === '' || inputbracket['1-d'] === '' || inputbracket['2-d'] === '' || inputbracket['1-e'] === '' || inputbracket['2-e'] === '' || inputbracket['1-f'] === '' || inputbracket['2-f'] === '' || inputbracket['1-g'] === '' || inputbracket['2-g'] === '' || inputbracket['1-h'] === '' || inputbracket['2-h'] === ''){
+      alert('debe completar todos los casilleros')
+    }else {firestore.createResultados(resultados,1).then(()=>{
       alert('Prode guardado con éxito')
     })
     .catch(error => {
       alert('No se pudo guardar el partido intente mas tarde')
-    })
+    }) }
+
+    
   }
   const handleOnChangeBracket = (evento) => {
     setinputbracket({...inputbracket,[evento.target.name]: evento.target.value})
@@ -32,11 +39,7 @@ export const TuProde = () => {
   const handleOnSubmitBrackets = (evento) => {
     evento.preventDefault()
     
-    if(inputbracket['1-a'] === inputbracket['2-a'] || inputbracket['1-b'] === inputbracket['2-b'] || inputbracket['1-c'] === inputbracket['2-c'] || inputbracket['1-d'] === inputbracket['2-d'] || inputbracket['1-e'] === inputbracket['2-e'] || inputbracket['1-f'] === inputbracket['2-f'] || inputbracket['1-g'] === inputbracket['2-g'] || inputbracket['1-h'] === inputbracket['2-h']){
-      alert('No pueden haber dos equipos iguales')
-    } else if(inputbracket['1-a'] === '' || inputbracket['2-a'] === '' || inputbracket['1-b'] === '' || inputbracket['2-b'] === '' || inputbracket['1-c'] === '' || inputbracket['2-c'] === '' || inputbracket['1-d'] === '' || inputbracket['2-d'] === '' || inputbracket['1-e'] === '' || inputbracket['2-e'] === '' || inputbracket['1-f'] === '' || inputbracket['2-f'] === '' || inputbracket['1-g'] === '' || inputbracket['2-g'] === '' || inputbracket['1-h'] === '' || inputbracket['2-h'] === ''){
-      alert('debe completar todos los casilleros')
-    }else{ console.log(Object.values(inputbracket))}
+   
     
   }
   
@@ -77,10 +80,9 @@ export const TuProde = () => {
         {grupos.map(grupo => <Grupo resultados={resultados} setresultados={setresultados} nombre={grupo.nombre} partidos={grupo.partidos} ></Grupo>)}
         </div>
         
-    <button className='btn btn-primary' type='submit'>Guardar</button>
-    </form>
+    
 
-    <form onSubmit={handleOnSubmitBrackets}>
+    
     <div>
           <label>1ro Grupo A :</label>
           <select onChange={handleOnChangeBracket} name='1-a'>
@@ -178,13 +180,14 @@ export const TuProde = () => {
           </select>
           <br></br>
           <br></br>
-          <button type='submit'>Crear llaves</button>
+          
         </div>
-    </form>
+    
     <div>
       <BracketTorneo inputbracket={inputbracket}></BracketTorneo>
     </div>
-    
+    <button className='btn btn-primary' type='submit'>Guardar</button>
+    </form>
     </div>
   )
 }

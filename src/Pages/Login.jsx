@@ -1,11 +1,16 @@
 import React from 'react'
-
+import GoogleButton from 'react-google-button'
+import {useNavigate} from 'react-router-dom'
 import Authconsumer from '../Hooks/UseAuth'
 
 
 export const Login = () => {
 
     const {userauth,signedout,signin,isSigned} = Authconsumer()
+    const navigate=useNavigate()
+    const handleOnClickRegister = () => {
+      navigate('/register')
+    }
   return (
     <div>
         
@@ -16,7 +21,8 @@ export const Login = () => {
         <p>
           {isSigned() ? userauth.name : 'No Estas Autenticado'}
         </p>
-        {isSigned() ? <button onClick={signedout}>Sign Out</button> : <button onClick={signin}>Sign-in con Google</button>}
+        {isSigned() ? <button onClick={signedout}>Sign Out</button> : <GoogleButton onClick={signin}>Sign-in con Google</GoogleButton>}
+        <button className='btn btn-primary' onClick={handleOnClickRegister}>Regristrate</button>
         
       </header>
     </div>
