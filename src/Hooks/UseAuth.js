@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react'
-import { authprovider, getAuth, GoogleAuthProvider, signInWithPopup } from './../firebase/firebase'
+import { authprovider, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup } from './../firebase/firebase'
 const authcontext=React.createContext();
 
 const useAuth = () => {
@@ -37,6 +37,13 @@ const useAuth = () => {
 
             })
     }
+    const registrarse = async (email,password) =>{
+        try{
+           const usercredentials=await createUserWithEmailAndPassword(auth,email,password) 
+        } catch (error){
+            throw error
+        }
+    }
 
     const signedout = () => {
         getAuth().signOut()
@@ -54,7 +61,8 @@ const useAuth = () => {
         signin,
         signedout,
         isSigned,
-        userauth
+        userauth,
+        registrarse,
     }
 
 
