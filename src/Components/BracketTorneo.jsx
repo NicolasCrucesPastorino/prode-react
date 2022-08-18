@@ -8,11 +8,25 @@ export const BracketTorneo = (props) => {
     const [tercer_lugar, settercer_lugar] = useState({})
     const [campeon, setcampeon] = useState({})
 
+    const torneo=props.torneo
+    const settorneo=props.settorneo
+
     const handleOnChangeCuartos=(evento)=>{
         setsemi({...semi,[evento.target.name]:evento.target.value})
         console.log('valor',evento.target.value)
         console.log(('selector', evento.target.name))
         console.log(semi,'semi')
+
+        if(evento.target.name==='4-a-1'){
+            
+            settorneo({...torneo,cuartosprimerpartidoequipoa:evento.target.value})
+            console.log('torneo1',torneo)
+        }
+        if(evento.target.name==='4-a-2'){
+            
+            settorneo({...torneo,cuartosprimerpartidoequipob:evento.target.value})
+            console.log('torneo',torneo) 
+         }
     }
 
     const handleOnChangeSemi=(evento)=>{

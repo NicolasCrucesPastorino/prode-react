@@ -10,6 +10,13 @@ import { BracketTorneo } from '../Components/BracketTorneo'
 export const TuProde = () => {
   const [resultados, setresultados] = useState([])
   const [inputbracket, setinputbracket] = useState({})
+  const [torneo,settorneo] = useState({
+    cuartos:{a:[],b:[],c:[],d:[]},
+    semifinal:{1:[],2:[]},
+    final:[],
+    campeon:'',
+    tercero:''
+    })
 
   const rc=resultadosconsumer();
   
@@ -184,7 +191,7 @@ export const TuProde = () => {
         </div>
     
     <div>
-      <BracketTorneo inputbracket={inputbracket}></BracketTorneo>
+      <BracketTorneo torneo={torneo} settorneo={settorneo} inputbracket={inputbracket}></BracketTorneo>
     </div>
     <button className='btn btn-primary' type='submit'>Guardar</button>
     </form>
