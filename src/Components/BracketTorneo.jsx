@@ -3,9 +3,7 @@ import './Bracket.scss'
 
 export const BracketTorneo = (props) => {
     const [semi, setsemi] = useState({})
-    const [final, setfinal] = useState({})
-    const [finalista, setfinalista] = useState({})
-    const [tercer_lugar, settercer_lugar] = useState({})
+    const [final, setfinal] = useState({})   
     const [campeon, setcampeon] = useState({})
 
     const torneo=props.torneo
@@ -18,25 +16,110 @@ export const BracketTorneo = (props) => {
         console.log(semi,'semi')
 
         if(evento.target.name==='4-a-1'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.cuartos.a.a=evento.target.value
+            settorneo(torneoauxiliar)
             
-            settorneo({...torneo,cuartosprimerpartidoequipoa:evento.target.value})
-            console.log('torneo1',torneo)
         }
         if(evento.target.name==='4-a-2'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.cuartos.a.b=evento.target.value
+            settorneo(torneoauxiliar)
             
-            settorneo({...torneo,cuartosprimerpartidoequipob:evento.target.value})
-            console.log('torneo',torneo) 
          }
+         if(evento.target.name==='4-b-1'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.cuartos.b.a=evento.target.value
+            settorneo(torneoauxiliar)
+            
+            
+         }
+         if(evento.target.name==='4-b-2'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.cuartos.b.b=evento.target.value
+            settorneo(torneoauxiliar)
+            
+         }if(evento.target.name==='4-c-1'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.cuartos.c.a=evento.target.value
+            settorneo(torneoauxiliar)
+            
+         }
+         if(evento.target.name==='4-c-2'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.cuartos.c.b=evento.target.value
+            settorneo(torneoauxiliar)
+            
+         }
+         if(evento.target.name==='4-d-1'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.cuartos.d.a=evento.target.value
+            settorneo(torneoauxiliar)
+            
+         }
+         if(evento.target.name==='4-d-2'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.cuartos.d.b=evento.target.value
+            settorneo(torneoauxiliar)
+            console.log(torneo)
+         }
+         
     }
 
     const handleOnChangeSemi=(evento)=>{
         setfinal({...final,[evento.target.name]:evento.target.value})
-        console.log('final',final)
-       
+        console.log(evento.target.name)
+        if(evento.target.name==='final-a-1'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.semifinal.a.a=evento.target.value
+            settorneo(torneoauxiliar)
+            console.log(torneo)
+         }
+         if(evento.target.name==='final-a-2'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.semifinal.a.b=evento.target.value
+            settorneo(torneoauxiliar)
+            console.log(torneo)
+         }
+         if(evento.target.name==='final-b-1'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.semifinal.b.a=evento.target.value
+            settorneo(torneoauxiliar)
+            console.log(torneo)
+         }
+         if(evento.target.name==='final-b-2'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.semifinal.b.b=evento.target.value
+            settorneo(torneoauxiliar)
+            console.log(torneo)
+         }
     }
     const handleOnChangeFinal=(evento)=>{
          setcampeon({...campeon,[evento.target.name]:evento.target.value})
-
+         const torneoauxiliar={...torneo}
+         torneoauxiliar.campeon=campeon
+         settorneo(torneoauxiliar)
+         console.log(evento.target.name)
+         if(evento.target.name==='final-a'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.final.a=evento.target.value
+            settorneo(torneoauxiliar)
+            console.log(torneo)
+         }
+         if(evento.target.name==='final-b'){
+            const torneoauxiliar={...torneo}
+            torneoauxiliar.final.b=evento.target.value
+            settorneo(torneoauxiliar)
+            console.log(torneo)
+         }
+    }
+    const handleOnChangeTercero=(evento)=>{
+        settorneo({...torneo,tercero:evento.target.value})
+        console.log(torneo)
+    }
+    const handleOnChangeCampeon=(evento)=>{
+        settorneo({...torneo,campeon:evento.target.value})
+        console.log(torneo)
     }
 
     const inputbracket = props.inputbracket
@@ -309,7 +392,7 @@ export const BracketTorneo = (props) => {
                         <div className='matchup'>
                             <div className='participants'>
                                 <div className='participant loser'>
-                                    <select name='campeon'>
+                                    <select onChange={handleOnChangeCampeon} name='campeon'>
                                     <option value=''>CAMPEON</option>
                                     <option value={campeon['final-a']}>{campeon['final-a']}</option>
                                     <option value={campeon['final-b']}>{campeon['final-b']}</option>
@@ -320,7 +403,7 @@ export const BracketTorneo = (props) => {
                         <div className='matchup'>
                             <div className='participants'>
                                 <div className='participant'>
-                                    <select name='tercero'>
+                                    <select onChange={handleOnChangeTercero} name='tercero'>
                                     <option value=''>TERCERO</option>
                                         <option value={campeon['final-a']}>{campeon['final-a']}</option>
                                         <option value={campeon['final-b']}>{campeon['final-b']}</option>
