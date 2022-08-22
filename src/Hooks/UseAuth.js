@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { authprovider, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup } from './../firebase/firebase'
+import { authprovider, createUserWithEmailAndPassword, signInWithEmailAndPassword ,getAuth, GoogleAuthProvider, signInWithPopup } from './../firebase/firebase'
 const authcontext = React.createContext();
 
 const useAuth = () => {
@@ -7,18 +7,19 @@ const useAuth = () => {
     auth.lenguageCode = 'it'
     //setea el pop up al idioma de la computadora de origen
     const [issigned, setissigned] = useState(false)
-    const [userauth, setuserauth] = useState({})
+    const [userauth, setuserauth] = useState()
     const setsession = (token, user) => {
+        console.log(token,user)
         localStorage.setItem('token', token)
         setissigned(true)
         setuserauth({
-            ...userauth,
             email: user.email,
             name: user.displayName,
             image: user.photoURL,
             uid: user.uid
 
         })
+        return userauth===undefined
     }
 
 
@@ -28,9 +29,12 @@ const useAuth = () => {
                 const credentials = GoogleAuthProvider.credentialFromResult(result);
                 const token = credentials.accessToken
                 const user = result.user
-
-                console.log(token)
-                console.log(user)
+                if(setsession(token,user)){
+                    console.log('usuario autenticado id:',userauth.uid)
+                }else{
+                    console.log('usuario no autenticado')
+                }
+               
             })
             .catch(error => {
                 const errorcode = error.code
@@ -44,9 +48,21 @@ const useAuth = () => {
         try {
             const usercredentials = await createUserWithEmailAndPassword(auth, email, password)
             setsession(usercredentials.user.accessToken, usercredentials.user)
+            
             return usercredentials
         } catch (error) {
             throw error
+        }
+    }
+
+    const logearseEnTuProde = async (email,password) => {
+        try{
+            const usercredentials = await signInWithEmailAndPassword(email,password)
+            console.log(usercredentials)
+            setsession(usercredentials.user.accessToken, usercredentials.user)
+        }
+        catch(error){
+
         }
     }
 

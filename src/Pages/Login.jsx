@@ -21,8 +21,9 @@ export const Login = () => {
         <p>
           {isSigned() ? userauth.name : 'No Estas Autenticado'}
         </p>
-        {isSigned() ? <button onClick={signedout}>Sign Out</button> : <GoogleButton onClick={signin}>Sign-in con Google</GoogleButton>}
+        <GoogleButton onClick={signin}>Sign-in con Google</GoogleButton>
         <button className='btn btn-primary' onClick={handleOnClickRegister}>Regristrate</button>
+        <button className='btn btn-secondary' onClick={()=>{navigate('/logintuprode')}}>Sign-in con TU PRODE</button>
         
       </header>
     </div>

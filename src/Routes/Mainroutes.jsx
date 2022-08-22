@@ -3,6 +3,7 @@ import {Routes,Route} from 'react-router-dom'
 import { NotRequireAuth } from '../Components/NotRequireAuth'
 import { RequireAuth } from '../Components/RequireAuth'
 import { BracketPage } from '../Pages/BracketPage'
+import { FormularioLoginTuProde } from '../Pages/FormularioLoginTuProde'
 import { Home } from '../Pages/Home'
 import { Login } from '../Pages/Login'
 import { Register } from '../Pages/Register'
@@ -26,6 +27,7 @@ export const Mainroutes = () => {
         <Route path='/tuprode'  element = {<TuProde></TuProde>}/>
         <Route path='/register'  element = {<Register/>}/>
         <Route path='/bracket'  element = {<BracketPage/>}/>
+        <Route path='/logintuprode' element = {<FormularioLoginTuProde/>}/>
    </Routes>
   )
 }

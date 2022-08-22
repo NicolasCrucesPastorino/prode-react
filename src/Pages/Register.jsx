@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import Authconsumer from '../Hooks/UseAuth'
+import {useFirestore} from '../Hooks/useFirestore'
 
 export const Register = () => {
   const {registrarse} = Authconsumer()
+  const {storeUserData} = useFirestore()
   const inputinicial={
     email:'',
     name:'',
@@ -29,12 +31,18 @@ export const Register = () => {
       return
     }
     if(input.password.length<=6){
-      alert('La contraseña debe poseer mas 6 caracteres')
+      alert('La contraseña debe poseer mas de 6 caracteres')
       return
     }
 
-  registrarse(input.email,input.password) .then(authusercredentials => {console.log(authusercredentials)}) .catch(error => console.log(error))
-      alert('Formulario recibido')
+  registrarse(input.email,input.password) 
+    .then(authusercredentials => {
+      console.log('credentials',authusercredentials)
+      storeUserData(authusercredentials.user.uid,input.name,input.lastname,input.phone).then()
+      
+    }) 
+    .catch(error => console.log(error))
+  alert('Formulario recibido')
   }
   return (
     <div>

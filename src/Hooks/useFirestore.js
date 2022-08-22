@@ -25,6 +25,12 @@ export  const useFirestore = () => {
 
         })
         return response
+
+    }
+    const storeUserData = async (uid,name,lastname,phone) => {
+        const response = await addDoc(collection(dbfirestore, 'datausuarios'), {uid,name,lastname,phone})
+        console.log('response',response)
+        return response
     }
 
     const  getAllProdes = async ()=>{
@@ -36,6 +42,7 @@ export  const useFirestore = () => {
 
     return {
         getAllPartidos,
-        createResultados
+        createResultados,
+        storeUserData
     }
 }

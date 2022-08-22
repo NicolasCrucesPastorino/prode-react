@@ -26,25 +26,25 @@ export const TuProde = () => {
 
   const handleOnSubmit = (evento) => {
     evento.preventDefault()
-alert('cualquiercosa')
-if (inputbracket['1-a'] === inputbracket['2-a'] || inputbracket['1-b'] === inputbracket['2-b'] || inputbracket['1-c'] === inputbracket['2-c'] || inputbracket['1-d'] === inputbracket['2-d'] || inputbracket['1-e'] === inputbracket['2-e'] || inputbracket['1-f'] === inputbracket['2-f'] || inputbracket['1-g'] === inputbracket['2-g'] || inputbracket['1-h'] === inputbracket['2-h']) {
-  alert('No pueden haber dos equipos iguales')
-} else if (inputbracket['1-a'] === '' || inputbracket['2-a'] === '' || inputbracket['1-b'] === '' || inputbracket['2-b'] === '' || inputbracket['1-c'] === '' || inputbracket['2-c'] === '' || inputbracket['1-d'] === '' || inputbracket['2-d'] === '' || inputbracket['1-e'] === '' || inputbracket['2-e'] === '' || inputbracket['1-f'] === '' || inputbracket['2-f'] === '' || inputbracket['1-g'] === '' || inputbracket['2-g'] === '' || inputbracket['1-h'] === '' || inputbracket['2-h'] === '') {
-  alert('debe completar todos los casilleros')
-} else {
+
+  if (inputbracket['1-a'] === inputbracket['2-a'] || inputbracket['1-b'] === inputbracket['2-b'] || inputbracket['1-c'] === inputbracket['2-c'] || inputbracket['1-d'] === inputbracket['2-d'] || inputbracket['1-e'] === inputbracket['2-e'] || inputbracket['1-f'] === inputbracket['2-f'] || inputbracket['1-g'] === inputbracket['2-g'] || inputbracket['1-h'] === inputbracket['2-h']) {
+   alert('No pueden haber dos equipos iguales')
+ } else if (inputbracket['1-a'] === '' || inputbracket['2-a'] === '' || inputbracket['1-b'] === '' || inputbracket['2-b'] === '' || inputbracket['1-c'] === '' || inputbracket['2-c'] === '' || inputbracket['1-d'] === '' || inputbracket['2-d'] === '' || inputbracket['1-e'] === '' || inputbracket['2-e'] === '' || inputbracket['1-f'] === '' || inputbracket['2-f'] === '' || inputbracket['1-g'] === '' || inputbracket['2-g'] === '' || inputbracket['1-h'] === '' || inputbracket['2-h'] === '') {
+   alert('debe completar todos los casilleros')
+ } else {
   firestore.createResultados(resultados, 1).then(() => {
     alert('Prode guardado con éxito')
     const prodeusuario = {
-     resultados, torneo, userid: auth.userauth.uid
-    }
-    console.log('se pudo', prodeusuario)
+      resultados, torneo, userid: auth.userauth.uid
+     }
+     console.log('se pudo', prodeusuario)
   })
-  .catch(error => {
-    alert('No se pudo guardar el partido intente mas tarde')
+   .catch(error => {
+     alert('No se pudo guardar el partido intente mas tarde')
 
   })
-}
-
+ }
+ 
 
   }
   const handleOnChangeBracket = (evento) => {
@@ -52,7 +52,7 @@ if (inputbracket['1-a'] === inputbracket['2-a'] || inputbracket['1-b'] === input
 
   }
 
-
+  
 
 
   const { grupoA } = equipos
@@ -190,12 +190,13 @@ if (inputbracket['1-a'] === inputbracket['2-a'] || inputbracket['1-b'] === input
           <br></br>
 
         </div>
+        <button className='btn btn-primary' type='submit'>Guardar</button>
         <h4>Complete las llaves del prode de izquierda a derecha y de arriba hacia abajo.</h4>
 
         <div>
           <BracketTorneo torneo={torneo} settorneo={settorneo} inputbracket={inputbracket}></BracketTorneo>
         </div>
-        <button className='btn btn-primary' type='submit'>Guardar</button>
+        
       </form>
     </div>
   )
