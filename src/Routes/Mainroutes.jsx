@@ -8,6 +8,7 @@ import { Home } from '../Pages/Home'
 import { Login } from '../Pages/Login'
 import { Register } from '../Pages/Register'
 import { Reglas } from '../Pages/Reglas'
+import { SuperProde } from '../Pages/SuperProde'
 import { Tabla } from '../Pages/Tabla'
 import { TuProde } from '../Pages/TuProde'
 
@@ -28,6 +29,7 @@ export const Mainroutes = () => {
         <Route path='/register'  element = {<Register/>}/>
         <Route path='/bracket'  element = {<BracketPage/>}/>
         <Route path='/logintuprode' element = {<FormularioLoginTuProde/>}/>
+        <Route path='/superprode' element = {<SuperProde/>}/>
    </Routes>
   )
 }

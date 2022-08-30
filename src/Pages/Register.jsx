@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
 import Authconsumer from '../Hooks/UseAuth'
 import {useFirestore} from '../Hooks/useFirestore'
-
+import {useNavigate} from 'react-router-dom'
 export const Register = () => {
   const {registrarse} = Authconsumer()
   const {storeUserData} = useFirestore()
+  const navigate=useNavigate()
   const inputinicial={
     email:'',
     name:'',
@@ -35,14 +36,15 @@ export const Register = () => {
       return
     }
 
-  registrarse(input.email,input.password) 
+  registrarse(input.email,input.password,input.name,input.lastname,input.phone) 
     .then(authusercredentials => {
       console.log('credentials',authusercredentials)
-      storeUserData(authusercredentials.user.uid,input.name,input.lastname,input.phone).then()
+      
       
     }) 
     .catch(error => console.log(error))
   alert('Formulario recibido')
+  navigate('/reglas')
   }
   return (
     <div>

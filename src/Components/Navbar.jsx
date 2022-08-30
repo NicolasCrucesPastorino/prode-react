@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import authconsumer from './../Hooks/UseAuth'
 
 export const Navbar = () => {
+const consumer = authconsumer()
+
 const links=[
     {name:'home',url:'/'},
     {name:'login',url:'/login'},
@@ -21,7 +24,7 @@ const links=[
       <ul className="navbar-nav">
        
         {links.map(link=><li className='nav-item'><Link className='nav-link' to={link.url}>{link.name.toUpperCase()}</Link></li>)}
-        
+        {consumer.userauth.rol==='admin'? <li className='nav-item'><Link className='nav-link' to={'/superprode'}>Super Prode</Link></li>:'' }
       </ul>
     </div>
   </div>
