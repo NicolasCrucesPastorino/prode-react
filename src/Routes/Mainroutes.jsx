@@ -1,5 +1,6 @@
 import React from 'react'
 import {Routes,Route} from 'react-router-dom'
+import { NavigableLayer } from '../Components/NavigableLayer'
 import { NotRequireAuth } from '../Components/NotRequireAuth'
 import { RequireAuth } from '../Components/RequireAuth'
 import { BracketPage } from '../Pages/BracketPage'
@@ -25,7 +26,7 @@ export const Mainroutes = () => {
         
         <Route element={ <RequireAuth/> } >
         {/* rutas que se pueden acceder al estar logueado*/}
-          <Route index element={<Home/>} />
+          <Route index element={<NavigableLayer><Home/></NavigableLayer>} />
           <Route path='tuprode' element = {<TuProde/>} />
         </Route>
       
