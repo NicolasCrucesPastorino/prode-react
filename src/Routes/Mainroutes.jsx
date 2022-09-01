@@ -18,22 +18,25 @@ export const Mainroutes = () => {
         
         <Route element={ <NotRequireAuth redirectTo={'/'} /> } >
         {/* rutas que no se pueden acceder al estar logueado*/}  
-          <Route path='/login'  element = {<Login/>} />
-          <Route path='/register'  element = {<Register/>} />
-          <Route path='/logintuprode' element = {<FormularioLoginTuProde/>} />
+          <Route exact path='login'  element = {<Login/>} />
+          <Route exact path='register'  element = {<Register/>} />
+          <Route exact path='logintuprode' element = {<FormularioLoginTuProde/>} />
         </Route>
         
         <Route element={ <RequireAuth/> } >
         {/* rutas que se pueden acceder al estar logueado*/}
           <Route index element={<Home/>} />
-          <Route path='/tuprode' element = {<TuProde/>} />
+          <Route path='tuprode' element = {<TuProde/>} />
         </Route>
       
         {/* Rutas totalemnte publicas */}       
-        <Route path='/reglas'  element = {<Reglas/>} />
-        <Route path='/tabla'  element = {<Tabla/>} />
-        <Route path='/bracket'  element = {<BracketPage/>} />
-        <Route path='/superprode' element = {<SuperProde/>} />
+        <Route path='reglas'  element = {<Reglas/>} />
+        <Route path='tabla'  element = {<Tabla/>} />
+        <Route path='bracket'  element = {<BracketPage/>} />
+        <Route path='superprode' element = {<SuperProde/>} />
+
+        {/* Rutas que no existen */}
+        <Route path='*' element={<h1>404: Not Found</h1>} />
       
    </Routes>
   )
