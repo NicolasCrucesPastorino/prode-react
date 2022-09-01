@@ -1,40 +1,23 @@
 import React, { useContext, useState } from 'react'
-import { authprovider, createUserWithEmailAndPassword, signInWithEmailAndPassword ,getAuth, GoogleAuthProvider, signInWithPopup } from './../firebase/firebase'
 import { useFirestore } from './useFirestore';
+import { authprovider, getAuth } from './../firebase/firebase';
+import { 
+    signInWithPopup, 
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+} from 'firebase/auth';
+
+
+
 const authcontext = React.createContext();
 
 const useAuth = () => {
-    const auth = getAuth()
-    const {storeUserData,getdatauserfromid}=useFirestore()
+    const auth = getAuthInstance();
+    const { storeUserData, getdatauserfromid } = useFirestore();
 
-    auth.lenguageCode = 'it'
-    //setea el pop up al idioma de la computadora de origen
-    const [issigned, setissigned] = useState(false)
-    const [userauth, setuserauth] = useState({rol:'user'})
-
-    const setsession = (token, user) => {
-        console.log(token,user)
-        localStorage.setItem('token', token)
-        console.log('proces' , process.env['REACT_APP_ADMIN_USER'])
-        if(user.email===process.env['REACT_APP_ADMIN_USER']){
-            user.rol='admin'
-        }else{
-            user.rol='user'
-        }
-        setissigned(true)
-        setuserauth({
-            email: user.email,
-            name: user.displayName,
-            lastname: user.lastname?user.lastname:'',
-            phone: user.phone?user.phone:'',
-            image: user.photoURL,
-            uid: user.uid,
-            rol: user.rol
-
-        })
-        return useAuth? true : false
-    }
-
+    const [issigned, setIsSigned] = useState(false);
+    const [userAuth, setUserAuth] = useState({rol:'guest'});
 
     const signin = () => {
         signInWithPopup(auth, authprovider)
@@ -44,42 +27,53 @@ const useAuth = () => {
                 const user = result.user
                 
                 if(setsession(token,user)){
-                    console.log('usuario autenticado id:',userauth.uid)
-                    console.log('rol',userauth.rol)
+                    console.log('usuario autenticado id:',userAuth.uid)
+                    console.log('rol',userAuth.rol)
                 }else{
                     console.log('usuario no autenticado')
                 }
-               
             })
             .catch(error => {
                 const errorcode = error.code
                 const errormessage = error.errormessage
                 const email = error.customData.email
                 const credentials = GoogleAuthProvider.credentialFromError(error)
-
             })
     }
-    const registrarse = async (email, password,name,lastname,phone) => {
+
+    const registrarse = async (email, password, name,lastname, phone) => {
         try {
-            const usercredentials = await createUserWithEmailAndPassword(auth, email, password,)
-            storeUserData(usercredentials.user.uid,name,lastname,phone).then()
+            const usercredentials = await createUserWithEmailAndPassword(
+                auth, 
+                email, 
+                password
+            )
+
+            await storeUserData(usercredentials.user.uid, name, lastname, phone)
+            
             const newuser={...usercredentials.user,lastname,phone}
             setsession(usercredentials.user.accessToken, newuser)
             console.log('usuario registrado',newuser)
+            
             return usercredentials
         } catch (error) {
             throw error
         }
     }
 
-    const logearseEnTuProde = async (email,password) => {
-        try{
-            
-            const usercredentials = await signInWithEmailAndPassword(auth,email,password)
-            const userdata = await getdatauserfromid(usercredentials.user.uid)
-            const totaldata = {...usercredentials.user,displayName:userdata.name,lastname:userdata.lastname,phone:userdata.phone}
+    const logearseEnTuProde = async (email, password) => {
+        try{         
+            const usercredentials = 
+                await signInWithEmailAndPassword(auth, email, password);
+
+            const userdata = await getdatauserfromid(usercredentials.user.uid);
+            const totaldata = {
+                ...usercredentials.user,
+                displayName:userdata.name,
+                lastname:userdata.lastname,
+                phone:userdata.phone
+            }
             setsession(usercredentials.user.accessToken, totaldata)
-            console.log('usuarioactivo', userauth)
             return usercredentials
         }
         catch(error){
@@ -87,30 +81,56 @@ const useAuth = () => {
         }
     }
    
-
     const signedout = () => {
         getAuth().signOut()
-        setissigned(false)
+        setIsSigned(false)
         localStorage.removeItem('token')
-
     }
 
-    const isSigned = () => {
+    const isSigned = () => { return issigned }
+    
+    const setsession = (token, user) => {
+        localStorage.setItem('token', token)
+        
+        if(user.email === process.env['REACT_APP_ADMIN_USER']) {
+            user.rol='admin'
+        }else{
+            user.rol='user'
+        }
 
-        return issigned
-
+        setIsSigned(true)
+        setUserAuth({
+            email: user.email,
+            name: user.displayName,
+            lastname: user.lastname?user.lastname:'',
+            phone: user.phone?user.phone:'',
+            image: user.photoURL,
+            uid: user.uid,
+            rol: user.rol
+        })
+        
+        return issigned;
     }
+    
     return {
         signin,
         signedout,
         isSigned,
-        userauth,
+        userauth: userAuth,
         registrarse,
         logearseEnTuProde
     }
-
-
 }
+
+const getAuthInstance = () => {
+    const auth = getAuth();
+
+    auth.lenguageCode = 'it'
+    //setea el pop up al idioma de la computadora de origen
+    return auth;
+}
+
+// Componente proveedor de contexto de autenticacion
 export const AuthProvider = ({ children }) => {
     const auth = useAuth()
 
@@ -120,7 +140,8 @@ export const AuthProvider = ({ children }) => {
         </authcontext.Provider>
     )
 }
-export default () => {
 
+// Hook para consumir el contexto de autenticacion
+export default () => {
     return useContext(authcontext)
 }
