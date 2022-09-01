@@ -16,20 +16,25 @@ export const Mainroutes = () => {
   return (
    <Routes>
         
+        <Route element={ <NotRequireAuth redirectTo={'/'} /> } >
+        {/* rutas que no se pueden acceder al estar logueado*/}  
+          <Route path='/login'  element = {<Login/>} />
+          <Route path='/register'  element = {<Register/>} />
+          <Route path='/logintuprode' element = {<FormularioLoginTuProde/>} />
+        </Route>
         
-        <Route path='/' element={<RequireAuth redirectTo='/login'>
-        <Home/>
-        </RequireAuth>}
-        />
-       
-        <Route path='/login'  element = {<NotRequireAuth redirectTo='/'><Login></Login></NotRequireAuth>}/>
-        <Route path='/reglas'  element = {<Reglas></Reglas>}/>
-        <Route path='/tabla'  element = {<Tabla></Tabla>}/>
-        <Route path='/tuprode'  element = {<TuProde></TuProde>}/>
-        <Route path='/register'  element = {<Register/>}/>
-        <Route path='/bracket'  element = {<BracketPage/>}/>
-        <Route path='/logintuprode' element = {<FormularioLoginTuProde/>}/>
-        <Route path='/superprode' element = {<SuperProde/>}/>
+        <Route element={ <RequireAuth/> } >
+        {/* rutas que se pueden acceder al estar logueado*/}
+          <Route index element={<Home/>} />
+          <Route path='/tuprode' element = {<TuProde/>} />
+        </Route>
+      
+        {/* Rutas totalemnte publicas */}       
+        <Route path='/reglas'  element = {<Reglas/>} />
+        <Route path='/tabla'  element = {<Tabla/>} />
+        <Route path='/bracket'  element = {<BracketPage/>} />
+        <Route path='/superprode' element = {<SuperProde/>} />
+      
    </Routes>
   )
 }
