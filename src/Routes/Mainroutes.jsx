@@ -27,14 +27,14 @@ export const Mainroutes = () => {
         <Route element={ <RequireAuth/> } >
         {/* rutas que se pueden acceder al estar logueado*/}
           <Route index element={<NavigableLayer><Home/></NavigableLayer>} />
-          <Route path='tuprode' element = {<TuProde/>} />
+          <Route path='tuprode' element = {<NavigableLayer><TuProde/></NavigableLayer>}/>
         </Route>
       
         {/* Rutas totalemnte publicas */}       
-        <Route path='reglas'  element = {<Reglas/>} />
-        <Route path='tabla'  element = {<Tabla/>} />
+        <Route path='reglas'  element = {<NavigableLayer><Reglas/></NavigableLayer>} />
+        <Route path='tabla'  element = {<NavigableLayer><Tabla/></NavigableLayer>} />
         <Route path='bracket'  element = {<BracketPage/>} />
-        <Route path='superprode' element = {<SuperProde/>} />
+        <Route path='superprode' element = {<NavigableLayer><SuperProde/></NavigableLayer>} />
 
         {/* Rutas que no existen */}
         <Route path='*' element={<h1>404: Not Found</h1>} />

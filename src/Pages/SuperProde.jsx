@@ -9,7 +9,7 @@ export const SuperProde = () => {
   return (
     <div>
       
-      <TuProdeGenerico storedestiny={firestore.storesuperprode}/>
+      <TuProdeGenerico storedestiny={firestore.storesuperprode} validarcamposvacios={false}/>
         
     </div>
   )

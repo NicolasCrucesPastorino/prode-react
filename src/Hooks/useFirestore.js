@@ -68,5 +68,6 @@ export  const useFirestore = () => {
         getdatauserfromid,
         storeUserProde,
         storesuperprode,
+        getprodeporid,
     }
 }

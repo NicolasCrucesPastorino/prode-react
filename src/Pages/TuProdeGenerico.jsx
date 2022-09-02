@@ -4,12 +4,14 @@ import { Grupo } from '../Components/prode/Grupo'
 import { equipos } from '../Constantes'
 import '../Constantes'
 import { useFirestore } from '../Hooks/useFirestore'
-import resultadosconsumer from '../Hooks/useResultados'
 import { BracketTorneo } from '../Components/BracketTorneo'
+import { useEffect } from 'react'
 
 export const TuProdeGenerico = (props) => {
-    const storedestiny=props.storedestiny
-    const [resultados, setresultados] = useState([])
+  const storedestiny = props.storedestiny
+  const validarcamposvacios = props.validarcamposvacios
+  const [resultados, setresultados] = useState([])
+
 
   const [inputbracket, setinputbracket] = useState({})
   const [torneo, settorneo] = useState({
@@ -20,35 +22,54 @@ export const TuProdeGenerico = (props) => {
     tercero: ''
   })
 
-  const rc = resultadosconsumer();
+  
   const auth = AuthConsumer();
   const firestore = useFirestore()
+  const cargarprode = async () => {
+    if(auth.userauth.uid){
+      const prodeusuario = await firestore.getprodeporid(auth.userauth.uid)
+        console.log(prodeusuario,'prodeusuario')
+        settorneo(prodeusuario.torneo)
+        setresultados([...prodeusuario.resultados])
+        
+      }
+  }
+  useEffect(()=>{
+   cargarprode().then() 
+   console.log('resultados', resultados)
+  },[])
 
   const handleOnSubmit = (evento) => {
     evento.preventDefault()
 
-  if (inputbracket['1-a'] === inputbracket['2-a'] || inputbracket['1-b'] === inputbracket['2-b'] || inputbracket['1-c'] === inputbracket['2-c'] || inputbracket['1-d'] === inputbracket['2-d'] || inputbracket['1-e'] === inputbracket['2-e'] || inputbracket['1-f'] === inputbracket['2-f'] || inputbracket['1-g'] === inputbracket['2-g'] || inputbracket['1-h'] === inputbracket['2-h']) {
-   alert('No pueden haber dos equipos iguales')
- } else if (inputbracket['1-a'] === '' || inputbracket['2-a'] === '' || inputbracket['1-b'] === '' || inputbracket['2-b'] === '' || inputbracket['1-c'] === '' || inputbracket['2-c'] === '' || inputbracket['1-d'] === '' || inputbracket['2-d'] === '' || inputbracket['1-e'] === '' || inputbracket['2-e'] === '' || inputbracket['1-f'] === '' || inputbracket['2-f'] === '' || inputbracket['1-g'] === '' || inputbracket['2-g'] === '' || inputbracket['1-h'] === '' || inputbracket['2-h'] === '') {
-   alert('debe completar todos los casilleros')
- } else {
-  firestore.createResultados(resultados, 1).then(() => {
-    alert('Prode guardado con éxito')
-    const prodeusuario = {
-      resultados, torneo, userid: auth.userauth.uid
-     }
-     console.log('se pudo', prodeusuario)
-     console.log('user id',prodeusuario.userid)
-     console.log('resultados', {resultados:prodeusuario.resultados,torneo:prodeusuario.torneo})
-     storedestiny(prodeusuario.userid,{resultados:prodeusuario.resultados,torneo:prodeusuario.torneo})
+    if (validarcamposvacios === true) {
+      const mensaje = validarcampos()
+      if (mensaje != 'ok') {
+        alert(mensaje)
+        return
+      }
+    }
+    firestore.createResultados(resultados, 1).then(() => {
+      alert('Prode guardado con éxito')
+      const prodeusuario = {
+        resultados, torneo, userid: auth.userauth.uid
+      }
+      storedestiny(prodeusuario.userid, { resultados: prodeusuario.resultados, torneo: prodeusuario.torneo })
+    })
+      .catch(error => {
+        alert('No se pudo guardar el prode intente mas tarde')
+      })
+  }
 
-  })
-   .catch(error => {
-     alert('No se pudo guardar el prode intente mas tarde')
 
-  })
- }
- 
+  const validarcampos = () => {
+    if (inputbracket['1-a'] === inputbracket['2-a'] || inputbracket['1-b'] === inputbracket['2-b'] || inputbracket['1-c'] === inputbracket['2-c'] || inputbracket['1-d'] === inputbracket['2-d'] || inputbracket['1-e'] === inputbracket['2-e'] || inputbracket['1-f'] === inputbracket['2-f'] || inputbracket['1-g'] === inputbracket['2-g'] || inputbracket['1-h'] === inputbracket['2-h']) {
+      return 'No pueden haber dos equipos iguales'
+    } else if (inputbracket['1-a'] === '' || inputbracket['2-a'] === '' || inputbracket['1-b'] === '' || inputbracket['2-b'] === '' || inputbracket['1-c'] === '' || inputbracket['2-c'] === '' || inputbracket['1-d'] === '' || inputbracket['2-d'] === '' || inputbracket['1-e'] === '' || inputbracket['2-e'] === '' || inputbracket['1-f'] === '' || inputbracket['2-f'] === '' || inputbracket['1-g'] === '' || inputbracket['2-g'] === '' || inputbracket['1-h'] === '' || inputbracket['2-h'] === '') {
+      return 'debe completar todos los casilleros'
+    } else {
+      return 'ok'
+    }
 
   }
   const handleOnChangeBracket = (evento) => {
@@ -56,7 +77,7 @@ export const TuProdeGenerico = (props) => {
 
   }
 
-  
+
 
 
   const { grupoA } = equipos
@@ -85,7 +106,7 @@ export const TuProdeGenerico = (props) => {
 
   return (
     <div>
-      <h1>Tu Prode</h1>
+      <h1>Tu Prode {auth.userauth.name}</h1>
       <p>Para grabar los datos de TU PRODE apriete el botón de guardar al final.</p>
       <form onSubmit={handleOnSubmit}>
         <div className='container row mx-auto'>
@@ -200,9 +221,9 @@ export const TuProdeGenerico = (props) => {
         <div>
           <BracketTorneo torneo={torneo} settorneo={settorneo} inputbracket={inputbracket}></BracketTorneo>
         </div>
-        
+
       </form>
     </div>
   )
-    
+
 }

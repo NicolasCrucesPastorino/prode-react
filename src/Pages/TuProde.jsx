@@ -8,7 +8,7 @@ export const TuProde = () => {
  
 const firestore=useFirestore()
 return (
-  <TuProdeGenerico storedestiny={firestore.storeUserProde}/>
+  <TuProdeGenerico storedestiny={firestore.storeUserProde} validarcamposvacios={true}/>
 )
  
   }
