@@ -222,7 +222,8 @@ export const BracketTorneo = (props) => {
                                 <div className="participant">
 
                                     <select onChange={handleOnChangeCuartos} name='4-a-1'>
-                                        <option  value=''>CUARTOS</option>
+                                    {torneo.cuartos.a.a!=''?<option value={torneo.cuartos.a.a}>{torneo.cuartos.a.a}</option>:
+                                    <option value=''>CUARTOS</option>}
                                         <option value={inputbracket['1-a']}>{inputbracket['1-a']}</option>
                                         <option value={inputbracket['2-b']} >{inputbracket['2-b']}</option>
                                     </select>
@@ -230,7 +231,8 @@ export const BracketTorneo = (props) => {
                                 </div>
                                 <div className="participant">
                                     <select onChange={handleOnChangeCuartos} name='4-a-2'>
-                                        <option value=''>CUARTOS</option>
+                                    {torneo.cuartos.a.b!=''?<option value={torneo.cuartos.a.b}>{torneo.cuartos.a.b}</option>:
+                                    <option value=''>CUARTOS</option>}
                                         <option >{inputbracket['1-c']}</option>
                                         <option >{inputbracket['2-d']}</option>
 
@@ -246,7 +248,8 @@ export const BracketTorneo = (props) => {
                                 <div className="participant">
 
                                     <select onChange={handleOnChangeCuartos} name='4-b-1'>
-                                        <option value=''>CUARTOS</option>
+                                    {torneo.cuartos.b.a!=''?<option value={torneo.cuartos.b.a}>{torneo.cuartos.b.a}</option>:
+                                    <option value=''>CUARTOS</option>}
                                         <option >{inputbracket['1-e']}</option>
                                         <option >{inputbracket['2-f']}</option>
                                     </select>
@@ -254,7 +257,8 @@ export const BracketTorneo = (props) => {
                                 </div>
                                 <div className="participant">
                                     <select onChange={handleOnChangeCuartos} name='4-b-2'>
-                                        <option value=''>CUARTOS</option>
+                                    {torneo.cuartos.b.b!=''?<option value={torneo.cuartos.b.b}>{torneo.cuartos.b.b}</option>:
+                                    <option value=''>CUARTOS</option>}
                                         <option >{inputbracket['1-g']}</option>
                                         <option >{inputbracket['2-h']}</option>
 
@@ -276,7 +280,8 @@ export const BracketTorneo = (props) => {
                                 <div className="participant">
 
                                     <select  onChange={handleOnChangeCuartos} name='4-c-1'>
-                                        <option value=''>CUARTOS</option>
+                                    {torneo.cuartos.c.a!=''?<option value={torneo.cuartos.c.a}>{torneo.cuartos.c.a}</option>:
+                                    <option value=''>CUARTOS</option>}
                                         <option >{inputbracket['1-b']}</option>
                                         <option >{inputbracket['2-a']}</option>
                                     </select>
@@ -284,7 +289,8 @@ export const BracketTorneo = (props) => {
                                 </div>
                                 <div className="participant">
                                     <select onChange={handleOnChangeCuartos} name='4-c-2'>
-                                        <option value=''>CUARTOS</option>
+                                    {torneo.cuartos.c.b!=''?<option value={torneo.cuartos.c.b}>{torneo.cuartos.c.b}</option>:
+                                    <option value=''>CUARTOS</option>}
                                         <option >{inputbracket['1-d']}</option>
                                         <option >{inputbracket['2-c']}</option>
 
@@ -298,7 +304,8 @@ export const BracketTorneo = (props) => {
                                 <div className="participant">
 
                                     <select onChange={handleOnChangeCuartos} name='4-d-1'>
-                                        <option value=''>CUARTOS</option>
+                                    {torneo.cuartos.d.a!=''?<option value={torneo.cuartos.d.a}>{torneo.cuartos.d.a}</option>:
+                                    <option value=''>CUARTOS</option>}
                                         <option >{inputbracket['1-f']}</option>
                                         <option >{inputbracket['2-e']}</option>
                                     </select>
@@ -306,7 +313,8 @@ export const BracketTorneo = (props) => {
                                 </div>
                                 <div className="participant">
                                     <select onChange={handleOnChangeCuartos} name='4-d-2'>
-                                        <option value=''>CUARTOS</option>
+                                    {torneo.cuartos.d.b!=''?<option value={torneo.cuartos.d.b}>{torneo.cuartos.d.b}</option>:
+                                    <option value=''>CUARTOS</option>}
                                         <option >{inputbracket['1-h']}</option>
                                         <option >{inputbracket['2-g']}</option>
 
@@ -328,13 +336,15 @@ export const BracketTorneo = (props) => {
                         <div className="matchup">
                             <div className="participants">
                                 <div className='participant'><select onChange={handleOnChangeSemi} name='final-a-1'>
-                                    <option value=''>SEMI-FINAL</option>
+                                    {torneo.semifinal.a.a!=''?<option value={torneo.semifinal.a.a}>{torneo.semifinal.a.a}</option>:
+                                    <option value=''>SEMI-FINAL</option>}
                                     <option value={semi['4-a-1']}>{semi['4-a-1']}</option>
                                     <option value={semi['4-a-2']}>{semi['4-a-2']}</option>
 
                                 </select> </div>
                                 <div className="participant"><select onChange={handleOnChangeSemi} name='final-a-2'>
-                                    <option value=''>SEMI-FINAL</option>
+                                {torneo.semifinal.a.b!=''?<option value={torneo.semifinal.a.b}>{torneo.semifinal.a.b}</option>:
+                                    <option value=''>SEMI-FINAL</option>}
                                     <option value={semi['4-b-1']}>{semi['4-b-1']}</option>
                                     <option value={semi['4-b-2']}>{semi['4-b-2']}</option>
 
@@ -344,13 +354,15 @@ export const BracketTorneo = (props) => {
                         <div className="matchup">
                             <div className="participants">
                                 <div className="participant"><select onChange={handleOnChangeSemi} name='final-b-1'>
-                                    <option value=''>SEMI-FINAL</option>
+                                {torneo.semifinal.b.a!=''?<option value={torneo.semifinal.b.a}>{torneo.semifinal.b.a}</option>:
+                                    <option value=''>SEMI-FINAL</option>}
                                     <option value={semi['4-c-1']}>{semi['4-c-1']}</option>
                                     <option value={semi['4-c-2']}>{semi['4-c-2']}</option>
 
                                 </select></div>
                                 <div className="participant"><select onChange={handleOnChangeSemi} name='final-b-2'>
-                                    <option value=''>SEMI-FINAL</option>
+                                {torneo.semifinal.b.b!=''?<option value={torneo.semifinal.b.b}>{torneo.semifinal.b.b}</option>:
+                                    <option value=''>SEMI-FINAL</option>}
                                     <option value={semi['4-d-1']}>{semi['4-d-1']}</option>
                                     <option value={semi['4-d-2']}>{semi['4-d-2']}</option>
 
@@ -370,13 +382,15 @@ export const BracketTorneo = (props) => {
                         <div className="matchup">
                             <div className="participants">
                                 <div className="participant winner"><select onChange={handleOnChangeFinal} name='final-a'>
-                                    <option value=''>FINAL</option>
+                                {torneo.final.a!=''?<option value={torneo.final.a}>{torneo.final.a}</option>:
+                                    <option value=''>FINAL</option>}
                                     <option value={final['final-a-1']}>{final['final-a-1']}</option>
                                     <option value={final['final-a-2']}>{final['final-a-2']}</option>
 
                                 </select></div>
                                 <div className="participant"><select onChange={handleOnChangeFinal} name='final-b'>
-                                    <option value=''>FINAL</option>
+                                {torneo.final.b!=''?<option value={torneo.final.b}>{torneo.final.b}</option>:
+                                    <option value=''>FINAL</option>}
                                     <option value={final['final-b-1']}>{final['final-b-1']}</option>
                                     <option value={final['final-b-2']}>{final['final-b-2']}</option>
 
@@ -393,7 +407,8 @@ export const BracketTorneo = (props) => {
                             <div className='participants'>
                                 <div className='participant loser'>
                                     <select onChange={handleOnChangeCampeon} name='campeon'>
-                                    <option value=''>CAMPEON</option>
+                                    {torneo.campeon!=''?<option value={torneo.campeon}>{torneo.campeon}</option>:
+                                    <option value=''>CAMPEON</option>}
                                     <option value={campeon['final-a']}>{campeon['final-a']}</option>
                                     <option value={campeon['final-b']}>{campeon['final-b']}</option>
                                     </select>
@@ -404,7 +419,8 @@ export const BracketTorneo = (props) => {
                             <div className='participants'>
                                 <div className='participant'>
                                     <select onChange={handleOnChangeTercero} name='tercero'>
-                                    <option value=''>TERCERO</option>
+                                    {torneo.tercero!=''?<option value={torneo.tercero}>{torneo.tercero}</option>:
+                                    <option value=''>TERCERO</option>}
                                         <option value={campeon['final-a']}>{campeon['final-a']}</option>
                                         <option value={campeon['final-b']}>{campeon['final-b']}</option>
                                     </select>

@@ -5,11 +5,7 @@ import { setDoc,doc, getDoc } from 'firebase/firestore'
 const {addDoc,collection,dbfirestore, getDocs} = database
 
 export  const useFirestore = () => {
-    const getAllPartidos = async  () => {
-        const querySnapshot = await getDocs(collection(dbfirestore,'partidos'))
-        const partidos = querySnapshot.docs.map(doc => doc.data())
-        return partidos
-    }
+    
     const createResultados = async  (resultados,idusuario) => {
         return await addDoc(collection(dbfirestore, 'resultados'), {idusuario,resultados})
         
@@ -35,7 +31,7 @@ export  const useFirestore = () => {
         return response
     }
 
-    const  getAllProdes = async ()=>{
+    const  getAllProdesUsuarios = async ()=>{
         const querySnapshot= await getDocs(collection(dbfirestore, 'prodes'))
         const prodes= querySnapshot.docs.map(doc => doc.data())
         return prodes
@@ -62,12 +58,13 @@ export  const useFirestore = () => {
         }
     }
     return {
-        getAllPartidos,
         createResultados,
         storeUserData,
         getdatauserfromid,
         storeUserProde,
         storesuperprode,
         getprodeporid,
+        getAllProdesUsuarios,
+
     }
 }

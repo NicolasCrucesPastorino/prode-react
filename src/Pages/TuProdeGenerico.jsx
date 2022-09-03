@@ -8,7 +8,7 @@ import { BracketTorneo } from '../Components/BracketTorneo'
 import { useEffect } from 'react'
 
 export const TuProdeGenerico = (props) => {
-  const storedestiny = props.storedestiny
+  const onSubmitFinalStrategy = props.onSubmitFinalStrategy
   const validarcamposvacios = props.validarcamposvacios
   const [resultados, setresultados] = useState([])
 
@@ -37,6 +37,7 @@ export const TuProdeGenerico = (props) => {
   useEffect(()=>{
    cargarprode().then() 
    console.log('resultados', resultados)
+   console.log('tor',torneo)
   },[])
 
   const handleOnSubmit = (evento) => {
@@ -54,7 +55,7 @@ export const TuProdeGenerico = (props) => {
       const prodeusuario = {
         resultados, torneo, userid: auth.userauth.uid
       }
-      storedestiny(prodeusuario.userid, { resultados: prodeusuario.resultados, torneo: prodeusuario.torneo })
+      onSubmitFinalStrategy(prodeusuario.userid, { resultados: prodeusuario.resultados, torneo: prodeusuario.torneo })
     })
       .catch(error => {
         alert('No se pudo guardar el prode intente mas tarde')
@@ -119,7 +120,9 @@ export const TuProdeGenerico = (props) => {
         <div>
           <label>1ro Grupo A :</label>
           <select onChange={handleOnChangeBracket} name='1-a'>
-            <option value=''>seleccione un pais</option>
+            {torneo.cuartos.a.a!=''?
+            <option value={torneo.cuartos.a.a}>{torneo.cuartos.a.a}</option>:
+            <option value=''>seleccione un pais</option>}
             {Object.keys(grupoA).map(equipo => <option value={equipo} >{equipo}</option>)}
           </select>
           <label> 2do Grupo A :</label>
