@@ -1,3 +1,9 @@
+export const ROL = {
+    ADMIN: 'admin',
+    USER: 'user',
+    GUEST: 'guest',
+}
+
 export const equipos = {
     grupoA:{
         ECUADOR: 'Ecuador',

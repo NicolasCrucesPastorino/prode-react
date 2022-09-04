@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useFirestore } from './useFirestore';
 import { authprovider, getAuth } from './../firebase/firebase';
+import { ROL } from '../Constantes';
 import { 
     signInWithPopup, 
     createUserWithEmailAndPassword,
@@ -9,15 +10,28 @@ import {
 } from 'firebase/auth';
 
 
+// constante que maneja las keys donde se almacenaran las credenciales y objetos del usuario
+const localStorageFolder = {
+    AUTH: 'auth',
+    TOKEN: 'token',
+}
 
 const authcontext = React.createContext();
 
 const useAuth = () => {
+    const initStateUserAuth = localStorage.getItem(localStorageFolder.AUTH) !== null? JSON.parse(localStorage.getItem(localStorageFolder.AUTH)) : {rol: ROL.GUEST};
+    
     const auth = getAuthInstance();
     const { storeUserData, getdatauserfromid } = useFirestore();
-
+    
     const [issigned, setIsSigned] = useState(false);
-    const [userAuth, setUserAuth] = useState({rol:'guest'});
+    const [userAuth, setUserAuth] = useState( initStateUserAuth );
+    
+    useEffect(() => {
+        if(userAuth.rol !== ROL.GUEST && localStorage.getItem(localStorageFolder.TOKEN) !== null ) {
+            setsession(localStorage.getItem(localStorageFolder.TOKEN), useAuth);
+        }
+    }, []);
 
     const signin = () => {
         signInWithPopup(auth, authprovider)
@@ -63,16 +77,16 @@ const useAuth = () => {
 
     const logearseEnTuProde = async (email, password) => {
         try{         
-            const usercredentials = 
-                await signInWithEmailAndPassword(auth, email, password);
+            const usercredentials = await signInWithEmailAndPassword(auth, email, password);
 
             const userdata = await getdatauserfromid(usercredentials.user.uid);
             const totaldata = {
                 ...usercredentials.user,
-                displayName:userdata.name,
-                lastname:userdata.lastname,
-                phone:userdata.phone
+                displayName: userdata.name,
+                lastname: userdata.lastname,
+                phone: userdata.phone
             }
+
             setsession(usercredentials.user.accessToken, totaldata)
             return usercredentials
         }
@@ -84,31 +98,29 @@ const useAuth = () => {
     const signedout = () => {
         getAuth().signOut()
         setIsSigned(false)
-        localStorage.removeItem('token')
+        localStorage.removeItem(localStorageFolder.TOKEN);
+        localStorage.removeItem(localStorageFolder.AUTH);
     }
 
     const isSigned = () => { return issigned }
     
     const setsession = (token, user) => {
-        localStorage.setItem('token', token)
-        
-        if(user.email === process.env['REACT_APP_ADMIN_USER']) {
-            user.rol='admin'
-        }else{
-            user.rol='user'
-        }
-
-        setIsSigned(true)
-        setUserAuth({
+        setIsSigned(true);
+        const updateUserAuth = {
+            ...userAuth,
             email: user.email,
             name: user.displayName,
-            lastname: user.lastname?user.lastname:'',
-            phone: user.phone?user.phone:'',
-            image: user.photoURL,
+            lastname: user.lastname || '',
+            phone: user.phone || '',
+            image: user.photoURL || '',
             uid: user.uid,
-            rol: user.rol
-        })
-        
+            rol: (user.email === process.env['REACT_APP_ADMIN_USER']? ROL.ADMIN : ROL.USER)
+        } 
+        setUserAuth(updateUserAuth);
+
+        localStorage.setItem(localStorageFolder.TOKEN, token);
+        localStorage.setItem(localStorageFolder.AUTH, JSON.stringify(updateUserAuth));
+
         return issigned;
     }
     
