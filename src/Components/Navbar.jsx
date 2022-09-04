@@ -1,17 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ROL } from '../Constantes'
 import authconsumer from './../Hooks/UseAuth'
 
 export const Navbar = () => {
 const consumer = authconsumer()
 
-const links=[
-    {name:'home',url:'/'},
-    {name:'login',url:'/login'},
-    {name:'reglas',url:'/reglas'},
-    {name:'tabla',url:'/tabla'},
-    {name:'tuprode',url:'/tuprode'}
-]
+  const links=[
+      {name:'home',url:'/'},
+      {name:'reglas',url:'/reglas'},
+      {name:'tabla',url:'/tabla'},
+      {name:'tuprode',url:'/tuprode'}
+  ]
+
+  if (consumer.userauth.rol === ROL.ADMIN){
+    links.push({name: 'Super Prode', url:'/superprode'});
+  }
+
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
@@ -24,7 +29,6 @@ const links=[
       <ul className="navbar-nav">
        
         {links.map(link=><li className='nav-item'><Link className='nav-link' to={link.url}>{link.name.toUpperCase()}</Link></li>)}
-        {consumer.userauth.rol==='admin'? <li className='nav-item'><Link className='nav-link' to={'/superprode'}>Super Prode</Link></li>:'' }
       </ul>
     </div>
   </div>
