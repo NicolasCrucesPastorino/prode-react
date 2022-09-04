@@ -7,7 +7,7 @@ export const Home = () => {
   return (
     <div>
       <h1>Home</h1>
-      <button onClick={signedout}>Log Out</button>
+      <button onClick={signedout} className='btn btn-danger'>Log Out</button>
     </div>
   )
 }
