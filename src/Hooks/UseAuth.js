@@ -80,8 +80,11 @@ const useAuth = () => {
             const usercredentials = await signInWithEmailAndPassword(auth, email, password);
 
             const userdata = await getdatauserfromid(usercredentials.user.uid);
+            
             const totaldata = {
-                ...usercredentials.user,
+                email: usercredentials.user.email,
+                uid: usercredentials.user.uid,
+                photoURL: usercredentials.user.photoURL,
                 displayName: userdata.name,
                 lastname: userdata.lastname,
                 phone: userdata.phone
@@ -106,8 +109,8 @@ const useAuth = () => {
     
     const setsession = (token, user) => {
         setIsSigned(true);
+
         const updateUserAuth = {
-            ...userAuth,
             email: user.email,
             name: user.displayName,
             lastname: user.lastname || '',
