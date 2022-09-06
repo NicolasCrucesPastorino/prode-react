@@ -1,70 +1,111 @@
 
 import { database } from "../firebase/firebase"
-import { setDoc,doc, getDoc } from 'firebase/firestore'
+import { setDoc, doc, getDoc, getDocs, collection } from 'firebase/firestore'
 
-const {addDoc,collection,dbfirestore, getDocs} = database
+const { dbfirestore } = database
 
-export  const useFirestore = () => {
-    
-    const createResultados = async  (resultados,idusuario) => {
-        return await addDoc(collection(dbfirestore, 'resultados'), {idusuario,resultados})
-        
-    }
-    const storeUserProde = async (uid, formprode)=>{
-        const response = await setDoc(doc(dbfirestore,'prodes',uid),formprode) 
-        return response
+const firebaseFolder = {
+    PRODES: 'prodes',
+    SUPER_PRODE: 'superprode',
+    DATA_USUARIOS: 'usuarios'
+}
 
-    }
-
-    const storesuperprode = async (uid,formprode) => {
-        const response = await setDoc(doc(dbfirestore,'superprode',uid),formprode)
-        return response
-    }
-    const storeUserData = async (uid,name,lastname,phone) => {
-       
-        const userdata = {
-            name,
-            lastname,
-            phone
+export const useFirestore = () => {
+    const storeUserProde = async (uid, formprode) => {
+        try {
+            const response = await setDoc(
+                doc(dbfirestore, firebaseFolder.PRODES , uid), 
+                formprode
+            );
+            return response;
+        } catch (e) {
+            throw e;
         }
-        const response = await setDoc(doc(dbfirestore,'usuarios',uid),userdata) 
-        return response
     }
 
-    const  getAllProdesUsuarios = async ()=>{
-        const querySnapshot= await getDocs(collection(dbfirestore, 'prodes'))
-        const prodes= querySnapshot.docs.map(doc => doc.data())
-        return prodes
+    const storesuperprode = async (uid, formprode) => {
+        try {
+            const response = await setDoc(
+                doc(dbfirestore, firebaseFolder.SUPER_PRODE, uid), 
+                formprode
+            );
+            return response;
+        } catch (e) {
+            throw e;
+        }
     }
+    const storeUserData = async (uid, name, lastname, phone) => {
+        try {
+            const userdata = {
+                name,
+                lastname,
+                phone
+            }
+
+            const response = await setDoc(
+                doc(dbfirestore, firebaseFolder.DATA_USUARIOS, uid), 
+                userdata
+            );
+            return response;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    const getAllProdesUsuarios = async () => {
+        try {
+            const querySnapshot = await getDocs(
+                collection(dbfirestore, firebaseFolder.PRODES)
+            );
+            const prodes = querySnapshot.docs.map(doc => doc.data());
+            return prodes;
+        } catch (e) {
+            throw e;
+        }
+    }
+
     const getdatauserfromid = async (uid) => {
-        const docref=doc(dbfirestore,'usuarios',uid)
-        const docsnap=await getDoc(docref)
-        if(docsnap.exists()){
-            console.log('snap',docsnap.data())
-            return docsnap.data()
-        }else{
-            return null
+        try {
+            const docref = doc(
+                dbfirestore, 
+                firebaseFolder.DATA_USUARIOS, 
+                uid
+            );
+            const docsnap = await getDoc(docref);
+            if (docsnap.exists()) {
+                return docsnap.data();
+            } else {
+                return null;
+            }
+        } catch (e) {
+            throw e;
         }
     }
 
     const getprodeporid = async (uid) => {
-        const docref=doc(dbfirestore,'prodes',uid)
-        const docsnap=await getDoc(docref)
-        if(docsnap.exists()){
-            console.log('snap',docsnap.data())
-            return docsnap.data()
-        }else{
-            return null
+        try {
+            const docref = doc(
+                dbfirestore, 
+                firebaseFolder.PRODES, 
+                uid
+            );
+            const docsnap = await getDoc(docref);
+            if (docsnap.exists()) {
+                return docsnap.data();
+            } else {
+                return null;
+            }
+        } catch (e) {
+            throw e;
         }
+
     }
     return {
-        createResultados,
         storeUserData,
         getdatauserfromid,
         storeUserProde,
         storesuperprode,
         getprodeporid,
         getAllProdesUsuarios,
-
     }
 }

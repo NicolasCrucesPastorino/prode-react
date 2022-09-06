@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { getDoc,getFirestore,collection,addDoc,getDocs} from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from "firebase/app";
 import  { getAuth , GoogleAuthProvider }  from 'firebase/auth';
 
@@ -8,19 +8,19 @@ import  { getAuth , GoogleAuthProvider }  from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBQkckeOafsZhvRtiA3Efflx2oMg9M4-xY",
-  authDomain: "prode-99c84.firebaseapp.com",
-  projectId: "prode-99c84",
-  storageBucket: "prode-99c84.appspot.com",
-  messagingSenderId: "710168407591",
-  appId: "1:710168407591:web:fe2aaa8d3ec17a0b12e802"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROjECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const authprovider = new GoogleAuthProvider()
 const dbfirestore = getFirestore(app)
-const database = {dbfirestore,collection,addDoc,getDoc,getDocs}
+const database = { dbfirestore }
 
 
 export { app,getAuth, authprovider,database } 
