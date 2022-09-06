@@ -34,10 +34,10 @@ export const useFirestore = () => {
             throw e;
         }
     }
-    const storeUserData = async (uid, name, lastname, phone) => {
+    const storeUserData = async (uid, displayName, lastname, phone) => {
         try {
             const userdata = {
-                name,
+                displayName,
                 lastname,
                 phone
             }
