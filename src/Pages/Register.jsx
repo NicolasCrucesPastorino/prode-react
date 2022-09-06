@@ -1,51 +1,65 @@
 import React,{useState} from 'react'
 import Authconsumer from '../Hooks/UseAuth'
-import {useFirestore} from '../Hooks/useFirestore'
 import {useNavigate} from 'react-router-dom'
+
+
 export const Register = () => {
-  const {registrarse} = Authconsumer()
-  const {storeUserData} = useFirestore()
-  const navigate=useNavigate()
+  const {registrarse} = Authconsumer();
+  const navigate = useNavigate()
   const inputinicial={
-    email:'',
-    name:'',
-    lastname:'',
-    phone:'',
-    password:'',
-    repeatpassword:'',
+    email: '',
+    name: '',
+    lastname: '',
+    phone: '',
+    password: '',
+    repeatpassword: '',
   }
   const [input, setinput] = useState(inputinicial)
 
   const handleOnChange = (evento) => {
     setinput({...input, [evento.target.name]:evento.target.value})
   }
+
   const handleOnSubmit= (evento) => {
     evento.preventDefault()
-    console.log(input)
-    if(input.name === '' || input.email === '' || input.lastname=== '' || input.phone=== '' || input.password=== '' || input.repeatpassword=== ''){
+    
+    if( input.name === '' 
+      || input.email === '' 
+      || input.lastname=== '' 
+      || input.phone=== '' 
+      || input.password=== '' 
+      || input.repeatpassword=== '') {
       alert('Debe completar todos los campos')
       return
     }
 
-    if(input.password!=input.repeatpassword){
+    if(input.password !== input.repeatpassword){
       alert('Las contraseñas no coinciden')
       return
     }
-    if(input.password.length<=6){
+    if(input.password.length <= 6){
       alert('La contraseña debe poseer mas de 6 caracteres')
       return
     }
 
-  registrarse(input.email,input.password,input.name,input.lastname,input.phone) 
+  registrarse(
+    input.email,
+    input.password,
+    input.name,
+    input.lastname,
+    input.phone
+    ) 
     .then(authusercredentials => {
-      console.log('credentials',authusercredentials)
-      
-      
+      console.log('credentials',authusercredentials)  
+      alert('Formulario recibido')
+      navigate('/reglas')
     }) 
-    .catch(error => console.log(error))
-  alert('Formulario recibido')
-  navigate('/reglas')
+    .catch(error => {
+      console.log(error)
+      alert('Error al registrarse')
+    })
   }
+
   return (
     <div>
         <form onSubmit={handleOnSubmit}>
