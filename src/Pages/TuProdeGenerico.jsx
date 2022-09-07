@@ -12,17 +12,8 @@ export const TuProdeGenerico = (props) => {
   const onSubmitFinalStrategy = props.onSubmitFinalStrategy
   const validarcamposvacios = props.validarcamposvacios
   const [resultados, setresultados] = useState([])
-  const [octavos, setoctavos] = useState(
-    { 
-      a: { a: '', b: '' }, 
-      b: { a: '', b: '' }, 
-      c: { a: '', b: '' }, 
-      d: { a: '', b: '' }, 
-      e: { a: '', b: '' },
-      f: { a: '', b: '' },
-      g: { a: '', b: '' },
-      h: { a: '', b: '' } 
-    })
+  const [octavos, setoctavos] = useState()
+   
     console.log('octa',octavos)
   const [inputbracket, setinputbracket] = useState({})
   const [torneo, settorneo] = useState({
@@ -63,14 +54,11 @@ export const TuProdeGenerico = (props) => {
         return
       }
     }
-    firestore.createResultados(resultados, 1).then(() => {
-      alert('Prode guardado con éxito')
-      const prodeusuario = {
-        resultados, torneo, userid: auth.userauth.uid
-      }
+      const prodeusuario=auth.userauth
       console.log('octa',octavos)
-      onSubmitFinalStrategy(prodeusuario.userid, { resultados: prodeusuario.resultados,octavos, torneo: prodeusuario.torneo })
-    })
+      alert('Prode guardado con éxito')
+      onSubmitFinalStrategy(prodeusuario.uid, { resultados: prodeusuario.resultados,octavos, torneo: prodeusuario.torneo })
+      .then()
       .catch(error => {
         alert('No se pudo guardar el prode intente mas tarde')
       })
@@ -78,9 +66,9 @@ export const TuProdeGenerico = (props) => {
 
 
   const validarcampos = () => {
-    if (inputbracket['1-a'] === inputbracket['2-a'] || inputbracket['1-b'] === inputbracket['2-b'] || inputbracket['1-c'] === inputbracket['2-c'] || inputbracket['1-d'] === inputbracket['2-d'] || inputbracket['1-e'] === inputbracket['2-e'] || inputbracket['1-f'] === inputbracket['2-f'] || inputbracket['1-g'] === inputbracket['2-g'] || inputbracket['1-h'] === inputbracket['2-h']) {
+    if (octavos['1-a'] === octavos['2-a'] || octavos['1-b'] === octavos['2-b'] || octavos['1-c'] === octavos['2-c'] || octavos['1-d'] === octavos['2-d'] || octavos['1-e'] === octavos['2-e'] || octavos['1-f'] === octavos['2-f'] || octavos['1-g'] === octavos['2-g'] || octavos['1-h'] === octavos['2-h']) {
       return 'No pueden haber dos equipos iguales'
-    } else if (inputbracket['1-a'] === '' || inputbracket['2-a'] === '' || inputbracket['1-b'] === '' || inputbracket['2-b'] === '' || inputbracket['1-c'] === '' || inputbracket['2-c'] === '' || inputbracket['1-d'] === '' || inputbracket['2-d'] === '' || inputbracket['1-e'] === '' || inputbracket['2-e'] === '' || inputbracket['1-f'] === '' || inputbracket['2-f'] === '' || inputbracket['1-g'] === '' || inputbracket['2-g'] === '' || inputbracket['1-h'] === '' || inputbracket['2-h'] === '') {
+    } else if (octavos['1-a'] === '' || octavos['2-a'] === '' || octavos['1-b'] === '' || octavos['2-b'] === '' || octavos['1-c'] === '' || octavos['2-c'] === '' || octavos['1-d'] === '' || octavos['2-d'] === '' || octavos['1-e'] === '' || octavos['2-e'] === '' || octavos['1-f'] === '' || octavos['2-f'] === '' || octavos['1-g'] === '' || octavos['2-g'] === '' || octavos['1-h'] === '' || octavos['2-h'] === '') {
       return 'debe completar todos los casilleros'
     } else {
       return 'ok'
@@ -129,7 +117,7 @@ export const TuProdeGenerico = (props) => {
         <h4>Complete las llaves del prode de izquierda a derecha y de arriba hacia abajo.</h4>
 
         <div>
-          <BracketTorneo torneo={torneo} settorneo={settorneo} inputbracket={inputbracket}></BracketTorneo>
+          <BracketTorneo torneo={torneo} settorneo={settorneo} inputbracket={inputbracket} octavos={octavos}></BracketTorneo>
         </div>
 
       </form>
