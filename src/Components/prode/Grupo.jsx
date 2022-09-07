@@ -1,10 +1,8 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { Partido } from './Partido'
 
+
 export const Grupo = (props) => {
-
-
     const nombre = props.nombre
     const partidos =props.partidos
     const resultados=props.resultados

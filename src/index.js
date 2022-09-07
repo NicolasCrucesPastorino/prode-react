@@ -5,12 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './Hooks/UseAuth';
-import { ResultadosProvider } from './Hooks/useResultados';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthProvider>
-    <ResultadosProvider>
       <React.StrictMode>
 
         <BrowserRouter>
@@ -18,7 +16,6 @@ root.render(
         </BrowserRouter>
 
       </React.StrictMode>
-    </ResultadosProvider>
   </AuthProvider>
 
 );
