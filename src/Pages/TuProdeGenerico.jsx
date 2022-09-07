@@ -6,6 +6,7 @@ import '../Constantes'
 import { useFirestore } from '../Hooks/useFirestore'
 import { BracketTorneo } from '../Components/BracketTorneo'
 import { useEffect } from 'react'
+import { Octavos } from '../Components/prode/torneo/Octavos'
 
 export const TuProdeGenerico = (props) => {
   const onSubmitFinalStrategy = props.onSubmitFinalStrategy
@@ -121,7 +122,7 @@ export const TuProdeGenerico = (props) => {
         </div>
 
         <h4>Elija los equipos primeros y segundos de cada grupo respectivamente.</h4>
-
+        <Octavos octavos={octavos} setoctavos={setoctavos} />
 
         
         <button className='btn btn-primary' type='submit'>Guardar</button>
