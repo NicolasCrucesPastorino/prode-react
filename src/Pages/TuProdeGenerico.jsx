@@ -26,10 +26,13 @@ export const TuProdeGenerico = (props) => {
 
   const cargarprode = async () => {
     if(auth.userauth.uid){
-      const prodeusuario = await firestore.getprodeporid(auth.userauth.uid)
-        if(prodeusuario.torneo) { settorneo(prodeusuario.torneo) }
-        if(prodeusuario.restultados) { setresultados([...prodeusuario.resultados]) }
-        if(prodeusuario.octavos) { setoctavos(prodeusuario.octavos) }
+        const prodeusuario = await firestore.getprodeporid(auth.userauth.uid)
+        
+        if(prodeusuario){
+          if(prodeusuario.torneo) { settorneo(prodeusuario.torneo) }
+          if(prodeusuario.restultados) { setresultados([...prodeusuario.resultados]) }
+          if(prodeusuario.octavos) { setoctavos(prodeusuario.octavos) }
+        }
       }
 
       console.log('datos cargados del prode', {resultados, octavos, torneo});
@@ -56,7 +59,7 @@ export const TuProdeGenerico = (props) => {
       }
       console.log('prode', prode);
       console.log('userid', prodeusuario.uid);
-      onSubmitFinalStrategy(prodeusuario.uid, { resultados: prodeusuario.resultados,octavos, torneo: prodeusuario.torneo })
+      onSubmitFinalStrategy(prodeusuario.uid, { resultados,octavos, torneo })
       .then(() => {
         alert('Prode guardado con éxito')
       })
@@ -86,10 +89,6 @@ export const TuProdeGenerico = (props) => {
   const { grupoF } = equipos
   const { grupoG } = equipos
   const { grupoH } = equipos
-
-
-
-
 
   const grupos = [
     { nombre: 'A', partidos: [{ equipoA: grupoA.SENEGAL, equipoB: grupoA.PAISES_BAJOS }, { equipoA: grupoA.CATAR, equipoB: grupoA.ECUADOR }, { equipoA: grupoA.CATAR, equipoB: grupoA.SENEGAL }, { equipoA: grupoA.PAISES_BAJOS, equipoB: grupoA.ECUADOR }, { equipoA: grupoA.ECUADOR, equipoB: grupoA.SENEGAL }, { equipoA: grupoA.PAISES_BAJOS, equipoB: grupoA.CATAR }] },
