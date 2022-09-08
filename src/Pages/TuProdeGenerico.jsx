@@ -12,13 +12,7 @@ export const TuProdeGenerico = (props) => {
   const validarcamposvacios = props.validarcamposvacios
   const [resultados, setresultados] = useState([])
   const [octavos, setoctavos] = useState({})
-  const [torneo, settorneo] = useState({
-    cuartos: { a: { a: '', b: '' }, b: { a: '', b: '' }, c: { a: '', b: '' }, d: { a: '', b: '' } },
-    semifinal: { a: { a: '', b: '' }, b: { a: '', b: '' } },
-    final: { a: '', b: '' },
-    campeon: '',
-    tercero: ''
-  })
+  const [torneo, settorneo] = useState({})
   
   const auth = AuthConsumer();
   const firestore = useFirestore()
