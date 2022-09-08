@@ -12,10 +12,7 @@ export const TuProdeGenerico = (props) => {
   const onSubmitFinalStrategy = props.onSubmitFinalStrategy
   const validarcamposvacios = props.validarcamposvacios
   const [resultados, setresultados] = useState([])
-  const [octavos, setoctavos] = useState()
-   
-    console.log('octa',octavos)
-  const [inputbracket, setinputbracket] = useState({})
+  const [octavos, setoctavos] = useState({})
   const [torneo, settorneo] = useState({
     cuartos: { a: { a: '', b: '' }, b: { a: '', b: '' }, c: { a: '', b: '' }, d: { a: '', b: '' } },
     semifinal: { a: { a: '', b: '' }, b: { a: '', b: '' } },
@@ -23,25 +20,23 @@ export const TuProdeGenerico = (props) => {
     campeon: '',
     tercero: ''
   })
-
   
   const auth = AuthConsumer();
   const firestore = useFirestore()
 
   const cargarprode = async () => {
-
     if(auth.userauth.uid){
       const prodeusuario = await firestore.getprodeporid(auth.userauth.uid)
-        console.log(prodeusuario,'prodeusuario')
-        settorneo(prodeusuario.torneo)
-        setresultados([...prodeusuario.resultados])
-        setoctavos(prodeusuario.octavos)
-        console.log('octavos en efecto',octavos)
+        if(prodeusuario.torneo) { settorneo(prodeusuario.torneo) }
+        if(prodeusuario.restultados) { setresultados([...prodeusuario.resultados]) }
+        if(prodeusuario.octavos) { setoctavos(prodeusuario.octavos) }
       }
+
+      console.log('datos cargados del prode', {resultados, octavos, torneo});
   }
+
   useEffect(()=>{
    cargarprode().then() 
-   
   },[])
 
   const handleOnSubmit = (evento) => {
@@ -54,13 +49,20 @@ export const TuProdeGenerico = (props) => {
         return
       }
     }
-      const prodeusuario=auth.userauth
-      console.log('octa',octavos)
-      alert('Prode guardado con éxito')
+      const prodeusuario = auth.userauth
+
+      const prode = {
+        resultados, octavos, torneo
+      }
+      console.log('prode', prode);
+      console.log('userid', prodeusuario.uid);
       onSubmitFinalStrategy(prodeusuario.uid, { resultados: prodeusuario.resultados,octavos, torneo: prodeusuario.torneo })
-      .then()
+      .then(() => {
+        alert('Prode guardado con éxito')
+      })
       .catch(error => {
         alert('No se pudo guardar el prode intente mas tarde')
+        console.error(error);
       })
   }
 
@@ -117,7 +119,7 @@ export const TuProdeGenerico = (props) => {
         <h4>Complete las llaves del prode de izquierda a derecha y de arriba hacia abajo.</h4>
 
         <div>
-          <BracketTorneo torneo={torneo} settorneo={settorneo} inputbracket={inputbracket} octavos={octavos}></BracketTorneo>
+          <BracketTorneo torneo={torneo} settorneo={settorneo} octavos={octavos}></BracketTorneo>
         </div>
 
       </form>

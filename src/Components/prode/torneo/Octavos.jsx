@@ -18,26 +18,6 @@ export const Octavos = (props) => {
     const handleOnChangeOctavos = (evento) => {
         setoctavos({...octavos,[evento.target.name]:evento.target.value})
         console.log('octavos',octavos)
-    //     const octavosauxiliar={...octavos}
-    // switch (evento.target.name){
-    //   case '1-a': octavosauxiliar.a.a=evento.target.value; break ;
-    //   case '2-a': octavosauxiliar.a.b=evento.target.value; break ;
-    //   case '1-b': octavosauxiliar.b.a=evento.target.value; break ;
-    //   case '2-b': octavosauxiliar.b.b=evento.target.value; break ;
-    //   case '1-c': octavosauxiliar.c.a=evento.target.value; break ;
-    //   case '2-c': octavosauxiliar.c.b=evento.target.value; break ;
-    //   case '1-d': octavosauxiliar.d.a=evento.target.value; break ;
-    //   case '2-d': octavosauxiliar.d.b=evento.target.value; break ;
-    //   case '1-e': octavosauxiliar.e.a=evento.target.value; break ;
-    //   case '2-e': octavosauxiliar.e.b=evento.target.value; break ;
-    //   case '1-f': octavosauxiliar.f.a=evento.target.value; break ;
-    //   case '2-f': octavosauxiliar.f.b=evento.target.value; break ;
-    //   case '1-g': octavosauxiliar.g.a=evento.target.value; break ;
-    //   case '2-g': octavosauxiliar.g.b=evento.target.value; break ;
-    //   case '1-h': octavosauxiliar.h.a=evento.target.value; break ;
-    //   case '2-h': octavosauxiliar.h.b=evento.target.value; break ;
-    // }
-    // setoctavos(octavosauxiliar)
     }
 
     return (

@@ -3,16 +3,15 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 
 export const Partido = (props) => {
-    const equipoA= props.equipoA
-    const equipoB= props.equipoB
-    const grupo=props.grupo
-    const resultados=props.resultados
-    const setresultados=props.setresultados
-    const index=props.index
+    const equipoA = props.equipoA
+    const equipoB = props.equipoB
+    const grupo = props.grupo
+    const resultados = props.resultados
+    const setresultados = props.setresultados
+    const index = props.index
 
     const partidoid= grupo + '-' + index
     const [resultado, setresultado] = useState({partidoid,equipoA,equipoB,golesequipoA:'',golesequipoB:''})
-
     
     useEffect(()=>{
       const existeresultado=resultados.find(r => r.partidoid===partidoid)
@@ -32,7 +31,7 @@ export const Partido = (props) => {
     },[resultado])
 
     const handleOnChange = (evento) => {
-      let goles=evento.target.value 
+      let goles = evento.target.value 
       if(isNaN(goles) || parseInt(goles)<0){
         alert('Los goles deben ser números positivos')
         return
