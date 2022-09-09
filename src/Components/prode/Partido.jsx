@@ -27,8 +27,11 @@ export const Partido = (props) => {
           }
         })
         setresultados(updatedresultados)
+        
       }
     },[resultado])
+
+
 
     const handleOnChange = (evento) => {
       let goles = evento.target.value 

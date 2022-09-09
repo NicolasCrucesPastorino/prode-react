@@ -28,11 +28,12 @@ export const TuProdeGenerico = (props) => {
         }
       }
 
-      console.log('datos cargados del prode', {resultados, octavos, torneo});
+      
   }
 
   useEffect(()=>{
    cargarprode().then() 
+   console.log('datos cargados del prode', {resultados, octavos, torneo});
   },[])
 
   const handleOnSubmit = (evento) => {
@@ -73,7 +74,7 @@ export const TuProdeGenerico = (props) => {
       <h1>Tu Prode {auth.userauth.name}</h1>
       <p>Para grabar los datos de TU PRODE apriete el botón de guardar al final.</p>
       <form onSubmit={handleOnSubmit}>
-        <h4>Preliminares</h4>
+        <h4>Fase de Grupos</h4>
         <Preliminares resultados={resultados} setresultados={setresultados} />
 
         <h4>Elija los equipos primeros y segundos de cada grupo respectivamente.</h4>

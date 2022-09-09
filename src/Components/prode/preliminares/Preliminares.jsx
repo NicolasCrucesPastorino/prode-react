@@ -14,7 +14,7 @@ export const Preliminares = (props) => {
         grupoG,
         grupoH
     } = equipos
-
+    
     const grupos = [
         { nombre: 'A', partidos: [{ equipoA: grupoA.SENEGAL, equipoB: grupoA.PAISES_BAJOS }, { equipoA: grupoA.CATAR, equipoB: grupoA.ECUADOR }, { equipoA: grupoA.CATAR, equipoB: grupoA.SENEGAL }, { equipoA: grupoA.PAISES_BAJOS, equipoB: grupoA.ECUADOR }, { equipoA: grupoA.ECUADOR, equipoB: grupoA.SENEGAL }, { equipoA: grupoA.PAISES_BAJOS, equipoB: grupoA.CATAR }] },
         { nombre: 'B', partidos: [{ equipoA: grupoB.INGLATERRA, equipoB: grupoB.IRAN }, { equipoA: grupoB.ESTADOS_UNIDOS, equipoB: grupoB.GALES }, { equipoA: grupoB.GALES, equipoB: grupoB.IRAN }, { equipoA: grupoB.INGLATERRA, equipoB: grupoB.ESTADOS_UNIDOS }, { equipoA: grupoB.GALES, equipoB: grupoB.INGLATERRA }, { equipoA: grupoB.IRAN, equipoB: grupoB.ESTADOS_UNIDOS }] },
