@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { equipos } from "../../../Constantes"
-import { Grupo } from "../Grupo"
+import { GrupoPreliminar } from "../GrupoPreliminar";
+import Grupo from "./Models/Grupo";
+//import { Grupo } from "../Grupo"
+
+
 export const Preliminares = (props) => {
     const resultados = props.resultados;
-    const setresultados = props.setresultados; 
+   //const setresultados = props.setresultados; 
 
     const {
         grupoA,
@@ -25,17 +30,23 @@ export const Preliminares = (props) => {
         { nombre: 'G', partidos: [{ equipoA: grupoG.SUIZA, equipoB: grupoG.CAMERUN }, { equipoA: grupoG.BRASIL, equipoB: grupoG.SERBIA }, { equipoA: grupoG.CAMERUN, equipoB: grupoG.SERBIA }, { equipoA: grupoG.BRASIL, equipoB: grupoG.SUIZA }, { equipoA: grupoG.SERBIA, equipoB: grupoG.SUIZA }, { equipoA: grupoG.CAMERUN, equipoB: grupoG.BRASIL }] },
         { nombre: 'H', partidos: [{ equipoA: grupoH.URUGUAY, equipoB: grupoH.COREA_DEL_SUR }, { equipoA: grupoH.PORTUGAL, equipoB: grupoH.GHANA }, { equipoA: grupoH.COREA_DEL_SUR, equipoB: grupoH.GHANA }, { equipoA: grupoH.PORTUGAL, equipoB: grupoH.URUGUAY }, { equipoA: grupoH.GHANA, equipoB: grupoH.URUGUAY }, { equipoA: grupoH.COREA_DEL_SUR, equipoB: grupoH.PORTUGAL }] }
       ]
+
+      const objetogrupos = grupos.map(grupo => new Grupo(grupo.nombre, grupo.partidos))
+      
+      const [grupospreliminares, setgrupospreliminares] = useState(objetogrupos)
+      console.log('obj pre',grupospreliminares)
     return (
         <div className='container row mx-auto'>
             {
-                grupos.map(grupo => 
-                    <Grupo key={grupo.nombre}
-                        resultados={resultados} 
-                        setresultados={setresultados} 
-                        nombre={grupo.nombre} 
-                        partidos={grupo.partidos} >
-                    </Grupo>
-                )
+                grupospreliminares.map(grupoPreliminar =>(
+                    <GrupoPreliminar
+                        key={grupoPreliminar.nombre}
+                        nombre={grupoPreliminar.nombre}
+                        partidos={grupoPreliminar.partidos}
+                        grupospreliminares={grupospreliminares}
+                        setgrupospreliminares={setgrupospreliminares}
+                    />
+                ) )
             }
         </div>
     )
