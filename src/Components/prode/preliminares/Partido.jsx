@@ -5,16 +5,9 @@ import { useState } from 'react'
 export const Partido = (props) => {
    
   
-    const grupospreliminares = props.grupospreliminares
-    const setgrupospreliminares = props.setgrupospreliminares
+    const resultados = props.resultados
+    const setresultados = props.setresultados
     const partido = props.partido
-
-    
-    //const [resultado, setresultado] = useState({partidoid,equipoA,equipoB,golesequipoA:'',golesequipoB:''})
-    
-    
-
-
 
     const handleOnChange = (evento) => {
       let goles = evento.target.value 
@@ -35,9 +28,24 @@ export const Partido = (props) => {
     return (
     <div className='partidocontainer row' id={''}>
         <p className='equipo col-md-2'>{partido.equipoA}</p>
-        <input name='golesequipoA' style={style} className='col-md-2' type='number' onChange={handleOnChange} value={partido.golesequipoA}></input>
+        <input 
+          name='golesequipoA' 
+          style={style} 
+          className='col-md-2' 
+          type='number' 
+          onChange={handleOnChange} 
+          value={partido.golesequipoA}>
+        </input>
+
         <p className='col-md-1'> - </p>
-        <input name='golesequipoB' style={style} className='col-md-2' type='number' onChange={handleOnChange} value={partido.golesequipoB}></input>
+        <input 
+          name='golesequipoB' 
+          style={style} 
+          className='col-md-2' 
+          type='number' 
+          onChange={handleOnChange} 
+          value={partido.golesequipoB}>
+        </input>
         <p className='equipo col-md-2'>{partido.equipoB}</p>
     </div>
   )

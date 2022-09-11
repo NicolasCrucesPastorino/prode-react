@@ -21,8 +21,10 @@ export const TuProdeGenerico = (props) => {
         
         if(prodeusuario){
           if(prodeusuario.torneo) { settorneo(prodeusuario.torneo) }
-          //if(prodeusuario.resultados) { setresultados([...prodeusuario.resultados]) }
           if(prodeusuario.octavos) { setoctavos(prodeusuario.octavos) }
+          if(prodeusuario.resultados && prodeusuario.resultados.length > 0) { 
+            setresultados([...prodeusuario.resultados]) 
+          }
         }
       }
 
