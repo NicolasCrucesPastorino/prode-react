@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { equipos } from "../../../Constantes"
-import { GrupoPreliminar } from "../GrupoPreliminar";
+import { GrupoPreliminar } from "./GrupoPreliminar";
 import Grupo from "./Models/Grupo";
 //import { Grupo } from "../Grupo"
 

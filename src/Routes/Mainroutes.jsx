@@ -3,7 +3,6 @@ import {Routes,Route} from 'react-router-dom'
 import { NavigableLayer } from '../Components/NavigableLayer'
 import { NotRequireAuth } from '../Components/NotRequireAuth'
 import { RequireAuth } from '../Components/RequireAuth'
-import { BracketPage } from '../Pages/BracketPage'
 import { FormularioLoginTuProde } from '../Pages/FormularioLoginTuProde'
 import { Home } from '../Pages/Home'
 import { Login } from '../Pages/Login'
@@ -33,7 +32,6 @@ export const Mainroutes = () => {
         {/* Rutas totalemnte publicas */}       
         <Route path='reglas'  element = {<NavigableLayer><Reglas/></NavigableLayer>} />
         <Route path='tabla'  element = {<NavigableLayer><Tabla/></NavigableLayer>} />
-        <Route path='bracket'  element = {<BracketPage/>} />
         <Route path='superprode' element = {<NavigableLayer><SuperProde/></NavigableLayer>} />
 
         {/* Rutas que no existen */}

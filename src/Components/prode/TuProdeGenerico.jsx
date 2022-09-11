@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import AuthConsumer from './../Hooks/UseAuth'
-import '../Constantes'
-import { useFirestore } from '../Hooks/useFirestore'
-import { BracketTorneo } from '../Components/BracketTorneo'
-import { useEffect } from 'react'
-import { Octavos } from '../Components/prode/torneo/Octavos'
-import { Preliminares } from '../Components/prode/preliminares/Preliminares'
+import React, { useState, useEffect } from 'react';
+import AuthConsumer from './../../Hooks/UseAuth';
+import { useFirestore } from '../../Hooks/useFirestore'
+import { BracketTorneo } from './torneo/BracketTorneo';
+import { Octavos } from './torneo/Octavos'
+import { Preliminares } from './preliminares/Preliminares';
 
 export const TuProdeGenerico = (props) => {
   const onSubmitFinalStrategy = props.onSubmitFinalStrategy

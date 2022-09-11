@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFirestore } from '../Hooks/useFirestore'
-import { TuProdeGenerico } from './TuProdeGenerico'
+import { TuProdeGenerico } from './../Components/prode/TuProdeGenerico'
 
 export const SuperProde = () => {
   const firestore = useFirestore()

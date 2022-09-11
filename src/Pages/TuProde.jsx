@@ -1,7 +1,7 @@
 
 import '../Constantes'
 import { useFirestore } from '../Hooks/useFirestore'
-import { TuProdeGenerico } from './TuProdeGenerico'
+import { TuProdeGenerico } from './../Components/prode/TuProdeGenerico';
 
 
 export const TuProde = () => {
