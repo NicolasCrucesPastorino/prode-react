@@ -8,13 +8,13 @@ class Partido {
     }
         setgolesequipoA(goles){
             if(isNaN(goles)){
-                goles=parseInt(goles)
+                goles = parseInt(goles)
             } 
-            if(goles<0){
+            if(goles < 0){
                 throw Error('los goles deben ser numeros positivos')
 
             }
-            this.golesequipoA=goles
+            this.golesequipoA = parseInt(goles);
         }
             setgolesequipoB(goles){
                 if(isNaN(goles)){

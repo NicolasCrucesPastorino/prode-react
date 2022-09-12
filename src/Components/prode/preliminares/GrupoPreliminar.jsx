@@ -7,12 +7,11 @@ export const GrupoPreliminar = (props) => {
     const partidos = props.partidos
     const resultados = props.resultados 
     const setresultados = props.setresultados
-   // console.log('part',partidos)
   return (
     <div className='containeritem col-md-5'>
-        <h1>Grupo </h1>
+        <h1>Grupo {nombre}</h1>
         {
-          partidos.map((partido)=>
+          partidos.map((partido) =>
             <Partido 
               key={partido.partidoid} 
               resultados={resultados} 

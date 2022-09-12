@@ -1,6 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
 
 export const Partido = (props) => {
    
@@ -11,17 +9,26 @@ export const Partido = (props) => {
 
     const handleOnChange = (evento) => {
       let goles = evento.target.value 
-      if(isNaN(goles) || parseInt(goles)<0){
-        alert('Los goles deben ser números positivos')
-        return
+      
+      try{
+        if(evento.target.name === 'golesequipoA'){
+          partido.setgolesequipoA(goles)
+        } else if(evento.target.name === 'golesequipoB'){
+          partido.setgolesequipoB(goles)
+        }
+        const grupoNombre = partido.partidoid.split('-')[0];
+        console.log('pertenezco al grupo', grupoNombre);
+        const resultadosAuxiliar = [...resultados];
+        const grupoIndex = resultadosAuxiliar.findIndex((grupo) => grupo.nombre === grupoNombre);
+        const partidoIndex = resultadosAuxiliar[grupoIndex].partidos.findIndex((p) => p.partidoid === partido.partidoid);
+        resultadosAuxiliar[grupoIndex].partidos[partidoIndex] = partido;
+        setresultados(resultadosAuxiliar);
+      }catch(error){
+        console.error(error);
+        alert(error.message)
+        return;
       }
-      goles=parseInt(goles)
-      if(evento.target.name === 'golesequipoA'){
-        partido.setgolesequipoA(goles)
-      } else if(evento.target.name === 'golesequipoB'){
-        partido.setgolesequipoB(goles)
-      }
-      //setresultado({...resultado,[evento.target.name]:goles})
+      
     }
     
     const style={height:'32px',weight:'32px'}

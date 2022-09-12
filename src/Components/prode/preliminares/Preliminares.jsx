@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import { equipos } from "../../../Constantes"
 import { GrupoPreliminar } from "./GrupoPreliminar";
 import Grupo from "./Models/Grupo";
@@ -31,18 +29,18 @@ export const Preliminares = (props) => {
         { nombre: 'H', partidos: [{ equipoA: grupoH.URUGUAY, equipoB: grupoH.COREA_DEL_SUR }, { equipoA: grupoH.PORTUGAL, equipoB: grupoH.GHANA }, { equipoA: grupoH.COREA_DEL_SUR, equipoB: grupoH.GHANA }, { equipoA: grupoH.PORTUGAL, equipoB: grupoH.URUGUAY }, { equipoA: grupoH.GHANA, equipoB: grupoH.URUGUAY }, { equipoA: grupoH.COREA_DEL_SUR, equipoB: grupoH.PORTUGAL }] }
       ]
 
-
     const objetogrupos = grupos.map(grupo => new Grupo(grupo.nombre, grupo.partidos))
  
     if(resultados.length === 0) {
         setresultados(objetogrupos)
     }
     
-      
+    console.log(resultados);  
+    
     return (
         <div className='container row mx-auto'>
             {
-                grupospreliminares.map(grupoPreliminar =>(
+                resultados.map(grupoPreliminar =>(
                     <GrupoPreliminar
                         key={grupoPreliminar.nombre}
                         nombre={grupoPreliminar.nombre}
