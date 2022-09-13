@@ -12,7 +12,7 @@ const firebaseFolder = {
     DATA_USUARIOS: 'usuarios'
 }
 
-export const resultadosconverter = {
+const resultadosconverter = {
     toFirestore:(resultados = []) => {
         const grupos = resultados.map(grupo => ({nombre: grupo.nombre,partidos:grupo.partidos.map(partido => ({partidoid:partido.partidoid, equipoA:partido.equipoA, equipoB:partido.equipoB, golesequipoA:partido.golesequipoA, golesequipoB:partido.golesequipoB}))}))
         return grupos
@@ -28,11 +28,16 @@ export const resultadosconverter = {
 }
 
 export const useFirestore = () => {
-    const storeUserProde = async (uid, formprode) => {
+    const storeUserProde = async (uid, prode) => {
         try {
+            const prodeCopy = { ...prode }
+            if(prode.resultados) {
+                prodeCopy.resultados = resultadosconverter.toFirestore(prode.resultados)
+            }
+
             const response = await setDoc(
                 doc(dbfirestore, firebaseFolder.PRODES , uid), 
-                formprode
+                prodeCopy
             );
             return response;
         } catch (e) {
@@ -40,11 +45,16 @@ export const useFirestore = () => {
         }
     }
 
-    const storesuperprode = async (uid, formprode) => {
+    const storesuperprode = async (uid, superProde) => {
         try {
+            const prodeCopy = {...superProde}
+            if(superProde.resultados) {
+                prodeCopy.resultados = resultadosconverter.toFirestore(superProde.resultados)
+            }
+
             const response = await setDoc(
                 doc(dbfirestore, firebaseFolder.SUPER_PRODE, uid), 
-                formprode
+                prodeCopy
             );
             return response;
         } catch (e) {
@@ -74,7 +84,11 @@ export const useFirestore = () => {
             const querySnapshot = await getDocs(
                 collection(dbfirestore, firebaseFolder.PRODES)
             );
-            const prodes = querySnapshot.docs.map(doc => doc.data());
+            const prodes = querySnapshot.docs.map(doc => {
+              const prode = {...doc.data() }
+              prode.resultados = resultadosconverter.toObject(prode.resultados)
+              return prode  
+            });
             return prodes;
         } catch (e) {
             throw e;
@@ -108,7 +122,11 @@ export const useFirestore = () => {
             );
             const docsnap = await getDoc(docref);
             if (docsnap.exists()) {
-                return docsnap.data();
+                const prode = { ...docsnap.data() }
+                if(prode.resultados) {
+                    prode.resultados = resultadosconverter.toObject(prode.resultados)
+                }
+                return prode;
             } else {
                 return null;
             }
