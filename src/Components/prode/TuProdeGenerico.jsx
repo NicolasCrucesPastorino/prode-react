@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import AuthConsumer from './../../Hooks/UseAuth';
-import { resultadosconverter, useFirestore } from '../../Hooks/useFirestore'
+import { useFirestore } from '../../Hooks/useFirestore';
 import { BracketTorneo } from './torneo/BracketTorneo';
 import { Octavos } from './torneo/Octavos'
 import { Preliminares } from './preliminares/Preliminares';
 
 export const TuProdeGenerico = (props) => {
+  
   const onSubmitFinalStrategy = props.onSubmitFinalStrategy
   const validarcamposvacios = props.validarcamposvacios
   const [resultados, setresultados] = useState([])
@@ -23,14 +24,10 @@ export const TuProdeGenerico = (props) => {
           if(prodeusuario.torneo) { settorneo(prodeusuario.torneo) }
           if(prodeusuario.octavos) { setoctavos(prodeusuario.octavos) }
           if(prodeusuario.resultados && prodeusuario.resultados.length > 0) {
-            const resultadosaobjetolista = resultadosconverter.toObject(prodeusuario.resultados) 
-            console.log('objlis',resultadosaobjetolista)
-            setresultados(resultadosaobjetolista) 
+            setresultados(prodeusuario.resultados) 
           }
         }
-      }
-
-      
+      }      
   }
 
   useEffect(()=>{
@@ -49,8 +46,7 @@ export const TuProdeGenerico = (props) => {
       }
     }
       const prodeusuario = auth.userauth
-      const resultadosconvertidos = resultadosconverter.toFirestore(resultados)
-      const prode = {resultados: resultadosconvertidos, octavos, torneo }
+      const prode = {resultados, octavos, torneo }
 
       onSubmitFinalStrategy(prodeusuario.uid, prode)
       .then(() => {
