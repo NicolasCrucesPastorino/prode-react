@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AuthConsumer from './../../Hooks/UseAuth';
-import { useFirestore } from '../../Hooks/useFirestore'
+import { resultadosconverter, useFirestore } from '../../Hooks/useFirestore'
 import { BracketTorneo } from './torneo/BracketTorneo';
 import { Octavos } from './torneo/Octavos'
 import { Preliminares } from './preliminares/Preliminares';
@@ -22,8 +22,10 @@ export const TuProdeGenerico = (props) => {
         if(prodeusuario){
           if(prodeusuario.torneo) { settorneo(prodeusuario.torneo) }
           if(prodeusuario.octavos) { setoctavos(prodeusuario.octavos) }
-          if(prodeusuario.resultados && prodeusuario.resultados.length > 0) { 
-            setresultados([...prodeusuario.resultados]) 
+          if(prodeusuario.resultados && prodeusuario.resultados.length > 0) {
+            const resultadosaobjetolista = resultadosconverter.toObject(prodeusuario.resultados) 
+            console.log('objlis',resultadosaobjetolista)
+            setresultados(resultadosaobjetolista) 
           }
         }
       }
@@ -47,7 +49,8 @@ export const TuProdeGenerico = (props) => {
       }
     }
       const prodeusuario = auth.userauth
-      const prode = { resultados, octavos, torneo }
+      const resultadosconvertidos = resultadosconverter.toFirestore(resultados)
+      const prode = {resultados: resultadosconvertidos, octavos, torneo }
 
       onSubmitFinalStrategy(prodeusuario.uid, prode)
       .then(() => {

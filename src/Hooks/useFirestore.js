@@ -1,6 +1,8 @@
 
 import { database } from "../firebase/firebase"
 import { setDoc, doc, getDoc, getDocs, collection } from 'firebase/firestore'
+import Grupo from "../Components/prode/preliminares/Models/Grupo"
+import  Partido  from "../Components/prode/preliminares/Models/Partido"
 
 const { dbfirestore } = database
 
@@ -8,6 +10,21 @@ const firebaseFolder = {
     PRODES: 'prodes',
     SUPER_PRODE: 'superprode',
     DATA_USUARIOS: 'usuarios'
+}
+
+export const resultadosconverter = {
+    toFirestore:(resultados = []) => {
+        const grupos = resultados.map(grupo => ({nombre: grupo.nombre,partidos:grupo.partidos.map(partido => ({partidoid:partido.partidoid, equipoA:partido.equipoA, equipoB:partido.equipoB, golesequipoA:partido.golesequipoA, golesequipoB:partido.golesequipoB}))}))
+        return grupos
+    },
+    toObject:(resultadosfromfirestore = [])=> {
+        const grupos = resultadosfromfirestore.map(grupo => (new Grupo(grupo.nombre)))
+        console.log(grupos)
+        for(let index = 0; index<grupos.length; index++){
+            resultadosfromfirestore[index].partidos.forEach(partido => grupos[index].agregarpartido(new Partido(grupos[index].nombre,partido.equipoA,partido.equipoB,partido.golesequipoA,partido.golesequipoB)))
+        }
+        return grupos
+    }
 }
 
 export const useFirestore = () => {

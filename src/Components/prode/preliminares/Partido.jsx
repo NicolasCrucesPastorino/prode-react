@@ -17,7 +17,6 @@ export const Partido = (props) => {
           partido.setgolesequipoB(goles)
         }
         const grupoNombre = partido.partidoid.split('-')[0];
-        console.log('pertenezco al grupo', grupoNombre);
         const resultadosAuxiliar = [...resultados];
         const grupoIndex = resultadosAuxiliar.findIndex((grupo) => grupo.nombre === grupoNombre);
         const partidoIndex = resultadosAuxiliar[grupoIndex].partidos.findIndex((p) => p.partidoid === partido.partidoid);
