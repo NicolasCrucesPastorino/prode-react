@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import AuthConsumer from './../../Hooks/UseAuth';
-import { useFirestore } from '../../Hooks/useFirestore';
 import { BracketTorneo } from './torneo/BracketTorneo';
 import { Octavos } from './torneo/Octavos'
 import { Preliminares } from './preliminares/Preliminares';
@@ -9,16 +8,17 @@ export const TuProdeGenerico = (props) => {
   
   const onSubmitFinalStrategy = props.onSubmitFinalStrategy
   const validarcamposvacios = props.validarcamposvacios
+  const getprode = props.getprode
   const [resultados, setresultados] = useState([])
   const [octavos, setoctavos] = useState({})
   const [torneo, settorneo] = useState({})
   
   const auth = AuthConsumer();
-  const firestore = useFirestore()
+  
 
   const cargarprode = async () => {
     if(auth.userauth.uid){
-        const prodeusuario = await firestore.getprodeporid(auth.userauth.uid)
+        const prodeusuario = await getprode(auth.userauth.uid)
         
         if(prodeusuario){
           if(prodeusuario.torneo) { settorneo(prodeusuario.torneo) }

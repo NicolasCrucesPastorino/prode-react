@@ -4,6 +4,11 @@ export const ROL = {
     GUEST: 'guest',
 }
 
+export const puntaje = {
+    puntajepreliminar: {COINCIDENCIA_TOTAL:3,COINCIDENCIA_PARCIAL:2,SIN_COINCIDENCIA:0},
+    puntajetorneo:{ACIERTO_CUARTOS:8,ACIERTOS_SEMI:16,ACIERTO_FINAL:32,ACIERTO_CAMPEON:42,ACIERTO_TERCERO:22,SIN_ACIERTO:0}
+}
+
 export const equipos = {
     grupoA:{
         ECUADOR: 'Ecuador',

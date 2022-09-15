@@ -135,6 +135,29 @@ export const useFirestore = () => {
         }
 
     }
+
+    const getsuperprodeporid = async (uid) => {
+        try {
+            const docref = doc(
+                dbfirestore, 
+                firebaseFolder.SUPER_PRODE, 
+                uid
+            );
+            const docsnap = await getDoc(docref);
+            if (docsnap.exists()) {
+                const prode = { ...docsnap.data() }
+                if(prode.resultados) {
+                    prode.resultados = resultadosconverter.toObject(prode.resultados)
+                }
+                return prode;
+            } else {
+                return null;
+            }
+        } catch (e) {
+            throw e;
+        }
+
+    }
     return {
         storeUserData,
         getdatauserfromid,
@@ -142,5 +165,6 @@ export const useFirestore = () => {
         storesuperprode,
         getprodeporid,
         getAllProdesUsuarios,
+        getsuperprodeporid,
     }
 }

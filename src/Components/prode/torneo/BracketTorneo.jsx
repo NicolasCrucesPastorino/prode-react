@@ -115,8 +115,8 @@ export const BracketTorneo = (props) => {
                                 <div className="participant">
                                     <select onChange={handleOnChangeTorneo} name='cuartos-a-2'>
                                         {
-                                            torneo['cuartos-a-1']
-                                                ? <option value={torneo['cuartos-a-1']}>{torneo['cuartos-a-1']}</option> 
+                                            torneo['cuartos-a-2']
+                                                ? <option value={torneo['cuartos-a-2']}>{torneo['cuartos-a-2']}</option> 
                                                 : <option value=''>CUARTOS</option> 
                                         }
                                         <option >{octavos['1-c']}</option>
