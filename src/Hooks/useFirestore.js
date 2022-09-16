@@ -9,7 +9,8 @@ const { dbfirestore } = database
 const firebaseFolder = {
     PRODES: 'prodes',
     SUPER_PRODE: 'superprode',
-    DATA_USUARIOS: 'usuarios'
+    DATA_USUARIOS: 'usuarios',
+    RESULTADOS: 'resultados'
 }
 
 const resultadosconverter = {
@@ -78,6 +79,34 @@ export const useFirestore = () => {
             throw e;
         }
     }
+    const storeresultadosuserprode = async(uid,resultados) => {
+        try {
+            const response = await setDoc(
+                doc(dbfirestore,firebaseFolder.RESULTADOS,uid),
+                resultados
+            )
+                return response
+        } catch (e) {
+            throw e;
+        }
+    }
+    const getresultadosuserprode = async(uid) => {
+        try{
+            const docref = doc(
+                dbfirestore, 
+                firebaseFolder.RESULTADOS, 
+                uid
+            );
+            const docsnap = await getDoc(docref);
+            if (docsnap.exists()) {
+                return docsnap.data();
+            } else {
+                return null;
+            }
+        } catch (e) {
+            throw e;
+        }
+    }
 
     const getAllProdesUsuarios = async () => {
         try {
@@ -85,7 +114,7 @@ export const useFirestore = () => {
                 collection(dbfirestore, firebaseFolder.PRODES)
             );
             const prodes = querySnapshot.docs.map(doc => {
-              const prode = {...doc.data() }
+              const prode = {...doc.data(), userid:doc.id }
               prode.resultados = resultadosconverter.toObject(prode.resultados)
               return prode  
             });
@@ -166,5 +195,7 @@ export const useFirestore = () => {
         getprodeporid,
         getAllProdesUsuarios,
         getsuperprodeporid,
+        getresultadosuserprode,
+        storeresultadosuserprode,
     }
 }

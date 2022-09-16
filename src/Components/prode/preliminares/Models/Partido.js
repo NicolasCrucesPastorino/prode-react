@@ -26,5 +26,20 @@ class Partido {
                 }
                 this.golesequipoB = parseInt(goles);
             }        
+            gruponombre(){
+                return this.partidoid.split('-')[0]
+
+            }
+            resultado(){
+                if(this.golesequipoA - this.golesequipoB > 0){
+                    return 'gana '+ this.equipoA
+                }
+                if(this.golesequipoA - this.golesequipoB < 0){
+                    return 'gana '+ this.equipoB 
+                }
+                if(this.golesequipoA === this.golesequipoB){
+                    return 'empate'
+                }
+            }
     }
  export default Partido
