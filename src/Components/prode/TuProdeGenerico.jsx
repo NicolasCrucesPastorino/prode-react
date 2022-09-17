@@ -71,7 +71,7 @@ export const TuProdeGenerico = (props) => {
   return (
     <div>
       <h1>Tu Prode {auth.userauth.name}</h1>
-      <p>Para grabar los datos de TU PRODE apriete el botón de guardar al final.</p>
+      <p>Para grabar los datos de TU PRODE apriete el botón de guardar prode al final.</p>
       <form onSubmit={handleOnSubmit}>
         <h4>Fase de Grupos</h4>
         <Preliminares resultados={resultados} setresultados={setresultados} />
@@ -79,7 +79,7 @@ export const TuProdeGenerico = (props) => {
         <h4>Elija los equipos primeros y segundos de cada grupo respectivamente.</h4>
         <Octavos octavos={octavos} setoctavos={setoctavos} />
 
-        <button className='btn btn-primary' type='submit'>Guardar</button>
+        <button className='prodeboton' type='submit'>Guardar Prode</button>
         <h4>Complete las llaves del prode de izquierda a derecha y de arriba hacia abajo.</h4>
 
         <div>
