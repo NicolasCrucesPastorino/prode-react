@@ -11,9 +11,9 @@ export const Partido = (props) => {
     const partido = props.partido
 
     const SIN_PUNTOS = '#FFFFFF'
-    const SIN_COINCIDENCIAS = '#f44336'
-    const COINCIDENCIA_PARCIAL = '#FFFF72'
-    const COINCIDENCIA_TOTAL = '#66BB6A'
+    const SIN_COINCIDENCIAS = '#ff6d4e'
+    const COINCIDENCIA_PARCIAL = '#FFFB13'
+    const COINCIDENCIA_TOTAL = '#5EEA48'
 
     const consumer = authconsumer()
     const firestore = useFirestore()
