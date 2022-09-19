@@ -9,10 +9,8 @@ export const SuperProde = () => {
     await firestore.storesuperprode(uid,formprode)
 
     const prodesdeusuarios = await firestore.getAllProdesUsuarios()
-   console.log('prous',prodesdeusuarios)
    
-
-   prodesdeusuarios.forEach(prodeusuario => {
+    prodesdeusuarios.forEach(prodeusuario => {
     const puntajepreliminares = []
     prodeusuario.resultados.forEach((grupo) => {
       grupo.partidos.forEach((partido)=> {
@@ -33,6 +31,33 @@ export const SuperProde = () => {
     })
     const resultados = {}
     resultados.preliminares = puntajepreliminares
+
+    const nombrescuartossuperprode = Object.keys(formprode.torneo).filter(nombre => nombre.includes('cuartos'))
+    const equiposencuartossuperprode = nombrescuartossuperprode.map(nombre => formprode.torneo[nombre])
+    prodesdeusuarios.forEach(prodeusuario => {
+      const puntajecuartos = []
+      const nombrescuartos = Object.keys(prodeusuario.torneo).filter(nombre => nombre.includes('cuartos'))
+      const equiposencuartos = nombrescuartos.map(nombre => prodeusuario.torneo[nombre])
+      let nombreformulariotorneo
+      equiposencuartos.forEach(equipo => {
+        
+        nombreformulariotorneo = nombrescuartos[equiposencuartossuperprode.indexOf(equipo)]
+
+        let puntajeaguardar = {}
+        const coincidencia = equiposencuartossuperprode.some((resultado) => resultado===equipo)
+        
+        if(coincidencia===true){
+          puntajeaguardar = {puntos: 8,torneoid:nombreformulariotorneo}
+        } else {
+          puntajeaguardar = {puntos: 0,torneoid:nombreformulariotorneo}
+        }
+        puntajecuartos.push(puntajeaguardar)
+      })
+      resultados.cuartos = puntajecuartos
+      console.log('res for',nombreformulariotorneo)
+    })
+
+
     firestore.storeresultadosuserprode(prodeusuario.userid, resultados)
    })
   }

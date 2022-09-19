@@ -338,12 +338,12 @@ export const BracketTorneo = (props) => {
                                                 : <option value=''>TERCERO</option>}
                                         
                                         { torneo['final-a' === 'semifinal-a-1']
-                                            ?<option value={torneo['tercero']}>{torneo['semifinal-a-1']}</option>
-                                            :<option value={torneo['tercero']}>{torneo['semifinal-a-2']}</option>}
+                                            ?<option value={torneo['semifinal-a-1']}>{torneo['semifinal-a-1']}</option>
+                                            :<option value={torneo['semifinal-a-2']}>{torneo['semifinal-a-2']}</option>}
 
                                            { torneo['final-b' === 'semifinal-b-1']
-                                            ?<option value={torneo['tercero']}>{torneo['semifinal-b-1']}</option>
-                                            :<option value={torneo['tercero']}>{torneo['semifinal-b-2']}</option>}
+                                            ?<option value={torneo['semifinal-b-1']}>{torneo['semifinal-b-1']}</option>
+                                            :<option value={torneo['semifinal-b-2']}>{torneo['semifinal-b-2']}</option>}
 
 
                                             
