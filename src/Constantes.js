@@ -9,6 +9,14 @@ export const puntaje = {
     puntajetorneo:{ACIERTO_CUARTOS:8,ACIERTOS_SEMI:16,ACIERTO_FINAL:32,ACIERTO_CAMPEON:42,ACIERTO_TERCERO:22,SIN_ACIERTO:0}
 }
 
+export const etapa = {
+    CUARTOS: 'cuartos',
+    SEMI: 'semifinal',
+    FINAL: 'final',
+    CAMPEON: 'campeon',
+    TERCERO: 'tercero'
+  }
+
 export const equipos = {
     grupoA:{
         ECUADOR: 'Ecuador',
