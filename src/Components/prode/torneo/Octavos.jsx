@@ -6,38 +6,35 @@ export const Octavos = (props) => {
     const octavos = props.octavos
     const setoctavos = props.setoctavos
 
-    const { grupoA } = equipos
-    const { grupoB } = equipos
-    const { grupoC } = equipos
-    const { grupoD } = equipos
-    const { grupoE } = equipos
-    const { grupoF } = equipos
-    const { grupoG } = equipos
-    const { grupoH } = equipos
+    const { grupoA, grupoB, grupoC, grupoD, grupoE, grupoF, grupoG, grupoH } = equipos
 
     const handleOnChangeOctavos = (evento) => {
         setoctavos({...octavos,[evento.target.name]:evento.target.value})
-        console.log('octavos',octavos)
     }
 
     return (
         <section>
-            <label>1ro Grupo A :</label>
-            <select onChange={handleOnChangeOctavos} name='1-a'>
-                {octavos['1-a'] ?
-                    <option value={octavos['1-a']}>{octavos['1-a']}</option> :
-                    <option value=''>seleccione un pais</option>}
-                {Object.values(grupoA).map(equipo => <option value={equipo} >{equipo}</option>)}
-            </select>
-            <label> 2do Grupo A :</label>
-            <select onChange={handleOnChangeOctavos} name='2-a'>
-                {octavos['2-a'] ?
-                    <option value={octavos['2-a']}>{octavos['2-a']}</option> :
-                    <option value=''>seleccione un pais</option>}
-                {Object.values(grupoA).map(equipo => <option value={equipo}>{equipo}</option>)}
-            </select>
-            <br></br>
-            <br></br>
+            <div className='row mb-4'>
+                <div className='col-auto'>
+                    <label>1ro Grupo A :</label>
+                    <select className='form-control col-3' onChange={handleOnChangeOctavos} name='1-a'>
+                        {octavos['1-a'] ?
+                            <option value={octavos['1-a']}>{octavos['1-a']}</option> :
+                            <option value=''>seleccione un pais</option>}
+                        {Object.values(grupoA).map(equipo => <option value={equipo} >{equipo}</option>)}
+                    </select>
+                </div>
+                <div className='col-auto'>
+                    <label> 2do Grupo A :</label>
+                    <select className={'form-control col-3'} onChange={handleOnChangeOctavos} name='2-a'>
+                        {octavos['2-a'] ?
+                            <option value={octavos['2-a']}>{octavos['2-a']}</option> :
+                            <option value=''>seleccione un pais</option>}
+                        {Object.values(grupoA).map(equipo => <option value={equipo}>{equipo}</option>)}
+                    </select>
+                </div>
+            </div>
+            
             <label>1ro Grupo B :</label>
             <select onChange={handleOnChangeOctavos} name='1-b'>
                 {octavos['1-b']  ?
