@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { useFirestore } from '../../../Hooks/useFirestore'
+import authconsumer from './../../../Hooks/UseAuth'
 import './Bracket.scss'
 
 export const BracketTorneo = (props) => {
@@ -6,7 +9,33 @@ export const BracketTorneo = (props) => {
     const torneo = props.torneo
     const settorneo = props.settorneo
     const octavos = props.octavos
+    const firestore = useFirestore()
+    const consumer = authconsumer()
+    const [resultados, setresultados] = useState({})
 
+   
+    useEffect(()=>{
+         const cargarresultados = async () => {
+        const resultadosbasededatos = await firestore.getresultadosuserprode(consumer.userauth.uid)
+        setresultados(resultadosbasededatos)
+    }
+        cargarresultados.then()
+    },[])
+
+    const ganador = ' winner'
+    const perdedor = ' loser'
+    const sinpuntaje = ''
+
+    const mostrarcolor = (formkey) => {
+        if(resultados.torneo){
+            return perdedor
+        } else {
+            return ganador
+        }
+        
+        
+      
+    }
     const handleOnChangeTorneo = (evento) => {
         settorneo({...torneo, [evento.target.name]: evento.target.value})
     }
@@ -101,7 +130,7 @@ export const BracketTorneo = (props) => {
                     <div className="matchups">
                         <div className="matchup">
                             <div className="participants">
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('cuartos-a-1')}  >
                                     <select onChange={handleOnChangeTorneo} name='cuartos-a-1'>
                                         {
                                             torneo['cuartos-a-1']
@@ -112,7 +141,7 @@ export const BracketTorneo = (props) => {
                                         <option value={octavos['2-b']} >{octavos['2-b']}</option>
                                     </select>
                                 </div>
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('cuartos-a-2')}>
                                     <select onChange={handleOnChangeTorneo} name='cuartos-a-2'>
                                         {
                                             torneo['cuartos-a-2']

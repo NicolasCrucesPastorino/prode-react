@@ -1,6 +1,6 @@
 import { etapa } from '../Constantes'
 import { useFirestore } from '../Hooks/useFirestore'
-import { calcularPuntosTorneo } from '../utils/superprodefunctions'
+import { calcularPuntosTorneo,calcularPuntosPreliminar } from '../utils/superprodefunctions'
 import { TuProdeGenerico } from './../Components/prode/TuProdeGenerico'
 
 export const SuperProde = () => {
@@ -10,8 +10,12 @@ export const SuperProde = () => {
   const storeandupdateprodes = async (uid,formprode) => {
     await firestore.storesuperprode(uid,formprode)
     const prodesdeusuarios = await firestore.getAllProdesUsuarios()
+
+    
+    
     prodesdeusuarios.forEach(prodeUsuario => {
       const resultadoPuntaje = {torneo:{}}
+      resultadoPuntaje.preliminares = calcularPuntosPreliminar(prodeUsuario, formprode)
       Object.values(etapa).forEach(nombreetapa => {
       const puntaje = calcularPuntosTorneo(prodeUsuario, formprode, nombreetapa);
       resultadoPuntaje.torneo[nombreetapa] = puntaje

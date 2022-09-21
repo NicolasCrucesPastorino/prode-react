@@ -1,7 +1,7 @@
 import { puntaje } from "../Constantes"
 
 
-export const calularPuntosPreliminar = (prodeUsuario, superProde) => {
+export const calcularPuntosPreliminar = (prodeUsuario, superProde) => {
     const puntajepreliminares = []
 
     prodeUsuario.resultados.forEach((grupo) => {
