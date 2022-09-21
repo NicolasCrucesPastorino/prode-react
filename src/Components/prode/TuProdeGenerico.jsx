@@ -32,7 +32,6 @@ export const TuProdeGenerico = (props) => {
 
   useEffect(()=>{
    cargarprode().then() 
-   console.log('datos cargados del prode', {resultados, octavos, torneo});
   },[])
 
   const handleOnSubmit = (evento) => {

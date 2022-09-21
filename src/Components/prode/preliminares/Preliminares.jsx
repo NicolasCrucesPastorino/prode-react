@@ -35,8 +35,6 @@ export const Preliminares = (props) => {
         setresultados(objetogrupos)
     }
     
-    console.log(resultados);  
-    
     return (
         <div className='container row mx-auto'>
             {

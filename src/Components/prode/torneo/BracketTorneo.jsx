@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFirestore } from '../../../Hooks/useFirestore'
 import authconsumer from './../../../Hooks/UseAuth'
 import './Bracket.scss'
@@ -14,26 +13,48 @@ export const BracketTorneo = (props) => {
     const [resultados, setresultados] = useState({})
 
    
-    useEffect(()=>{
-         const cargarresultados = async () => {
-        const resultadosbasededatos = await firestore.getresultadosuserprode(consumer.userauth.uid)
-        setresultados(resultadosbasededatos)
-    }
-        cargarresultados.then()
-    },[])
+    
+    useEffect(
+        () => {
+            const cargarResultados = async () => {
+                const response = await firestore.getresultadosuserprode(consumer.userauth.uid)
+                setresultados(response)
+                console.log(response);
+               
+            }
+
+            cargarResultados().then()
+        }
+        ,[]
+    )
+         
 
     const ganador = ' winner'
     const perdedor = ' loser'
     const sinpuntaje = ''
 
-    const mostrarcolor = (formkey) => {
+    const mostrarcolor = (formkey='') => {
         if(resultados.torneo){
-            return perdedor
+            const container = formkey.split('-')[0]
+            const list = resultados.torneo[container]
+            const equipoPuntaje = resultados.torneo[container].find(r => r.formKey === formkey)
+            if(equipoPuntaje){
+                const puntosEqupo = equipoPuntaje.puntos
+                if(puntosEqupo > 0) {
+                    return ganador
+                }else if (puntosEqupo === 0) {
+                    return perdedor
+                }else {
+                    return sinpuntaje
+                }
+            }else {
+                throw new Error('Clave del formulario no existe')
+            }
         } else {
-            return ganador
+            return sinpuntaje
         }
         
-        
+    
       
     }
     const handleOnChangeTorneo = (evento) => {

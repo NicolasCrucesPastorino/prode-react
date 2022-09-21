@@ -20,7 +20,6 @@ const resultadosconverter = {
     },
     toObject:(resultadosfromfirestore = [])=> {
         const grupos = resultadosfromfirestore.map(grupo => (new Grupo(grupo.nombre)))
-        console.log(grupos)
         for(let index = 0; index<grupos.length; index++){
             resultadosfromfirestore[index].partidos.forEach(partido => grupos[index].agregarpartido(new Partido(grupos[index].nombre,partido.equipoA,partido.equipoB,partido.golesequipoA,partido.golesequipoB)))
         }

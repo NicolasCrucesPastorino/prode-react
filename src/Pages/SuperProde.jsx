@@ -21,8 +21,6 @@ export const SuperProde = () => {
       resultadoPuntaje.torneo[nombreetapa] = puntaje
       })
       
-     
-      console.log(resultadoPuntaje)
       firestore.storeresultadosuserprode(prodeUsuario.userid,resultadoPuntaje)
     })
   }
