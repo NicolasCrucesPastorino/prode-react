@@ -11,12 +11,18 @@ export const SuperProde = () => {
     await firestore.storesuperprode(uid,formprode)
     const prodesdeusuarios = await firestore.getAllProdesUsuarios()
     prodesdeusuarios.forEach(prodeUsuario => {
-      const puntajeCuartos = calcularPuntosTorneo(prodeUsuario, formprode, etapa.CUARTOS);
-      const resultadoPuntaje = {}
-      resultadoPuntaje.cuartos= puntajeCuartos
-
+      const resultadoPuntaje = {torneo:{}}
+      Object.values(etapa).forEach(nombreetapa => {
+      const puntaje = calcularPuntosTorneo(prodeUsuario, formprode, nombreetapa);
+      resultadoPuntaje.torneo[nombreetapa] = puntaje
+      })
+      
+     
+      console.log(resultadoPuntaje)
+      firestore.storeresultadosuserprode(prodeUsuario.userid,resultadoPuntaje)
     })
   }
+
 
   return (
     <div>

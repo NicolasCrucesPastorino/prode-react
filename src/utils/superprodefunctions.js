@@ -36,7 +36,8 @@ export const calcularPuntosTorneo = ( prodeUsuario, superProde, etapa,) => {
         const resultado = {...equipo }
 
         if(huboCoincidencia){
-            resultado.puntos = puntaje.puntajetorneo.ACIERTO_CUARTOS
+            const puntajekey = 'ACIERTO_' + etapa.toUpperCase()
+            resultado.puntos = puntaje.puntajetorneo[puntajekey]
         }else {
             resultado.puntos = puntaje.puntajetorneo.SIN_ACIERTO
         }

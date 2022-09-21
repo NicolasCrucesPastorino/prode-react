@@ -24,7 +24,8 @@ export const Partido = (props) => {
     useEffect(()=>{
       const getresultadopuntos = async () => {
         const resultadosprode = await firestore.getresultadosuserprode(consumer.userauth.uid)
-        setresultadopuntos(resultadosprode.preliminares.find(r => r.partidoid === partido.partidoid))
+        if(resultadosprode){
+          setresultadopuntos(resultadosprode.preliminares.find(r => r.partidoid === partido.partidoid))
         const puntos = resultadopuntos.puntaje
         if(consumer.userauth.rol === ROL.GUEST){
           setcolorpuntos(SIN_PUNTOS)
@@ -40,6 +41,8 @@ export const Partido = (props) => {
           }
         
         }
+        }
+        
 
       }
       getresultadopuntos().then()
