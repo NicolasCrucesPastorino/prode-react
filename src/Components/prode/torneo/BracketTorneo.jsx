@@ -177,7 +177,7 @@ export const BracketTorneo = (props) => {
                         </div>
                         <div className="matchup">
                             <div className="participants">
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('cuartos-b-1')}>
                                     <select onChange={handleOnChangeTorneo} name='cuartos-b-1'>
                                         {
                                             torneo['cuartos-b-1'] 
@@ -188,7 +188,7 @@ export const BracketTorneo = (props) => {
                                         <option >{octavos['2-f']}</option>
                                     </select>
                                 </div>
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('cuartos-b-2')}>
                                     <select onChange={handleOnChangeTorneo} name='cuartos-b-2'>
                                         {
                                             torneo['cuartos-b-2']
@@ -211,7 +211,7 @@ export const BracketTorneo = (props) => {
                     <div className="matchups">
                         <div className="matchup">
                             <div className="participants">
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('cuartos-c-1')}>
                                     <select onChange={handleOnChangeTorneo} name='cuartos-c-1'>
                                         {
                                             torneo['cuartos-c-1']
@@ -222,7 +222,7 @@ export const BracketTorneo = (props) => {
                                         <option >{octavos['2-a']}</option>
                                     </select>
                                 </div>
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('cuartos-c-2')}>
                                     <select onChange={handleOnChangeTorneo} name='cuartos-c-2'>
                                         {
                                             torneo['cuartos-c-2']
@@ -237,7 +237,7 @@ export const BracketTorneo = (props) => {
                         </div>
                         <div className="matchup">
                             <div className="participants">
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('cuartos-d-1')}>
                                     <select onChange={handleOnChangeTorneo} name='cuartos-d-1'>
                                         {
                                             torneo['cuartos-d-1']
@@ -248,7 +248,7 @@ export const BracketTorneo = (props) => {
                                         <option >{octavos['2-e']}</option>
                                     </select>
                                 </div>
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('cuartos-d-2')}>
                                     <select onChange={handleOnChangeTorneo} name='cuartos-d-2'>
                                         {
                                             torneo['cuartos-d-2']
@@ -272,8 +272,9 @@ export const BracketTorneo = (props) => {
                 <div className="winners">
                     <div className="matchups">
                         <div className="matchup">
-                            <div className="participants">
-                                <div className='participant'><select onChange={handleOnChangeTorneo} name='semi-a-1'>
+                            <div className="participant">
+                                <div className={"participant" + mostrarcolor('semi-a-1')}>
+                                    <select onChange={handleOnChangeTorneo} name='semi-a-1'>
                                     {
                                         torneo['semi-a-1']
                                             ? <option value={torneo['semi-a-1']}>{torneo['semi-a-1']}</option> 
@@ -283,7 +284,7 @@ export const BracketTorneo = (props) => {
                                     <option value={torneo['cuartos-a-2']}>{torneo['cuartos-a-2']}</option>
                                 </select>
                                 </div>
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('semi-a-2')}>
                                     <select onChange={handleOnChangeTorneo} name='semi-a-2'>
                                         {
                                             torneo['semi-a-2']
@@ -297,8 +298,8 @@ export const BracketTorneo = (props) => {
                             </div>
                         </div>
                         <div className="matchup">
-                            <div className="participants">
-                                <div className="participant">
+                            <div className="participant">
+                                <div className={"participant" + mostrarcolor('semi-b-1')}>
                                     <select onChange={handleOnChangeTorneo} name='semi-b-1'>
                                         {
                                             torneo['semi-b-1']
@@ -309,7 +310,8 @@ export const BracketTorneo = (props) => {
                                         <option value={torneo['cuartos-c-2']}>{torneo['cuartos-c-2']}</option>
                                     </select>
                                 </div>
-                                <div className="participant"><select onChange={handleOnChangeTorneo} name='semi-b-2'>
+                                <div className={"participant" + mostrarcolor('semi-b-2')}>
+                                    <select onChange={handleOnChangeTorneo} name='semi-b-2'>
                                     {
                                         torneo['semi-b-2']
                                             ? <option value={torneo['semi-b-2']}>{torneo['semi-b-2']}</option> 
@@ -333,7 +335,7 @@ export const BracketTorneo = (props) => {
                     <div className="matchups">
                         <div className="matchup">
                             <div className="participants">
-                                <div className="participant winner">
+                                <div className={"participant" + mostrarcolor('final-a')}>
                                     <select onChange={handleOnChangeTorneo} name='final-a'>
                                         {
                                             torneo['final-a']
@@ -344,7 +346,7 @@ export const BracketTorneo = (props) => {
                                         <option value={torneo['semi-a-2']}>{torneo['semi-a-2']}</option>
                                     </select>
                                 </div>
-                                <div className="participant">
+                                <div className={"participant" + mostrarcolor('final-b')}>
                                     <select onChange={handleOnChangeTorneo} name='final-b'>
                                         {
                                             torneo['final-b']
@@ -365,7 +367,7 @@ export const BracketTorneo = (props) => {
                     <div className='matchups'>
                         <div className='matchup'>
                             <div className='participants'>
-                                <div className='participant loser'>
+                                <div className={"participant" + mostrarcolor('campeon')}>
                                     <select onChange={handleOnChangeTorneo} name='campeon'>
                                         {
                                             torneo['campeon']
@@ -380,7 +382,7 @@ export const BracketTorneo = (props) => {
                         </div>
                         <div className='matchup'>
                             <div className='participants'>
-                                <div className='participant'>
+                                <div className={"participant" + mostrarcolor('tercero')}>
                                     <select onChange={handleOnChangeTorneo} name='tercero'>
                                         {
                                             torneo['tercero']
