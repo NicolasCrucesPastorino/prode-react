@@ -272,7 +272,7 @@ export const BracketTorneo = (props) => {
                 <div className="winners">
                     <div className="matchups">
                         <div className="matchup">
-                            <div className="participant">
+                            <div className="participants">
                                 <div className={"participant" + mostrarcolor('semi-a-1')}>
                                     <select onChange={handleOnChangeTorneo} name='semi-a-1'>
                                     {
@@ -298,7 +298,7 @@ export const BracketTorneo = (props) => {
                             </div>
                         </div>
                         <div className="matchup">
-                            <div className="participant">
+                            <div className="participants">
                                 <div className={"participant" + mostrarcolor('semi-b-1')}>
                                     <select onChange={handleOnChangeTorneo} name='semi-b-1'>
                                         {
