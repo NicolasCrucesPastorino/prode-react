@@ -19,7 +19,7 @@ export const BracketTorneo = (props) => {
             const cargarResultados = async () => {
                 const response = await firestore.getresultadosuserprode(consumer.userauth.uid)
                 setresultados(response)
-                console.log(response);
+                
                
             }
 
@@ -34,15 +34,15 @@ export const BracketTorneo = (props) => {
     const sinpuntaje = ''
 
     const mostrarcolor = (formkey='') => {
-        if(resultados.torneo){
+        if(resultados && resultados.torneo){
             const container = formkey.split('-')[0]
             const list = resultados.torneo[container]
-            const equipoPuntaje = resultados.torneo[container].find(r => r.formKey === formkey)
+            const equipoPuntaje = list.find(r => r.formKey === formkey)
             if(equipoPuntaje){
-                const puntosEqupo = equipoPuntaje.puntos
-                if(puntosEqupo > 0) {
+                const puntosEquipo = equipoPuntaje.puntos
+                if(puntosEquipo > 0) {
                     return ganador
-                }else if (puntosEqupo === 0) {
+                }else if (puntosEquipo === 0) {
                     return perdedor
                 }else {
                     return sinpuntaje

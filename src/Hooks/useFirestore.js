@@ -2,7 +2,7 @@
 import { database } from "../firebase/firebase"
 import { setDoc, doc, getDoc, getDocs, collection } from 'firebase/firestore'
 import Grupo from "../Components/prode/preliminares/Models/Grupo"
-import  Partido  from "../Components/prode/preliminares/Models/Partido"
+import Partido from "../Components/prode/preliminares/Models/Partido"
 
 const { dbfirestore } = database
 
@@ -24,6 +24,23 @@ const resultadosconverter = {
             resultadosfromfirestore[index].partidos.forEach(partido => grupos[index].agregarpartido(new Partido(grupos[index].nombre,partido.equipoA,partido.equipoB,partido.golesequipoA,partido.golesequipoB)))
         }
         return grupos
+    }
+}
+export const getresultadosuserprode = async(uid) => {
+    try{
+        const docref = doc(
+            dbfirestore, 
+            firebaseFolder.RESULTADOS, 
+            uid
+        );
+        const docsnap = await getDoc(docref);
+        if (docsnap.exists()) {
+            return docsnap.data();
+        } else {
+            return null;
+        }
+    } catch (e) {
+        throw e;
     }
 }
 

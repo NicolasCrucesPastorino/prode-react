@@ -1,5 +1,5 @@
-import { puntaje } from "../Constantes"
-
+import { etapa, puntaje } from "../Constantes"
+import { getresultadosuserprode } from './../Hooks/useFirestore';
 
 export const calcularPuntosPreliminar = (prodeUsuario, superProde) => {
     const puntajepreliminares = []
@@ -28,8 +28,7 @@ export const calcularPuntosTorneo = ( prodeUsuario, superProde, etapa,) => {
     const equiposProdeUsiario = obtenerListaEquipos(prodeUsuario, etapa);
     const equiposSuperProde = obtenerListaEquipos(superProde, etapa);
 
-    console.log(equiposProdeUsiario);
-    console.log(equiposSuperProde);
+    
 
     const resultadosEtapa = equiposProdeUsiario.map(equipo => {
         const huboCoincidencia = equiposSuperProde.some(equipoGanador => equipoGanador.nombre === equipo.nombre);
@@ -44,6 +43,24 @@ export const calcularPuntosTorneo = ( prodeUsuario, superProde, etapa,) => {
         return resultado
     })
     return resultadosEtapa
+}
+
+export const calcularpuntajetotal = async (uid) => {
+  const resultados = await getresultadosuserprode(uid)
+  let puntajetotal = 0
+  
+  resultados.preliminares.forEach(preliminar => {
+    puntajetotal += preliminar.puntaje 
+    })
+    Object.values(etapa).forEach(e => {
+      console.log('restor',resultados.torneo)
+      console.log('e',e)
+      resultados.torneo[e].forEach(etapatorneo => {
+        puntajetotal += etapatorneo.puntos
+      })
+    })
+   
+    return puntajetotal
 }
 
 export const obtenerListaEquipos = (prode, etapa) => {
