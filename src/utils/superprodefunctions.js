@@ -45,8 +45,8 @@ export const calcularPuntosTorneo = ( prodeUsuario, superProde, etapa,) => {
     return resultadosEtapa
 }
 
-export const calcularpuntajetotal = async (uid) => {
-  const resultados = await getresultadosuserprode(uid)
+export const calcularpuntajetotal = (resultados) => {
+  
   let puntajetotal = 0
   
   resultados.preliminares.forEach(preliminar => {
@@ -60,7 +60,7 @@ export const calcularpuntajetotal = async (uid) => {
       })
     })
    
-    return puntajetotal
+    return {...resultados,puntajetotal}
 }
 
 export const obtenerListaEquipos = (prode, etapa) => {

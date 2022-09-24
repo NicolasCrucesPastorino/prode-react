@@ -95,6 +95,9 @@ export const useFirestore = () => {
             throw e;
         }
     }
+
+    
+
     const storeresultadosuserprode = async(uid,resultados) => {
         try {
             const response = await setDoc(
@@ -138,6 +141,23 @@ export const useFirestore = () => {
         } catch (e) {
             throw e;
         }
+    }
+
+    const getAllProdesResultados = async () => {
+        try {
+            const querySnapshot = await getDocs(
+                collection(dbfirestore, firebaseFolder.RESULTADOS)
+            );
+            const prodes = querySnapshot.docs.map(doc => {
+              const prode = {...doc.data(), userid:doc.id }
+              prode.resultados = resultadosconverter.toObject(prode.resultados)
+              return prode  
+            });
+            return prodes;
+        } catch (e) {
+            throw e;
+        }
+
     }
 
     const getdatauserfromid = async (uid) => {
@@ -213,5 +233,6 @@ export const useFirestore = () => {
         getsuperprodeporid,
         getresultadosuserprode,
         storeresultadosuserprode,
+        getAllProdesResultados,
     }
 }

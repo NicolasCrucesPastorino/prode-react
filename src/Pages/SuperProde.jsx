@@ -20,11 +20,9 @@ export const SuperProde = () => {
       const puntaje = calcularPuntosTorneo(prodeUsuario, formprode, nombreetapa);
       resultadoPuntaje.torneo[nombreetapa] = puntaje
       })
-      calcularpuntajetotal(prodeUsuario.userid).then(puntajetotal => {
-        console.log('pun',puntajetotal)
-      })
+      const resultadoPuntajemastotal = calcularpuntajetotal(resultadoPuntaje)
       
-      firestore.storeresultadosuserprode(prodeUsuario.userid,resultadoPuntaje)
+      firestore.storeresultadosuserprode(prodeUsuario.userid,resultadoPuntajemastotal)
     })
   }
 
