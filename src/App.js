@@ -1,10 +1,9 @@
-import './App.css';
-import { Mainroutes } from './Routes/Mainroutes';
-import { Navbar } from './Components/Navbar'
+import "./App.css";
+import { Mainroutes } from "./Routes/Mainroutes";
 
 function App() {
   return (
-    <div >
+    <div>
       <main>
         <Mainroutes></Mainroutes>
       </main>

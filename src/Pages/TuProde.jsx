@@ -1,16 +1,18 @@
 
 import '../Constantes'
-import { useFirestore } from '../Hooks/useFirestore'
 import { TuProdeGenerico } from './../Components/prode/TuProdeGenerico';
+import {getprodeporid, storeUserProde} from './../database/services/prodeService'
 
 
 export const TuProde = () => {
  
-const firestore=useFirestore()
-const getprode = firestore.getprodeporid
+  const getprode = getprodeporid
 
-return (
-  <TuProdeGenerico onSubmitFinalStrategy={firestore.storeUserProde} validarcamposvacios={true} getprode={getprode}/>
-)
- 
-  }
+  return (
+    <TuProdeGenerico 
+      onSubmitFinalStrategy={storeUserProde} 
+      validarcamposvacios={true} 
+      getprode={getprode}
+    />
+  ) 
+}

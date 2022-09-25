@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import  { getAuth , GoogleAuthProvider }  from 'firebase/auth';
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -13,15 +13,13 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_FIREBASE_PROjECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
-console.log('firebaseConfig', firebaseConfig);
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const authprovider = new GoogleAuthProvider()
-const dbfirestore = getFirestore(app)
-const database = { dbfirestore }
+const authprovider = new GoogleAuthProvider();
+const dbfirestore = getFirestore(app);
+const database = { dbfirestore };
 
-
-export { app,getAuth, authprovider,database } 
+export { app, getAuth, authprovider, database };
