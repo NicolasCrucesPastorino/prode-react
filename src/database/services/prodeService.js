@@ -7,7 +7,7 @@ export const getAllProdesUsuarios = async () => {
     const prodesFromFirebase = await getAll(firebaseFolder.PRODES);
     const prodes = prodesFromFirebase.map((prodeFromFirestore) => ({
       ...prodeFromFirestore,
-      resultados: resultadosconverter.toObject(prodeFromFirestore),
+      resultados: resultadosconverter.toObject(prodeFromFirestore.resultados),
     }));
 
     return prodes;

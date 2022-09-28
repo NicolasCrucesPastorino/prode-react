@@ -46,7 +46,6 @@ export const TuProdeGenerico = (props) => {
       }
     }
     const prode = { resultados, octavos, torneo };
-    console.log('prode actual', prode);
 
     onSubmitFinalStrategy(auth.userauth.uid, prode)
       .then(() => {
