@@ -7,7 +7,8 @@ export const Tabla = () => {
   const [resultados, setresultados] = useState([]);
 
   useEffect(() => {
-    getAllProdesResultados().then((r) => {
+    const obteneryordenarresultados = async () => {
+      const resultados = await getAllProdesResultados()
       const ordenarpuntajemayor = (a, b) => {
         if (a.puntajetotal > b.puntajetotal) {
           return 1;
@@ -15,10 +16,10 @@ export const Tabla = () => {
           return -1;
         }
       };
-      r.sort(ordenarpuntajemayor);
-      setresultados(r);
-      console.log("tabla", resultados);
-    });
+      const resultadosordenados = resultados.sort(ordenarpuntajemayor)
+      console.log('resord',resultadosordenados)
+    }
+    obteneryordenarresultados().then();
   }, []);
   return (
     <div>
@@ -32,7 +33,7 @@ export const Tabla = () => {
         </thead>
         <tbody>
           {resultados.length === 0 ? (
-            <p>sin resultados</p>
+            <tr><td>sin resultados</td> </tr>
           ) : (
             resultados.map((resultado, index) => (
               <FilaResultado index={index} resultado={resultado} />

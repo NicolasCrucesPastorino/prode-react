@@ -33,9 +33,10 @@ export const SuperProde = () => {
         );
         resultadoPuntaje.torneo[nombreetapa] = puntaje;
       });
+      console.log('entrando en calcular')
       const resultadoPuntajemastotal = calcularpuntajetotal(resultadoPuntaje);
-
-      storeresultadosuserprode(prodeUsuario.userid, resultadoPuntajemastotal);
+      console.log('mensajito',resultadoPuntajemastotal)
+      //storeresultadosuserprode(prodeUsuario.userid, resultadoPuntajemastotal);
     });
   };
 
