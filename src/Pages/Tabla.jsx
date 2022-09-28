@@ -10,14 +10,16 @@ export const Tabla = () => {
     const obteneryordenarresultados = async () => {
       const resultados = await getAllProdesResultados()
       const ordenarpuntajemayor = (a, b) => {
-        if (a.puntajetotal > b.puntajetotal) {
+        if (a.puntajetotal < b.puntajetotal) {
           return 1;
         } else {
           return -1;
         }
       };
+
       const resultadosordenados = resultados.sort(ordenarpuntajemayor)
       console.log('resord',resultadosordenados)
+      setresultados(resultadosordenados)
     }
     obteneryordenarresultados().then();
   }, []);

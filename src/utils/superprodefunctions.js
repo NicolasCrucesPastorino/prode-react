@@ -60,8 +60,6 @@ export const calcularpuntajetotal = (resultados) => {
     puntajetotal += preliminar.puntaje;
   });
   Object.values(etapa).forEach((e) => {
-    console.log("restor", resultados.torneo);
-    console.log("e", e);
     resultados.torneo[e].forEach((etapatorneo) => {
       puntajetotal += etapatorneo.puntos;
     });
@@ -75,11 +73,9 @@ export const obtenerListaEquipos = (prode, etapa) => {
   const constKeysEtapas = Object.keys(torneo).filter((nombre) =>
     nombre.includes(etapa)
   );
-  console.log(constKeysEtapas);
   const equiposEnEtapa = constKeysEtapas.map((nombreKey) => ({
     nombre: torneo[nombreKey],
     formKey: nombreKey,
   }));
-  console.log(equiposEnEtapa);
   return equiposEnEtapa;
 };

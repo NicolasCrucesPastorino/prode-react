@@ -31,12 +31,10 @@ export const getprodeporid = async (uid) => {
 
 export const storeUserProde = async (uid, prode) => {
   try {
-    console.log("fireprode", prode.resultados);
     const prodeMapeado = {
       ...prode,
       resultados: resultadosconverter.toFirestore(prode.resultados),
     };
-    console.log(prodeMapeado);
     return await store(uid, firebaseFolder.PRODES, prodeMapeado);
   } catch (e) {
     throw e;

@@ -1,6 +1,6 @@
 import { etapa } from "../Constantes";
 import { getAllProdesUsuarios } from "./../database/services/prodeService";
-import { storeresultadosuserprode } from "./../database/services/resultadosService";
+import { storeresultadosuserprode } from "../database/services/resultadosService";
 import { TuProdeGenerico } from "./../Components/prode/TuProdeGenerico";
 import {
   getsuperprodeporid,
@@ -36,7 +36,7 @@ export const SuperProde = () => {
       console.log('entrando en calcular')
       const resultadoPuntajemastotal = calcularpuntajetotal(resultadoPuntaje);
       console.log('mensajito',resultadoPuntajemastotal)
-      //storeresultadosuserprode(prodeUsuario.userid, resultadoPuntajemastotal);
+      storeresultadosuserprode(prodeUsuario.userid, resultadoPuntajemastotal);
     });
   };
 
