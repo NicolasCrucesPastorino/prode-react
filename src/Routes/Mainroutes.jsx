@@ -6,6 +6,7 @@ import { RequireAuth } from '../Components/RequireAuth'
 import { FormularioLoginTuProde } from '../Pages/FormularioLoginTuProde'
 import { Home } from '../Pages/Home'
 import { Login } from '../Pages/Login'
+import { ProdeDetalle } from '../Pages/ProdeDetalle'
 import { Register } from '../Pages/Register'
 import { Reglas } from '../Pages/Reglas'
 import { SuperProde } from '../Pages/SuperProde'
@@ -33,6 +34,7 @@ export const Mainroutes = () => {
         <Route path='reglas'  element = {<NavigableLayer><Reglas/></NavigableLayer>} />
         <Route path='tabla'  element = {<NavigableLayer><Tabla/></NavigableLayer>} />
         <Route path='superprode' element = {<NavigableLayer><SuperProde/></NavigableLayer>} />
+        <Route path='prode/:uid' element = {<NavigableLayer><ProdeDetalle/></NavigableLayer>} />
 
         {/* Rutas que no existen */}
         <Route path='*' element={<h1>404: Not Found</h1>} />

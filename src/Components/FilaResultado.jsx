@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useEffect,useState } from 'react'
 import { getdatauserfromid } from '../database/services/usuariosService'
 
@@ -12,7 +13,7 @@ export const FilaResultado = (props) => {
            const cargardatos = async () => {
             const usuario = await getdatauserfromid(resultado.userid)
             console.log('usuario', usuario);
-            setfilaresultado({...filaresultado,nombre:usuario.displayName,puntaje:resultado.puntajetotal, posicion:index})
+            setfilaresultado({...filaresultado,nombre:usuario.displayName,puntaje:resultado.puntajetotal, posicion:index, uid:resultado.userid})
            }
            cargardatos().then()
         }
@@ -20,7 +21,7 @@ export const FilaResultado = (props) => {
   return (
     <tr>
       <th scope="row">{(filaresultado.posicion + 1)}</th>
-      <td>{filaresultado.nombre}</td>
+      <td><Link to={'/prode/'+ filaresultado.uid }>{filaresultado.nombre}</Link></td>
       <td>{filaresultado.puntaje}</td>
    
     </tr>

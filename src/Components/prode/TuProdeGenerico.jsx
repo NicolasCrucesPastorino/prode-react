@@ -20,7 +20,7 @@ export const TuProdeGenerico = (props) => {
         const prodeusuario = await getprode(auth.userauth.uid);
 
         if (prodeusuario) {
-          if (prodeusuario.torneo) {
+          if (prodeusuario.torneo && Object.keys(prodeusuario.torneo).length !== 0) {
             settorneo(prodeusuario.torneo);
           }
           if (prodeusuario.octavos) {
@@ -33,7 +33,7 @@ export const TuProdeGenerico = (props) => {
       }
     };
     cargarprode().then();
-  }, [auth.userauth.uid, getprode]);
+  }, []);
 
   const handleOnSubmit = (evento) => {
     evento.preventDefault();
@@ -46,6 +46,8 @@ export const TuProdeGenerico = (props) => {
       }
     }
     const prode = { resultados, octavos, torneo };
+
+    console.log('torneo',torneo)
 
     onSubmitFinalStrategy(auth.userauth.uid, prode)
       .then(() => {

@@ -45,7 +45,9 @@ export const BracketTorneo = (props) => {
     }
   };
   const handleOnChangeTorneo = (evento) => {
+    
     settorneo({ ...torneo, [evento.target.name]: evento.target.value });
+    
   };
 
   return (
