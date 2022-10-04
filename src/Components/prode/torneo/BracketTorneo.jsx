@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import authconsumer from "./../../../Hooks/UseAuth";
 import { getresultadosuserprode } from "./../../../database/services/resultadosService";
 import "./Bracket.scss";
+import { ROL } from "../../../Constantes";
+
 
 export const BracketTorneo = (props) => {
   const torneo = props.torneo;
@@ -9,11 +11,14 @@ export const BracketTorneo = (props) => {
   const octavos = props.octavos;
   const consumer = authconsumer();
   const [resultados, setresultados] = useState({});
+  
 
   useEffect(() => {
     const cargarResultados = async () => {
+      if(consumer.userauth.rol !== ROL.ADMIN){
       const response = await getresultadosuserprode(consumer.userauth.uid);
       setresultados(response);
+      }
     };
 
     cargarResultados().then();
@@ -24,6 +29,7 @@ export const BracketTorneo = (props) => {
   const sinpuntaje = "";
 
   const mostrarcolor = (formkey = "") => {
+    if(consumer.userauth.rol !== ROL.ADMIN){
     if (resultados && resultados.torneo) {
       const container = formkey.split("-")[0];
       const list = resultados.torneo[container];
@@ -43,6 +49,7 @@ export const BracketTorneo = (props) => {
     } else {
       return sinpuntaje;
     }
+  }
   };
   const handleOnChangeTorneo = (evento) => {
     
