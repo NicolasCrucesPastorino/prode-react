@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { authprovider, getAuth } from "./../firebase/firebase";
+import { getAuth } from "./../firebase/firebase";
 import { ROL } from "../Constantes";
 import {
   storeUserData,
   getdatauserfromid,
 } from "./../database/services/usuariosService";
 import {
-  signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  GoogleAuthProvider,
 } from "firebase/auth";
 
 // constante que maneja las keys donde se almacenaran las credenciales y objetos del usuario
@@ -39,29 +37,6 @@ const useAuth = () => {
       setsession(localStorage.getItem(localStorageFolder.TOKEN), userAuth);
     }
   }, []);
-
-  const signin = () => {
-    signInWithPopup(auth, authprovider)
-      .then((result) => {
-        const credentials = GoogleAuthProvider.credentialFromResult(result);
-        const token = credentials.accessToken;
-        const user = result.user;
-
-        if (setsession(token, user)) {
-          console.log("usuario autenticado id:", userAuth.uid);
-          console.log("rol", userAuth.rol);
-        } else {
-          console.log("usuario no autenticado");
-        }
-      })
-      .catch((error) => {
-        // const errorcode = error.code
-        // const errormessage = error.errormessage
-        // const email = error.customData.email
-        // const credentials = GoogleAuthProvider.credentialFromError(error)
-        console.error(error);
-      });
-  };
 
   const registrarse = async (email, password, displayName, lastname, phone) => {
     try {
@@ -141,6 +116,7 @@ const useAuth = () => {
           ? ROL.ADMIN
           : ROL.USER,
     };
+
     setUserAuth(updateUserAuth);
 
     localStorage.setItem(localStorageFolder.TOKEN, token);
@@ -153,7 +129,6 @@ const useAuth = () => {
   };
 
   return {
-    signin,
     signedout,
     isSigned,
     userauth: userAuth,
@@ -164,9 +139,6 @@ const useAuth = () => {
 
 const getAuthInstance = () => {
   const auth = getAuth();
-
-  auth.lenguageCode = "it";
-  //setea el pop up al idioma de la computadora de origen
   return auth;
 };
 

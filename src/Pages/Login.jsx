@@ -15,9 +15,7 @@ export const Login = () => {
       <header className="App-header">
         <h1>TU PRODE</h1>
         <img src="https://www.benditofutbol.com/files/article_main/uploads/2014/09/05/5409da78a6a0f.jpg" alt="copa del mundo" />
-
-        <p>{isSigned() ? userauth.name : "No Estas Autenticado"}</p>
-        <GoogleButton onClick={signin}>Sign-in con Google</GoogleButton>
+        
         <button
           className="btn btn-primary my-2"
           onClick={handleOnClickRegister}
