@@ -17,9 +17,11 @@ export const Tabla = () => {
         }
       };
 
-      const resultadosordenados = resultados.sort(ordenarpuntajemayor)
-      console.log('resord',resultadosordenados)
-      setresultados(resultadosordenados)
+      if(resultados && resultados.length > 0){
+          const resultadosordenados = resultados.sort(ordenarpuntajemayor)
+          console.log('resord',resultadosordenados)
+          setresultados(resultadosordenados)
+      }
     }
     obteneryordenarresultados().then();
   }, []);
