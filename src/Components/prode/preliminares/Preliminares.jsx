@@ -6,6 +6,7 @@ import Grupo from "./Models/Grupo";
 export const Preliminares = (props) => {
     const resultados = props.resultados;
     const setresultados = props.setresultados; 
+    const uid = props.uid;
 
     const {
         grupoA,
@@ -45,6 +46,7 @@ export const Preliminares = (props) => {
                         partidos={grupoPreliminar.partidos}
                         resultados={resultados}
                         setresultados={setresultados}
+                        
                     />
                 ))
             }

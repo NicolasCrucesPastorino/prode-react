@@ -7,6 +7,7 @@ export const Partido = (props) => {
   const resultados = props.resultados;
   const setresultados = props.setresultados;
   const partido = props.partido;
+  const uid = props.uid;
 
   const SIN_PUNTOS = "#FFFFFF";
   const SIN_COINCIDENCIAS = "#ff6d4e";
@@ -20,8 +21,12 @@ export const Partido = (props) => {
 
   useEffect(() => {
     const getresultadopuntos = async () => {
+      let id = consumer.userauth.uid
+      if(uid!==undefined){
+        id=uid
+      }
       const resultadosprode = await getresultadosuserprode(
-        consumer.userauth.uid
+        id
       );
       if (resultadosprode) {
         setresultadopuntos(

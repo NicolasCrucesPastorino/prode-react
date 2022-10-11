@@ -7,6 +7,8 @@ export const GrupoPreliminar = (props) => {
     const partidos = props.partidos
     const resultados = props.resultados 
     const setresultados = props.setresultados
+    const uid = props.uid
+
   return (
     <div className='containeritem col-md-5'>
         <h1>Grupo {nombre}</h1>
@@ -17,6 +19,7 @@ export const GrupoPreliminar = (props) => {
               resultados={resultados} 
               setresultados={setresultados} 
               partido={partido}
+              uid={uid}
             />
           )
         }

@@ -36,7 +36,7 @@ export const ProdeDetalle = () => {
       <section>
       <article>
         <h2>Fase de grupos</h2>
-        {( prode.resultados) ? <Preliminares resultados={prode.resultados}/> : <h2>Cargando datos...</h2>}
+        {( prode.resultados) ? <Preliminares resultados={prode.resultados} uid={param.uid}/> : <h2>Cargando datos...</h2>}
       </article>
 
       <article>
