@@ -18,15 +18,14 @@ export const Partido = (props) => {
 
   const [resultadopuntos, setresultadopuntos] = useState([]);
   const [colorpuntos, setcolorpuntos] = useState(SIN_PUNTOS);
-
+  console.log('id',uid)
   useEffect(() => {
     const getresultadopuntos = async () => {
       let id = consumer.userauth.uid
-      if(uid!==undefined){
-        id=uid
-      }
+      id = uid
+      
       const resultadosprode = await getresultadosuserprode(
-        id
+        uid
       );
       if (resultadosprode) {
         setresultadopuntos(
@@ -50,7 +49,8 @@ export const Partido = (props) => {
       }
     };
     getresultadopuntos().then();
-  }, [resultados]);
+  }, );
+console.log('resultado puntos',resultadopuntos)
 
   const handleOnChange = (evento) => {
     let goles = evento.target.value;

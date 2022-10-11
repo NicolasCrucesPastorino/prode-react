@@ -24,7 +24,7 @@ export const BracketEstatico = (props) => {
                 return sinpuntaje;
               }
             } else {
-              throw new Error("Clave del formulario no existe");
+             // throw new Error("Clave del formulario no existe");
             }
           } else {
             return sinpuntaje;

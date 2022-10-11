@@ -46,6 +46,7 @@ export const Preliminares = (props) => {
                         partidos={grupoPreliminar.partidos}
                         resultados={resultados}
                         setresultados={setresultados}
+                        uid={uid}
                         
                     />
                 ))
