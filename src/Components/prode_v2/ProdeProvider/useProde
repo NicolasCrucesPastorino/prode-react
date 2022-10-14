@@ -1,0 +1,24 @@
+import { useState } from "react"
+
+export const useProde = (grupos = []) => {
+
+    // const ListaGrupos = grupos.map(grupo => (
+    //     grupo.map(partido => (null)
+    // )))
+
+    const [resultados, setResultados] = useState(0)
+    // const [octavos, setOctavos] = useState([])
+    // const [torneo, setTorneo] = useState([])
+    // const [puntos, setPuntos] = useState([])
+    // const puntosTotales = {
+    //     resultados: 0,
+    // }
+
+    const incrementarPuntos = () => {
+        setResultados(resultados + 1)
+    }
+
+    return [resultados]
+    //    incrementarPuntos,
+    
+}
