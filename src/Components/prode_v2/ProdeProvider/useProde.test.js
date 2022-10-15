@@ -1,13 +1,17 @@
 // unit test useProde hook from src/Components/prode_v2/ProdeProvider/useProde
-import { render, screen, renderHook } from '@testing-library/react';
-import { useState } from 'react';
+import { renderHook } from '@testing-library/react';
+import Grupo from '../../prode/preliminares/Models/Grupo';
 import { useProde } from './useProde';
 describe("useProde", () => {
     it("should return an object", () => {
-        renderHook(() => useProde());
-
-    //console.log(result);
-    
-    expect(1).toBe(1);  
+        const {result} = renderHook(() => useProde());
+        const {resultados} = result.current;
+        
+        console.log(result.current);
+        expect(resultados).not.toBeUndefined();
+        // expect any element of the array to be an Grupo object
+        resultados.forEach((grupo) => {
+            expect(grupo).toBeInstanceOf(Grupo);
+        });
     });
 });
