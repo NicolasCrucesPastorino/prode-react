@@ -13,8 +13,8 @@ export const useProde = (prode = {}, puntos = []) => {
   }
 
   const [_resultados, _setResultados] = useState(resultados);
-  const [_octavos, _setOctavos] = useState([]);
-  const [_torneo, _setTorneo] = useState([]);
+  const [_octavos, _setOctavos] = useState(prode.octavos);
+  const [_torneo, _setTorneo] = useState(prode.torneo);
   const [_puntos, _setPuntos] = useState([]);
 
   function getPartidoById(id) {
@@ -44,6 +44,7 @@ export const useProde = (prode = {}, puntos = []) => {
 
   return {
     resultados: _resultados,
+    prode: { resultados: _resultados, octavos: _octavos, torneo: _torneo },
     getPartidoById,
     updatePartido,
     // octavos,

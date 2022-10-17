@@ -6,6 +6,10 @@ const ProdeUsuarioProviderLayer = ({uid, children}) => {
 
     const [isLoading, setIsLoading] = useState(false)
     const [globalProde, setGlobalProde] = useState({})
+
+    const childWithProps = React.Children.map(children, child => {
+        return React.cloneElement(child, {uid})
+    })
     
     useEffect(
       () => {
@@ -39,7 +43,7 @@ const ProdeUsuarioProviderLayer = ({uid, children}) => {
             ) : (
               <ProdeProvider prode={globalProde}>
                 <h1>prode usuario id: {uid}</h1>
-                {children}
+                {childWithProps}
               </ProdeProvider>
             )
           }
