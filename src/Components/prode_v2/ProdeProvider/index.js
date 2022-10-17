@@ -3,8 +3,7 @@ import prodeContext from "./prodeContext";
 import { useContext } from "react";
 
 export const ProdeProvider = ({ prode = {}, puntos = [], children }) => {
-  const prodehook = useProde();
-
+  const prodehook = useProde(prode);
   return (
     <prodeContext.Provider value={prodehook}>{children}</prodeContext.Provider>
   );
