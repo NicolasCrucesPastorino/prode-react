@@ -1,3 +1,4 @@
+import { Octavos } from "../../parts/octavos/Octavos";
 import Preliminares from "../../parts/Preliminares";
 import ConsumerProdeContext from "../../ProdeProvider";
 import {storeUserProde} from './../../../../database/services/prodeService'
@@ -21,6 +22,7 @@ const ProdeUsuarioLogic = ({uid}) => {
         <button onClick={handleOnClick }>Guardar</button>
         <h2>Ronda de Grupos</h2>
         <Preliminares />
+        <Octavos />
       </div>
   )
 };
