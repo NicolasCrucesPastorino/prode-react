@@ -1,54 +1,49 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { ProdeProvider } from "../../ProdeProvider";
-import {getprodeporid} from '../../../../database/services/prodeService'
+import { getprodeporid } from "../../../../database/services/prodeService";
 
-const ProdeUsuarioProviderLayer = ({uid, children}) => {
+const ProdeUsuarioProviderLayer = ({ uid, children }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [globalProde, setGlobalProde] = useState({});
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [globalProde, setGlobalProde] = useState({})
+  const childWithProps = React.Children.map(children, (child) => {
+    return React.cloneElement(child, { uid });
+  });
 
-    const childWithProps = React.Children.map(children, child => {
-        return React.cloneElement(child, {uid})
-    })
-    
-    useEffect(
-      () => {
-        const getProdeById = async (uid='') => {
-          try {
-            const prode = await getprodeporid(uid)
-            setIsLoading(false)
-            setGlobalProde(prode)
-            setIsLoading(true)
-          }catch (error) {
-            console.error(error)
-            setIsLoading(false)
-            throw new Error(error)
-        }
+  useEffect(() => {
+    const getProdeById = async (uid = "") => {
+      try {
+        const prode = await getprodeporid(uid);
+        setIsLoading(false);
+        setGlobalProde(prode);
+        setIsLoading(true);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+        throw new Error(error);
       }
-      getProdeById(uid)
-        .then(() => {
-          console.log('Prode cargado')
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-  
-      },[uid])
-      
-    return(
-        <>
-          {
-            isLoading === false ? (
-              <h2>Cargando...</h2>
-            ) : (
-              <ProdeProvider prode={globalProde}>
-                <h1>prode usuario id: {uid}</h1>
-                {childWithProps}
-              </ProdeProvider>
-            )
-          }
-        </>
-    )
-  }
+    };
+    getProdeById(uid)
+      .then(() => {
+        console.log("Prode cargado");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [uid]);
 
-    export default ProdeUsuarioProviderLayer
+  return (
+    <>
+      {isLoading === false ? (
+        <h2>Cargando...</h2>
+      ) : (
+        <ProdeProvider prode={globalProde}>
+          <h1>prode usuario id: {uid}</h1>
+          {childWithProps}
+        </ProdeProvider>
+      )}
+    </>
+  );
+};
+
+export default ProdeUsuarioProviderLayer;

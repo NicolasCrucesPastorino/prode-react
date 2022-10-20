@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { equipos } from "../../../Constantes";
 import { gruposEtapaPreliminares } from "../../../constants/grupos_etapa_preliminares";
 import Grupo from "../../prode/preliminares/Models/Grupo";
 
@@ -6,14 +7,27 @@ export const useProde = (prode = {}, puntos = []) => {
   const resultadosPorDefecto = gruposEtapaPreliminares.map(
     (grupo) => new Grupo(grupo.nombre, grupo.partidos)
   );
-  const { resultados = resultadosPorDefecto } = prode;
+
+  const octavosPorDefecto = () => {
+    const octavosPorDefecto = {};
+    console.log("generando nuevos octavos");
+    Object.keys(equipos).forEach((grupoNombre) => {
+      const letraGrupo = grupoNombre.split("grupo")[1].toLowerCase();
+      octavosPorDefecto[`1-${letraGrupo}`] = "";
+      octavosPorDefecto[`2-${letraGrupo}`] = "";
+    });
+    return octavosPorDefecto;
+  };
+
+  const { resultados = resultadosPorDefecto, octavos = octavosPorDefecto() } =
+    prode;
 
   if (resultados && !resultados.every((grupo) => grupo instanceof Grupo)) {
     throw new Error("Resultados must be an array of Grupo objects");
   }
 
   const [_resultados, _setResultados] = useState(resultados);
-  const [_octavos, _setOctavos] = useState(prode.octavos);
+  const [_octavos, setOctavos] = useState(octavos);
   const [_torneo, _setTorneo] = useState(prode.torneo);
   const [_puntos, _setPuntos] = useState([]);
 
@@ -42,12 +56,29 @@ export const useProde = (prode = {}, puntos = []) => {
     );
   }
 
+  function updateOctavos(key_octavos, value) {
+    validateOctavosKey(key_octavos);
+    setOctavos({ ..._octavos, [key_octavos]: value });
+  }
+
+  function getOctavoByKey(key_octavos) {
+    validateOctavosKey(key_octavos);
+    return _octavos[key_octavos];
+  }
+
+  function validateOctavosKey(key_octavos) {
+    if (!Object.keys(_octavos).includes(key_octavos))
+      throw new Error("Invalid octavos key");
+  }
+
   return {
     resultados: _resultados,
+    octavos: _octavos,
     prode: { resultados: _resultados, octavos: _octavos, torneo: _torneo },
     getPartidoById,
     updatePartido,
-    // octavos,
+    updateOctavos,
+    getOctavoByKey,
     // torneo,
   };
 };
