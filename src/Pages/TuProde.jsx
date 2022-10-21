@@ -1,18 +1,14 @@
-
-import '../Constantes'
-import { TuProdeGenerico } from './../Components/prode/TuProdeGenerico';
-import {getprodeporid, storeUserProde} from './../database/services/prodeService'
-
+import ProdeUsuario from "../Components/prode_v2/components/ProdeUsuario";
+import AuthConsumer from "../Hooks/UseAuth";
 
 export const TuProde = () => {
- 
-  const getprode = getprodeporid
-
+  const { userauth } = AuthConsumer();
   return (
-    <TuProdeGenerico 
-      onSubmitFinalStrategy={storeUserProde} 
-      validarcamposvacios={true} 
-      getprode={getprode}
-    />
-  ) 
-}
+    <section>
+      <h1>
+        Prode de <span>{userauth.displayName}</span>
+      </h1>
+      <ProdeUsuario uid={userauth.uid} isEditable={true} />
+    </section>
+  );
+};

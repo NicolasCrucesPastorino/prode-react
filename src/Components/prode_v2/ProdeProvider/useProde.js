@@ -118,6 +118,5 @@ export const useProde = (prode = {}, puntos = []) => {
     getOctavoByKey,
     getTorneoByKey,
     updateTorneo,
-    // torneo,
   };
 };

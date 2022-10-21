@@ -12,6 +12,7 @@
     "react-google-button": "^0.7.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.8",
     "react-tournament-bracket": "^0.2.4",
     "sass": "^1.54.4",
     "web-vitals": "^2.1.4"

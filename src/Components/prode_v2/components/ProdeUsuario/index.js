@@ -1,9 +1,10 @@
 import ProdeUsuarioLogic from "./ProdeUsuarioLogic";
-import ProdeUsuarioProviderLayer from "./ProdeUsuarioProviderLayer";
+import ProdeUsuarioProviderLayer from "../ProdeUsuarioProviderLayer";
+import { getprodeporid } from "../../../../database/services/prodeService";
 
-const ProdeUsuario = ({ uid }) => (
-  <ProdeUsuarioProviderLayer uid={uid}>
-    <ProdeUsuarioLogic />
+const ProdeUsuario = ({ uid, isEditable }) => (
+  <ProdeUsuarioProviderLayer uid={uid} prodeFontFunction={getprodeporid}>
+    <ProdeUsuarioLogic isEditable={isEditable} />
   </ProdeUsuarioProviderLayer>
 );
 
