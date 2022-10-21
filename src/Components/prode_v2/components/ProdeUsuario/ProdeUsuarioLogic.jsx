@@ -9,9 +9,8 @@ const ProdeUsuarioLogic = ({ uid }) => {
 
   const handleOnClick = async () => {
     try {
-      //await storeUserProde(uid, prode);
-      console.log("prode", prode);
-      // alert("Prode guardado");
+      await storeUserProde(uid, prode);
+      alert("Prode guardado");
     } catch (error) {
       console.error(error);
       alert("Error al guardar el prode");
@@ -20,16 +19,7 @@ const ProdeUsuarioLogic = ({ uid }) => {
 
   return (
     <div>
-      <button
-        className="prodeboton"
-        onClick={handleOnClick}
-        style={{
-          position: "fixed",
-          bottom: "32px",
-          right: "32px",
-          zIndex: 100,
-        }}
-      >
+      <button className="prodeboton" onClick={handleOnClick}>
         Guardar
       </button>
       <h2>Ronda de Grupos</h2>
