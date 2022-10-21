@@ -9,7 +9,7 @@ const SelectorEquipo = ({
   const { getTorneoByKey } = ConsumerProdeContext();
 
   return (
-    <select onChange={onChange} name="cuartos-a-1">
+    <select onChange={onChange} name={key_selector}>
       <option value="">{title_empty_value}</option>
       {equipos.map((equipo) => (
         <option
