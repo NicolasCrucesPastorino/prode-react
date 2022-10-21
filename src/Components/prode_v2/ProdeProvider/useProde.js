@@ -19,8 +19,30 @@ export const useProde = (prode = {}, puntos = []) => {
     return octavosPorDefecto;
   };
 
-  const { resultados = resultadosPorDefecto, octavos = octavosPorDefecto() } =
-    prode;
+  const torneoPorDefecto = {
+    campeon: "",
+    tercero: "",
+    "cuartos-a-1": "",
+    "cuartos-a-2": "",
+    "cuartos-b-1": "",
+    "cuartos-b-2": "",
+    "cuartos-c-1": "",
+    "cuartos-c-2": "",
+    "cuartos-d-1": "",
+    "cuartos-d-2": "",
+    "semi-a-1": "",
+    "semi-a-2": "",
+    "semi-b-1": "",
+    "semi-b-2": "",
+    "final-a": "",
+    "final-b": "",
+  };
+
+  const {
+    resultados = resultadosPorDefecto,
+    octavos = octavosPorDefecto(),
+    torneo = torneoPorDefecto,
+  } = prode;
 
   if (resultados && !resultados.every((grupo) => grupo instanceof Grupo)) {
     throw new Error("Resultados must be an array of Grupo objects");
@@ -28,7 +50,7 @@ export const useProde = (prode = {}, puntos = []) => {
 
   const [_resultados, _setResultados] = useState(resultados);
   const [_octavos, setOctavos] = useState(octavos);
-  const [_torneo, _setTorneo] = useState(prode.torneo);
+  const [_torneo, _setTorneo] = useState(torneo);
   const [_puntos, _setPuntos] = useState([]);
 
   function getPartidoById(id) {
@@ -71,6 +93,21 @@ export const useProde = (prode = {}, puntos = []) => {
       throw new Error("Invalid octavos key");
   }
 
+  function getTorneoByKey(key_torneo) {
+    validateTorneoKey(key_torneo);
+    return _torneo[key_torneo];
+  }
+
+  function updateTorneo(key_torneo, value) {
+    validateTorneoKey(key_torneo);
+    _setTorneo({ ..._torneo, [key_torneo]: value });
+  }
+
+  function validateTorneoKey(key_torneo) {
+    if (!Object.keys(_torneo).includes(key_torneo))
+      throw new Error("Invalid torneo key");
+  }
+
   return {
     resultados: _resultados,
     octavos: _octavos,
@@ -79,6 +116,8 @@ export const useProde = (prode = {}, puntos = []) => {
     updatePartido,
     updateOctavos,
     getOctavoByKey,
+    getTorneoByKey,
+    updateTorneo,
     // torneo,
   };
 };

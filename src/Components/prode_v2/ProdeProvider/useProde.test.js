@@ -7,96 +7,22 @@ import { useProde } from "./useProde";
 
 const prodeMok = {
   torneo: {
-    cuartos: [
-      {
-        nombre: "Bélgica",
-        formKey: "cuartos-d-1",
-        puntos: 0,
-      },
-      {
-        nombre: "Inglaterra",
-        formKey: "cuartos-c-1",
-        puntos: 0,
-      },
-      {
-        nombre: "Brasil",
-        formKey: "cuartos-b-2",
-        puntos: 0,
-      },
-      {
-        nombre: "Portugal",
-        formKey: "cuartos-d-2",
-        puntos: 0,
-      },
-      {
-        nombre: "Canadá",
-        formKey: "cuartos-b-1",
-        puntos: 0,
-      },
-      {
-        nombre: "Arabia Saudita",
-        formKey: "cuartos-c-2",
-        puntos: 0,
-      },
-      {
-        nombre: "Ecuador",
-        formKey: "cuartos-a-1",
-        puntos: 0,
-      },
-      {
-        nombre: "Argentina",
-        formKey: "cuartos-a-2",
-        puntos: 0,
-      },
-    ],
-    semi: [
-      {
-        nombre: "Bélgica",
-        formKey: "semi-b-2",
-        puntos: 0,
-      },
-      {
-        nombre: "Ecuador",
-        formKey: "semi-a-1",
-        puntos: 0,
-      },
-      {
-        nombre: "Inglaterra",
-        formKey: "semi-b-1",
-        puntos: 0,
-      },
-      {
-        nombre: "Canadá",
-        formKey: "semi-a-2",
-        puntos: 0,
-      },
-    ],
-    final: [
-      {
-        nombre: "Ecuador",
-        formKey: "final-a",
-        puntos: 0,
-      },
-      {
-        nombre: "Inglaterra",
-        formKey: "final-b",
-        puntos: 0,
-      },
-    ],
-    campeon: [
-      {
-        nombre: "Ecuador",
-        formKey: "campeon",
-        puntos: 0,
-      },
-    ],
-    tercero: [
-      {
-        nombre: "Canadá",
-        formKey: "tercero",
-        puntos: 0,
-      },
-    ],
+    campeon: "Argentina",
+    tercero: "Japon",
+    "cuartos-a-1": "Ecuador",
+    "cuartos-a-2": "Argentina",
+    "cuartos-b-1": "Peru",
+    "cuartos-b-2": "Estados Unidos",
+    "cuartos-c-1": "Catar",
+    "cuartos-c-2": "Brasil",
+    "cuartos-d-1": "Francia",
+    "cuartos-d-2": "Japon",
+    "semi-a-1": "Argentina",
+    "semi-a-2": "Estados Unidos",
+    "semi-b-1": "Japon",
+    "semi-b-2": "Brasil",
+    "final-a": "Argentina",
+    "final-b": "Brasil",
   },
   octavos: {
     "1-d": "Dinamarca",
@@ -416,5 +342,34 @@ describe("useProde", () => {
     const { getOctavoByKey } = result.current;
     expect(getOctavoByKey("1-a")).toBe("Ecuador");
     expect(() => getOctavoByKey("1-x")).toThrowError("Invalid octavos key");
+  });
+
+  it("should return a string value from getTorneoByKey", () => {
+    const { result } = renderHook(() => useProde(prodeMok));
+    const { getTorneoByKey } = result.current;
+    expect(getTorneoByKey("cuartos-a-1")).toBe("Ecuador");
+  });
+
+  it("should return a empty if useProde is called with an empty object", () => {
+    const { result } = renderHook(() => useProde({}));
+    const { getTorneoByKey } = result.current;
+    expect(getTorneoByKey("cuartos-a-1")).toBe("");
+  });
+
+  it("should throw an error if torneo key is not valid", () => {
+    const { result } = renderHook(() => useProde(prodeMok));
+    const { updateTorneo } = result.current;
+    expect(() => updateTorneo("cuartos-x-1", "Argentina")).toThrowError(
+      "Invalid torneo key"
+    );
+  });
+
+  it('should update the "cuartos-a-1" key', () => {
+    const { result } = renderHook(() => useProde(prodeMok));
+    const { updateTorneo } = result.current;
+    act(() => {
+      updateTorneo("cuartos-a-1", "Argentina");
+    });
+    expect(result.current.getTorneoByKey("cuartos-a-1")).toBe("Argentina");
   });
 });
