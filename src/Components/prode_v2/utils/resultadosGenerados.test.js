@@ -156,13 +156,13 @@ describe("Unit Test - Resultados Generados", () => {
     });      
   });
 
-  test.skip("un prode que acierte un campeon de torneo debe ganar 42 puntos", () => {
+  test("un prode que acierte un campeon de torneo debe ganar 42 puntos", () => {
     const hookProdeUser = renderHook(() => useProde());
     const hookProdeSuperUser = renderHook(() => useProde());
     
     act(() => {
       hookProdeUser.result.current.updateTorneo("campeon", "argentina");
-      hookProdeSuperUser.result.current.updatePartido("campeon", "argentina");
+      hookProdeSuperUser.result.current.updateTorneo("campeon", "argentina");
       
       const resultados = crearResultado(
         hookProdeUser.result.current.prode,

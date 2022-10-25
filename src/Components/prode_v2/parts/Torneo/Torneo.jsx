@@ -2,6 +2,7 @@ import ConsumerProdeContext from "../../ProdeProvider";
 import LineaTorneoConectora from "./LineaTorneoConectora";
 import SelectorEquipo from "./SelectorEquipo";
 
+
 const Torneo = () => {
   const { getOctavoByKey, getTorneoByKey, updateTorneo } =
     ConsumerProdeContext();
@@ -125,7 +126,7 @@ const Torneo = () => {
           <div className="matchups">
             <div className="matchup">
               <div className="participants">
-                <div className={"participant" + mostrarcolor("cuartos-a-1")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[getOctavoByKey("1-a"), getOctavoByKey("2-b")]}
                     key_selector="cuartos-a-1"
@@ -133,7 +134,7 @@ const Torneo = () => {
                     title_empty_value="CUARTOS"
                   />
                 </div>
-                <div className={"participant" + mostrarcolor("cuartos-a-2")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[getOctavoByKey("1-c"), getOctavoByKey("2-d")]}
                     key_selector="cuartos-a-2"
@@ -145,7 +146,7 @@ const Torneo = () => {
             </div>
             <div className="matchup">
               <div className="participants">
-                <div className={"participant" + mostrarcolor("cuartos-b-1")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[getOctavoByKey("1-e"), getOctavoByKey("2-f")]}
                     key_selector="cuartos-b-1"
@@ -153,7 +154,7 @@ const Torneo = () => {
                     title_empty_value="CUARTOS"
                   />
                 </div>
-                <div className={"participant" + mostrarcolor("cuartos-b-2")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[getOctavoByKey("1-g"), getOctavoByKey("2-h")]}
                     key_selector="cuartos-b-2"
@@ -170,7 +171,7 @@ const Torneo = () => {
           <div className="matchups">
             <div className="matchup">
               <div className="participants">
-                <div className={"participant" + mostrarcolor("cuartos-c-1")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[getOctavoByKey("1-b"), getOctavoByKey("2-a")]}
                     key_selector="cuartos-c-1"
@@ -178,7 +179,7 @@ const Torneo = () => {
                     title_empty_value="CUARTOS"
                   />
                 </div>
-                <div className={"participant" + mostrarcolor("cuartos-c-2")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[getOctavoByKey("1-d"), getOctavoByKey("2-c")]}
                     key_selector="cuartos-c-2"
@@ -190,7 +191,7 @@ const Torneo = () => {
             </div>
             <div className="matchup">
               <div className="participants">
-                <div className={"participant" + mostrarcolor("cuartos-d-1")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[getOctavoByKey("1-f"), getOctavoByKey("2-e")]}
                     key_selector="cuartos-d-1"
@@ -198,7 +199,7 @@ const Torneo = () => {
                     title_empty_value="CUARTOS"
                   />
                 </div>
-                <div className={"participant" + mostrarcolor("cuartos-d-2")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[getOctavoByKey("1-h"), getOctavoByKey("2-g")]}
                     key_selector="cuartos-d-2"
@@ -217,7 +218,7 @@ const Torneo = () => {
           <div className="matchups">
             <div className="matchup">
               <div className="participants">
-                <div className={"participant" + mostrarcolor("semi-a-1")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[
                       getTorneoByKey("cuartos-a-1"),
@@ -228,7 +229,7 @@ const Torneo = () => {
                     title_empty_value="SEMIFINAL"
                   />
                 </div>
-                <div className={"participant" + mostrarcolor("semi-a-2")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[
                       getTorneoByKey("cuartos-b-1"),
@@ -243,7 +244,7 @@ const Torneo = () => {
             </div>
             <div className="matchup">
               <div className="participants">
-                <div className={"participant" + mostrarcolor("semi-b-1")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[
                       getTorneoByKey("cuartos-c-1"),
@@ -254,7 +255,7 @@ const Torneo = () => {
                     title_empty_value="SEMIFINAL"
                   />
                 </div>
-                <div className={"participant" + mostrarcolor("semi-b-2")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[
                       getTorneoByKey("cuartos-d-1"),
@@ -276,7 +277,7 @@ const Torneo = () => {
           <div className="matchups">
             <div className="matchup">
               <div className="participants">
-                <div className={"participant" + mostrarcolor("final-a")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[
                       getTorneoByKey("semi-a-1"),
@@ -287,7 +288,7 @@ const Torneo = () => {
                     title_empty_value="FINAL"
                   />
                 </div>
-                <div className={"participant" + mostrarcolor("final-b")}>
+                <div className={"participant"}>
                   <SelectorEquipo
                     equipos={[
                       getTorneoByKey("semi-b-1"),
@@ -308,7 +309,8 @@ const Torneo = () => {
           <div className="matchups">
             <div className="matchup">
               <div className="participants">
-                <div className={"participant" + mostrarcolor("campeon")}>
+                <div className={"participant"}>
+                  <p>Campeon</p>
                   <SelectorEquipo
                     equipos={[
                       getTorneoByKey("final-a"),
@@ -323,7 +325,8 @@ const Torneo = () => {
             </div>
             <div className="matchup">
               <div className="participants">
-                <div className={"participant" + mostrarcolor("tercero")}>
+                <div className={"participant"}>
+                  <p>Tercero</p>
                   <SelectorEquipo
                     equipos={[
                       getTorneoByKey("final-a") === getTorneoByKey("semi-a-1")

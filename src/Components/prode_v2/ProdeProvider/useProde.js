@@ -20,8 +20,8 @@ export const useProde = (prode = {}, puntos = []) => {
   };
 
   const torneoPorDefecto = {
-    campeon: "",
-    tercero: "",
+    "campeon": "",
+    "tercero": "",
     "cuartos-a-1": "",
     "cuartos-a-2": "",
     "cuartos-b-1": "",

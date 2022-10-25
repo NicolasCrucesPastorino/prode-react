@@ -7,7 +7,7 @@ import Torneo from "../../parts/Torneo";
 import ConsumerProdeContext from "../../ProdeProvider";
 import { storeUserProde } from "./../../../../database/services/prodeService";
 
-const ProdeUsuarioLogic = ({ uid, isEditable = true }) => {
+const ProdeUsuarioLogic = ({ uid, isEditable = false }) => {
   const { prode } = ConsumerProdeContext();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,7 +30,7 @@ const ProdeUsuarioLogic = ({ uid, isEditable = true }) => {
       ) : (
         <div>
           <SuccessToast />
-          {isEditable && (
+          {isEditable&& (
             <button className="prodeboton" onClick={handleOnClickToSave}>
               Guardar
             </button>

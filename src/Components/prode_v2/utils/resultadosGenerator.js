@@ -12,8 +12,8 @@ gruposEtapaPreliminares.forEach((grupo) =>
 );
 
 const torneoIniciales = {
-  campeon: 0,
-  tercero: 0,
+  "campeon": 0,
+  "tercero": 0,
   "final-a": 0,
   "final-b": 0,
   "semi-a-1": 0,
