@@ -38,10 +38,42 @@ export const useProde = (prode = {}, puntos = []) => {
     "final-b": "",
   };
 
+  const preliminaresIniciales = {};
+gruposEtapaPreliminares.forEach((grupo) =>
+  grupo.partidos.forEach(
+    (partido) => 
+      (preliminaresIniciales[`${grupo.nombre}-${partido.equipoA}-${partido.equipoB}`] = 0)
+  )
+);
+
+const torneoIniciales = {
+    "campeon": "",
+    "tercero": "",
+    "final-a": "",
+    "final-b": "",
+    "semi-a-1": "",
+    "semi-a-2": "",
+    "semi-b-1": "",
+    "semi-b-2": "",
+    "cuartos-a-1": "",
+    "cuartos-a-2": "", 
+    "cuartos-b-1": "",
+    "cuartos-b-2": "",
+    "cuartos-c-1": "",
+    "cuartos-c-2": "",
+    "cuartos-d-1": "",
+    "cuartos-d-2": "",
+}
+  const puntajePorDefecto = {
+    preliminares: preliminaresIniciales,
+    torneo: torneoIniciales,
+  }
+
   const {
     resultados = resultadosPorDefecto,
     octavos = octavosPorDefecto(),
     torneo = torneoPorDefecto,
+    puntaje = puntajePorDefecto,
   } = prode;
 
   if (resultados && !resultados.every((grupo) => grupo instanceof Grupo)) {
@@ -118,5 +150,6 @@ export const useProde = (prode = {}, puntos = []) => {
     getOctavoByKey,
     getTorneoByKey,
     updateTorneo,
+    puntaje
   };
 };

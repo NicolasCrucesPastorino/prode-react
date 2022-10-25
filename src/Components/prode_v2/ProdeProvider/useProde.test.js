@@ -351,7 +351,7 @@ describe("useProde", () => {
   });
 
   it("should return a empty if useProde is called with an empty object", () => {
-    const { result } = renderHook(() => useProde({}));
+    const { result } = renderHook(() => useProde());
     const { getTorneoByKey } = result.current;
     expect(getTorneoByKey("cuartos-a-1")).toBe("");
   });
