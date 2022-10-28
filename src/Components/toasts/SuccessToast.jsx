@@ -4,11 +4,11 @@ import "react-toastify/dist/ReactToastify.css";
 const SuccessToast = () => (
   <ToastContainer
     position="top-center"
-    autoClose={3000}
-    hideProgressBar={false}
+    autoClose={2000}
+    hideProgressBar={true}
     newestOnTop={false}
     closeOnClick
-    rtl={false}
+    rtl={true}
     pauseOnFocusLoss
     draggable
     pauseOnHover

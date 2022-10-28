@@ -1,4 +1,4 @@
-import { getById, store } from "./../firebaseService";
+import { getById, store, getAll } from "./../firebaseService";
 import { firebaseFolder } from "../firebaseFolders";
 import { resultadosconverter } from "../../utils/resultadosConverter";
 
@@ -22,6 +22,20 @@ export const getsuperprodeporid = async (uid) => {
     throw e;
   }
 };
+
+export const getSuperProde = async() => {
+  try {
+    const superProdesFromFirebase = await getAll(firebaseFolder.SUPER_PRODE);
+    const prodes = superProdesFromFirebase.map((prodeFromFirestore) => ({
+      ...prodeFromFirestore,
+      resultados: resultadosconverter.toObject(prodeFromFirestore.resultados),
+    }));
+
+    return prodes[0]
+  } catch (e) {
+    throw e;
+  }
+}
 
 export const storesuperprode = async (uid, superProde) => {
   try {

@@ -1,33 +1,36 @@
 import { gruposEtapaPreliminares } from "../../../constants/grupos_etapa_preliminares";
 import { puntaje } from "../../../Constantes";
 
-const preliminaresIniciales = {};
-gruposEtapaPreliminares.forEach((grupo) =>
-  grupo.partidos.forEach(
-    (partido) =>
-      (preliminaresIniciales[
-        `${grupo.nombre}-${partido.equipoA}-${partido.equipoB}`
-      ] = 0)
-  )
-);
+export const generarPuntosIniciales = () => {
+  const preliminaresIniciales = {};
+  gruposEtapaPreliminares.forEach((grupo) =>
+    grupo.partidos.forEach(
+      (partido) =>
+        (preliminaresIniciales[
+          `${grupo.nombre}-${partido.equipoA}-${partido.equipoB}`
+        ] = 0)
+    )
+  );
 
-const torneoIniciales = {
-  "campeon": 0,
-  "tercero": 0,
-  "final-a": 0,
-  "final-b": 0,
-  "semi-a-1": 0,
-  "semi-a-2": 0,
-  "semi-b-1": 0,
-  "semi-b-2": 0,
-  "cuartos-a-1": 0,
-  "cuartos-a-2": 0,
-  "cuartos-b-1": 0,
-  "cuartos-b-2": 0,
-  "cuartos-c-1": 0,
-  "cuartos-c-2": 0,
-  "cuartos-d-1": 0,
-  "cuartos-d-2": 0,
+  const torneoIniciales = {
+    campeon: 0,
+    tercero: 0,
+    "final-a": 0,
+    "final-b": 0,
+    "semi-a-1": 0,
+    "semi-a-2": 0,
+    "semi-b-1": 0,
+    "semi-b-2": 0,
+    "cuartos-a-1": 0,
+    "cuartos-a-2": 0,
+    "cuartos-b-1": 0,
+    "cuartos-b-2": 0,
+    "cuartos-c-1": 0,
+    "cuartos-c-2": 0,
+    "cuartos-d-1": 0,
+    "cuartos-d-2": 0,
+  };
+  return { preliminares: preliminaresIniciales, torneo: torneoIniciales };
 };
 
 export const crearResultado = (prodeUsuario, superProde) => {
@@ -36,7 +39,7 @@ export const crearResultado = (prodeUsuario, superProde) => {
   }
 
   if (!superProde) {
-    return { preliminares: preliminaresIniciales, torneo: torneoIniciales };
+    return generarPuntosIniciales();
   }
 
   return {
@@ -76,29 +79,31 @@ const calcularPuntosPreliminar = (prodeUsuario, superProde) => {
       }
       puntosPreliminar[partido.partidoid] = puntospartido;
     });
-});
-    console.log('puntos', puntosPreliminar);
-    return puntosPreliminar;
+  });
+  console.log("puntos", puntosPreliminar);
+  return puntosPreliminar;
 };
 
 const calcularPuntosTorneo = (prodeUsuario, superProde) => {
-    const puntosTorneo = {};    
-    Object.keys(superProde.torneo).forEach(prodeKey => {
-        const etapa = prodeKey.split('-')[0].toUpperCase();
-        const etapaKey = 'ACIERTO_' + etapa;    
+  const puntosTorneo = {};
+  Object.keys(superProde.torneo).forEach((prodeKey) => {
+    const etapa = prodeKey.split("-")[0].toUpperCase();
+    const etapaKey = "ACIERTO_" + etapa;
 
+    if (prodeUsuario.torneo[prodeKey] === superProde.torneo[prodeKey]) {
+      puntosTorneo[prodeKey] = puntaje.puntajetorneo[etapaKey];
+    }
 
-        if (prodeUsuario.torneo[prodeKey] === superProde.torneo[prodeKey]) {
-            puntosTorneo[prodeKey] = puntaje.puntajetorneo[etapaKey];
-        }
+    if (
+      prodeUsuario.torneo[prodeKey] === "" ||
+      superProde.torneo[prodeKey] === ""
+    ) {
+      puntosTorneo[prodeKey] = puntaje.puntajetorneo.SIN_ACIERTO;
+    }
 
-        if(prodeUsuario.torneo[prodeKey] === '' || superProde.torneo[prodeKey] === '') {
-            puntosTorneo[prodeKey] = puntaje.puntajetorneo.SIN_ACIERTO;
-        }
-        
-        if(prodeUsuario.torneo[prodeKey] !== superProde.torneo[prodeKey]) {
-            puntosTorneo[prodeKey] = puntaje.puntajetorneo.SIN_ACIERTO;
-        }        
-    } )    
-    return puntosTorneo;
-}
+    if (prodeUsuario.torneo[prodeKey] !== superProde.torneo[prodeKey]) {
+      puntosTorneo[prodeKey] = puntaje.puntajetorneo.SIN_ACIERTO;
+    }
+  });
+  return puntosTorneo;
+};

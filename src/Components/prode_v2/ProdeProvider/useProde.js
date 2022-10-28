@@ -2,8 +2,12 @@ import { useState } from "react";
 import { equipos } from "../../../Constantes";
 import { gruposEtapaPreliminares } from "../../../constants/grupos_etapa_preliminares";
 import Grupo from "../../prode/preliminares/Models/Grupo";
+import { generarPuntosIniciales } from "../utils/resultadosGenerator";
+import { crearResultado } from "../../utils/resultadosGenerator";
+import { getSuperProde } from "../../../database/services/superProdeService";
+import { storeresultadosuserprode } from "../../../database/services/resultadosService";
 
-export const useProde = (prode = {}, puntos = []) => {
+export const useProde = (prode = {}, puntos = generarPuntosIniciales()) => {
   const resultadosPorDefecto = gruposEtapaPreliminares.map(
     (grupo) => new Grupo(grupo.nombre, grupo.partidos)
   );
@@ -20,8 +24,8 @@ export const useProde = (prode = {}, puntos = []) => {
   };
 
   const torneoPorDefecto = {
-    "campeon": "",
-    "tercero": "",
+    campeon: "",
+    tercero: "",
     "cuartos-a-1": "",
     "cuartos-a-2": "",
     "cuartos-b-1": "",
@@ -38,42 +42,12 @@ export const useProde = (prode = {}, puntos = []) => {
     "final-b": "",
   };
 
-  const preliminaresIniciales = {};
-gruposEtapaPreliminares.forEach((grupo) =>
-  grupo.partidos.forEach(
-    (partido) => 
-      (preliminaresIniciales[`${grupo.nombre}-${partido.equipoA}-${partido.equipoB}`] = 0)
-  )
-);
-
-const torneoIniciales = {
-    "campeon": "",
-    "tercero": "",
-    "final-a": "",
-    "final-b": "",
-    "semi-a-1": "",
-    "semi-a-2": "",
-    "semi-b-1": "",
-    "semi-b-2": "",
-    "cuartos-a-1": "",
-    "cuartos-a-2": "", 
-    "cuartos-b-1": "",
-    "cuartos-b-2": "",
-    "cuartos-c-1": "",
-    "cuartos-c-2": "",
-    "cuartos-d-1": "",
-    "cuartos-d-2": "",
-}
-  const puntajePorDefecto = {
-    preliminares: preliminaresIniciales,
-    torneo: torneoIniciales,
-  }
+  
 
   const {
     resultados = resultadosPorDefecto,
     octavos = octavosPorDefecto(),
     torneo = torneoPorDefecto,
-    puntaje = puntajePorDefecto,
   } = prode;
 
   if (resultados && !resultados.every((grupo) => grupo instanceof Grupo)) {
@@ -83,7 +57,7 @@ const torneoIniciales = {
   const [_resultados, _setResultados] = useState(resultados);
   const [_octavos, setOctavos] = useState(octavos);
   const [_torneo, _setTorneo] = useState(torneo);
-  const [_puntos, _setPuntos] = useState([]);
+  const [_puntos, _setPuntos] = useState(puntos);
 
   function getPartidoById(id) {
     const groupName = id.split("-")[0];
@@ -140,6 +114,20 @@ const torneoIniciales = {
       throw new Error("Invalid torneo key");
   }
 
+  function getPuntosPreliminaresByKey(key_puntos) {
+    return _puntos.preliminares[key_puntos];
+  }
+
+  function getPuntosTorneoByKey(key_puntos) {
+    return _puntos.torneo[key_puntos];
+  }
+
+  async function updatePuntaje(uid) {
+    const superProde = await getSuperProde()
+    const puntajeResultados = crearResultado(prode, superProde);
+    await storeresultadosuserprode(uid, puntajeResultados);
+  }
+
   return {
     resultados: _resultados,
     octavos: _octavos,
@@ -150,6 +138,8 @@ const torneoIniciales = {
     getOctavoByKey,
     getTorneoByKey,
     updateTorneo,
-    puntaje
+    getPuntosPreliminaresByKey,
+    getPuntosTorneoByKey,
+    updatePuntaje,
   };
 };
