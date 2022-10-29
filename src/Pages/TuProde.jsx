@@ -10,13 +10,13 @@ export const TuProde = () => {
   return (
     <section>
       <header>
-      <h1>
-        Prode de <span>{userauth.displayName}</span>
-      </h1>
-      <p>Dias restantes para Jugar {diasHataCerrarProde}</p>
+        <h1>
+          Prode de <span>{userauth.displayName}</span>
+        </h1>
+        <p>Dias restantes para Jugar {diasHataCerrarProde}</p>
       </header>
-      
-      <ProdeUsuario uid={userauth.uid} isEditable={isEditable} />
+
+      <ProdeUsuario uid={userauth.uid} isEditable={true} />
     </section>
   );
 };

@@ -24,3 +24,16 @@ export const getAllProdesResultados = async () => {
     throw error;
   }
 };
+
+export const getPuntajeTotalById = async (uid) => {
+  const resultados = await getresultadosuserprode(uid);
+  const puntajetorneo = Object.values(resultados.torneo).reduce(
+    (a, b) => a + b,
+    0
+  );
+  const puntajepreliminar = Object.values(resultados.preliminares).reduce(
+    (a, b) => a + b,
+    0
+  );
+  return puntajetorneo + puntajepreliminar;
+};

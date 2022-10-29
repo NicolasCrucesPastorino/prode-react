@@ -2,8 +2,10 @@ import { useState } from "react";
 import { equipos } from "../../../Constantes";
 import { gruposEtapaPreliminares } from "../../../constants/grupos_etapa_preliminares";
 import Grupo from "../../prode/preliminares/Models/Grupo";
-import { generarPuntosIniciales } from "../utils/resultadosGenerator";
-import { crearResultado } from "../../utils/resultadosGenerator";
+import {
+  crearResultado,
+  generarPuntosIniciales,
+} from "../utils/resultadosGenerator";
 import { getSuperProde } from "../../../database/services/superProdeService";
 import { storeresultadosuserprode } from "../../../database/services/resultadosService";
 
@@ -41,8 +43,6 @@ export const useProde = (prode = {}, puntos = generarPuntosIniciales()) => {
     "final-a": "",
     "final-b": "",
   };
-
-  
 
   const {
     resultados = resultadosPorDefecto,
@@ -123,8 +123,15 @@ export const useProde = (prode = {}, puntos = generarPuntosIniciales()) => {
   }
 
   async function updatePuntaje(uid) {
-    const superProde = await getSuperProde()
-    const puntajeResultados = crearResultado(prode, superProde);
+    const superProde = await getSuperProde();
+    const puntajeResultados = crearResultado(
+      {
+        resultados: _resultados,
+        octavos: _octavos,
+        torneo: _torneo,
+      },
+      superProde
+    );
     await storeresultadosuserprode(uid, puntajeResultados);
   }
 

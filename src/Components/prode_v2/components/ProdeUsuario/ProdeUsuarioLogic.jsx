@@ -8,7 +8,7 @@ import ConsumerProdeContext from "../../ProdeProvider";
 import { storeUserProde } from "./../../../../database/services/prodeService";
 
 const ProdeUsuarioLogic = ({ uid, isEditable = false }) => {
-  const { prode, updateResultados } = ConsumerProdeContext();
+  const { prode, updatePuntaje } = ConsumerProdeContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOnClickToSave = async () => {
@@ -16,7 +16,7 @@ const ProdeUsuarioLogic = ({ uid, isEditable = false }) => {
       setIsLoading(true);
       await storeUserProde(uid, prode);
       setIsLoading(false);
-      updateResultados(uid)
+      updatePuntaje(uid);
       showToast("⚽ Prode guardado!");
     } catch (error) {
       console.error(error);
@@ -31,7 +31,7 @@ const ProdeUsuarioLogic = ({ uid, isEditable = false }) => {
       ) : (
         <div>
           <SuccessToast />
-          {isEditable&& (
+          {isEditable && (
             <button className="prodeboton" onClick={handleOnClickToSave}>
               Guardar
             </button>
