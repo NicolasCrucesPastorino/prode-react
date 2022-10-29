@@ -17,7 +17,7 @@ const ProdeUsuarioProviderLayer = ({ uid, prodeFontFunction, children }) => {
       try {
         console.log(prodeFontFunction);
         const prode = await prodeFontFunction(uid);
-        console.log(prode);
+        console.log("prode inicial", prode);
         setIsLoading(false);
         setGlobalProde(prode === null ? {} : prode);
         setIsLoading(true);

@@ -19,11 +19,14 @@ export const getAllProdesUsuarios = async () => {
 export const getprodeporid = async (uid) => {
   try {
     const prodeFromFirestore = await getById(uid, firebaseFolder.PRODES);
-    const prode = {
-      ...prodeFromFirestore,
-      resultados: resultadosconverter.toObject(prodeFromFirestore.resultados),
-    };
-    return prode;
+    return prodeFromFirestore === null
+      ? null
+      : {
+          ...prodeFromFirestore,
+          resultados: resultadosconverter.toObject(
+            prodeFromFirestore.resultados
+          ),
+        };
   } catch (e) {
     throw e;
   }
