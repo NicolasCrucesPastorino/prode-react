@@ -16,6 +16,7 @@ export const resultadosconverter = {
     return grupos;
   },
   toObject: (resultadosfromfirestore = []) => {
+    if (resultadosfromfirestore === undefined) return undefined;
     const grupos = resultadosfromfirestore.map(
       (grupo) => new Grupo(grupo.nombre)
     );

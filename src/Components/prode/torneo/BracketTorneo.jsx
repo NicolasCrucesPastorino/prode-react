@@ -4,20 +4,18 @@ import { getresultadosuserprode } from "./../../../database/services/resultadosS
 import "./Bracket.scss";
 import { ROL } from "../../../Constantes";
 
-
 export const BracketTorneo = (props) => {
   const torneo = props.torneo;
   const settorneo = props.settorneo;
   const octavos = props.octavos;
   const consumer = authconsumer();
   const [resultados, setresultados] = useState({});
-  
 
   useEffect(() => {
     const cargarResultados = async () => {
-      if(consumer.userauth.rol !== ROL.ADMIN){
-      const response = await getresultadosuserprode(consumer.userauth.uid);
-      setresultados(response);
+      if (consumer.userauth.rol !== ROL.ADMIN) {
+        const response = await getresultadosuserprode(consumer.userauth.uid);
+        setresultados(response);
       }
     };
 
@@ -29,32 +27,30 @@ export const BracketTorneo = (props) => {
   const sinpuntaje = "";
 
   const mostrarcolor = (formkey = "") => {
-    if(consumer.userauth.rol !== ROL.ADMIN){
-    if (resultados && resultados.torneo) {
-      const container = formkey.split("-")[0];
-      const list = resultados.torneo[container];
-      const equipoPuntaje = list.find((r) => r.formKey === formkey);
-      if (equipoPuntaje) {
-        const puntosEquipo = equipoPuntaje.puntos;
-        if (puntosEquipo > 0) {
-          return ganador;
-        } else if (puntosEquipo === 0) {
-          return perdedor;
+    if (consumer.userauth.rol !== ROL.ADMIN) {
+      if (resultados && resultados.torneo) {
+        const container = formkey.split("-")[0];
+        const list = resultados.torneo[container];
+        const equipoPuntaje = list.find((r) => r.formKey === formkey);
+        if (equipoPuntaje) {
+          const puntosEquipo = equipoPuntaje.puntos;
+          if (puntosEquipo > 0) {
+            return ganador;
+          } else if (puntosEquipo === 0) {
+            return perdedor;
+          } else {
+            return sinpuntaje;
+          }
         } else {
-          return sinpuntaje;
+          //throw new Error("Clave del formulario no existe");
         }
       } else {
-        //throw new Error("Clave del formulario no existe");
+        return sinpuntaje;
       }
-    } else {
-      return sinpuntaje;
     }
-  }
   };
   const handleOnChangeTorneo = (evento) => {
-    
     settorneo({ ...torneo, [evento.target.name]: evento.target.value });
-    
   };
 
   return (

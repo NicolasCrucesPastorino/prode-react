@@ -7,8 +7,24 @@ export const Tabla = () => {
   const [resultados, setresultados] = useState([]);
 
   useEffect(() => {
-    const obteneryordenarresultados = async () => {
+    const obtenerYordenarResultados = async () => {
       const resultados = await getAllProdesResultados()
+      resultados.forEach(resultado => {
+        const getPuntajeTotalByResultado =  (resultado) => {
+          const puntajetorneo = Object.values(resultado.torneo).reduce(
+            (a, b) => a + b,
+            0
+          );
+          const puntajepreliminar = Object.values(resultado.preliminares).reduce(
+            (a, b) => a + b,
+            0
+          );
+          return puntajetorneo + puntajepreliminar;
+        };
+        
+        resultado.puntajetotal = getPuntajeTotalByResultado(resultado)
+      })
+
       const ordenarpuntajemayor = (a, b) => {
         if (a.puntajetotal < b.puntajetotal) {
           return 1;
@@ -23,7 +39,7 @@ export const Tabla = () => {
           setresultados(resultadosordenados)
       }
     }
-    obteneryordenarresultados().then();
+    obtenerYordenarResultados().then();
   }, []);
   return (
     <div>

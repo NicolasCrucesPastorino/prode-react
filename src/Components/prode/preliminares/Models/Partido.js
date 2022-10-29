@@ -1,45 +1,54 @@
 class Partido {
-    constructor(nombregrupo, equipoA, equipoB, golesequipoA = 0,golesequipoB = 0){
-        this.partidoid = nombregrupo + '-' + equipoA + '-' +equipoB
-        this.equipoA = equipoA
-        this.equipoB = equipoB
-        this.golesequipoA = golesequipoA
-        this.golesequipoB = golesequipoB
-    }
-        setgolesequipoA(goles){
-            if(isNaN(goles)){
-                goles = parseInt(goles)
-            } 
-            if(goles < 0){
-                throw Error('los goles deben ser numeros positivos')
+  constructor(
+    nombregrupo,
+    equipoA,
+    equipoB,
+    golesequipoA = "",
+    golesequipoB = ""
+  ) {
+    this.partidoid = nombregrupo + "-" + equipoA + "-" + equipoB;
+    this.equipoA = equipoA;
+    this.equipoB = equipoB;
+    this.golesequipoA = golesequipoA;
+    this.golesequipoB = golesequipoB;
+  }
+  setgolesequipoA(goles = "") {
+    this.validateGoles(goles);
+    this.golesequipoA = goles;
+  }
 
-            }
-            this.golesequipoA = parseInt(goles);
-        }
-            setgolesequipoB(goles){
-                if(isNaN(goles)){
-                    goles = parseInt(goles)
-                } 
-                if(goles < 0){
-                    throw Error('los goles deben ser numeros positivos')
-    
-                }
-                this.golesequipoB = parseInt(goles);
-            }        
-            gruponombre(){
-                return this.partidoid.split('-')[0]
+  setgolesequipoB(goles = "") {
+    this.validateGoles(goles);
+    this.golesequipoB = goles;
+  }
+  gruponombre() {
+    return this.partidoid.split("-")[0];
+  }
 
-            }
-            resultado(){
-                if(this.golesequipoA - this.golesequipoB > 0){
-                    return 'gana '+ this.equipoA
-                }
-                if(this.golesequipoA - this.golesequipoB < 0){
-                    return 'gana '+ this.equipoB 
-                }
-                if(this.golesequipoA === this.golesequipoB){
-                    return 'empate'
-                }
-            }
+  validateGoles(goles) {
+    if (goles === "") {
+      this.golesequipoB = "";
+      return;
     }
- export default Partido
+    if (isNaN(goles)) {
+      throw new Error("Goles must be a number");
+    }
+    if (parseInt(goles) < 0)
+      throw Error("los goles deben ser numeros positivos");
+  }
+  resultado() {
+    if (this.golesequipoA === "" || this.golesequipoB === "") return "sin resultados";
+    if (this.golesequipoA - this.golesequipoB > 0) {
+      return "gana " + this.equipoA;
+    }
+    if (this.golesequipoA - this.golesequipoB < 0) {
+      return "gana " + this.equipoB;
+    }
+    if (this.golesequipoA === this.golesequipoB) {
+      return "empate";
+    }
+
+  }
+}
+
+export default Partido;

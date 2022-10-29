@@ -1,5 +1,24 @@
 import { etapa, puntaje } from "../Constantes";
 
+export const calcularPuntaje = (prodeUsuario, superProde) => {
+  const resultadoPuntaje = {};
+
+  // puntajes preliminares
+  resultadoPuntaje.preliminar = calcularPuntosPreliminar(
+    prodeUsuario,
+    superProde
+  );
+
+  // puntajes torneo
+  Object.values(etapa).forEach((etapa) => {
+    const puntaje = calcularPuntosTorneo(prodeUsuario, superProde, etapa);
+    resultadoPuntaje[etapa] = puntaje;
+  });
+
+  const resultadoPuntajeMasTotal = calcularpuntajetotal(resultadoPuntaje);
+  return resultadoPuntajeMasTotal;
+};
+
 export const calcularPuntosPreliminar = (prodeUsuario, superProde) => {
   const puntajepreliminares = [];
 
