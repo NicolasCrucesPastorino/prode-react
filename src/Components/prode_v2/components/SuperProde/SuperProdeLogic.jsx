@@ -9,6 +9,7 @@ import Octavos from "../../parts/Octavos";
 import Preliminares from "../../parts/Preliminares";
 import Torneo from "../../parts/Torneo";
 import ConsumerProdeContext from "../../ProdeProvider";
+import { crearResultado } from "../../utils/resultadosGenerator";
 
 const SuperProdeLogic = ({ uid }) => {
   const { prode } = ConsumerProdeContext();
@@ -31,8 +32,8 @@ const SuperProdeLogic = ({ uid }) => {
     try {
       const prodesDeUsuarios = await getAllProdesUsuarios();
       prodesDeUsuarios.forEach(async (prodeUsuario) => {
-        const puntajeTotal = calcularPuntaje(prodeUsuario, prode);
-        await storeresultadosuserprode(prodeUsuario.userid, puntajeTotal);
+        const puntaje = crearResultado(prodeUsuario, prode);
+        await storeresultadosuserprode(prodeUsuario.userid, puntaje);
       });
     } catch (error) {
       throw error;
