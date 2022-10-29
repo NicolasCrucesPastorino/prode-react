@@ -16,7 +16,7 @@ export const TuProde = () => {
         <p>Dias restantes para Jugar {diasHataCerrarProde}</p>
       </header>
 
-      <ProdeUsuario uid={userauth.uid} isEditable={true} />
+      <ProdeUsuario uid={userauth.uid} isEditable={isEditable} />
     </section>
   );
 };
