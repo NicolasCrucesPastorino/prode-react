@@ -9,7 +9,7 @@ import { ProdeDetalle } from '../Pages/ProdeDetalle';
 import { Register } from '../Pages/Register';
 import { Reglas } from '../Pages/Reglas';
 import { SuperProdePage } from '../Pages/SuperProde';
-import { Tabla } from '../Pages/Tabla';
+import Tabla from '../Pages/Tabla';
 import { TuProde } from '../Pages/TuProde';
 
 export const Mainroutes = () => {
