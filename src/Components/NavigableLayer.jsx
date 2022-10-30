@@ -1,10 +1,10 @@
-import { Navbar } from "./Navbar"
+import { Navbar } from './Navbar';
 
-export const NavigableLayer = ({children}) => {
- return (
-    <>
-        <Navbar />
-        {children}
-    </>
- )
-}
+export const NavigableLayer = ({ children }) => {
+	return (
+		<>
+			<Navbar />
+			{children}
+		</>
+	);
+};

@@ -1,3 +1,3 @@
-import Octavos from "./Octavos";
+import Octavos from './Octavos';
 
 export default Octavos;

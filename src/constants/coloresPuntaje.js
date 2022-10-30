@@ -1,0 +1,8 @@
+/*
+
+const SIN_PUNTOS = '#FFFFFF';
+const SIN_COINCIDENCIAS = '#ff6d4e';
+const COINCIDENCIA_PARCIAL = '#FFFB13';
+const COINCIDENCIA_TOTAL = '#5EEA48';
+
+*/

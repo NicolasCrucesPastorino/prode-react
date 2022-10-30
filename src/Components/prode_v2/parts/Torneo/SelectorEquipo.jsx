@@ -1,27 +1,28 @@
-import ConsumerProdeContext from "../../ProdeProvider";
+import ConsumerProdeContext from '../../ProdeProvider';
 
 const SelectorEquipo = ({
-  equipos,
-  key_selector,
-  onChange,
-  title_empty_value = "Seleccione un equipo",
+	equipos,
+	keySelector,
+	onChange,
+	titleEmptyValue = 'Seleccione un equipo',
 }) => {
-  const { getTorneoByKey } = ConsumerProdeContext();
+	const { getTorneoByKey } = ConsumerProdeContext();
 
-  return (
-    <select onChange={onChange} name={key_selector}>
-      <option value="">{title_empty_value}</option>
-      {equipos.map((equipo) => (
-        <option
-          key={equipo}
-          value={equipo}
-          selected={getTorneoByKey(key_selector) === equipo}
-        >
-          {equipo}
-        </option>
-      ))}
-    </select>
-  );
+	return (
+		<select onChange={onChange} name={keySelector} defaultValue=''>
+			<option>{titleEmptyValue}</option>
+			{equipos.map((equipo, index) => (
+				<option
+					key={keySelector + equipo + index}
+					value={equipo}
+					defaultValue=''
+					selected={getTorneoByKey(keySelector) === equipo}
+				>
+					{equipo}
+				</option>
+			))}
+		</select>
+	);
 };
 
 export default SelectorEquipo;
