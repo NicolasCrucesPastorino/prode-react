@@ -1,3 +1,3 @@
-import Preliminares from "./Preliminares";
+import Preliminares from './Preliminares';
 
-export default Preliminares
+export default Preliminares;

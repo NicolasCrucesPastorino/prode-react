@@ -1,4 +1,4 @@
-import Torneo from "./Torneo";
-import './Bracket.scss'
+import Torneo from './Torneo';
+import './Bracket.scss';
 
 export default Torneo;
