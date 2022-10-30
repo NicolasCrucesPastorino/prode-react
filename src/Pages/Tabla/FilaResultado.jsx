@@ -1,21 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getdatauserfromid } from '../database/services/usuariosService';
+import { getdatauserfromid } from '../../database/services/usuariosService';
 
-export const FilaResultado = props => {
-	const index = props.index;
-	const resultado = props.resultado;
-	console.log('res', resultado);
-
+const FilaResultado = ({ index, resultado }) => {
 	const [filaresultado, setfilaresultado] = useState({
-		posicion: 1,
+		posicion: '',
 		nombre: '',
-		puntaje: 0,
+		puntaje: '',
+		uid: '',
 	});
+
 	useEffect(() => {
 		const cargardatos = async () => {
 			const usuario = await getdatauserfromid(resultado.userid);
-			console.log('usuario', usuario);
 			setfilaresultado({
 				...filaresultado,
 				nombre: usuario.displayName,
@@ -38,3 +35,5 @@ export const FilaResultado = props => {
 		</tr>
 	);
 };
+
+export default FilaResultado;

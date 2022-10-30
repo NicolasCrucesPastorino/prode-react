@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { getAllProdesResultados } from './../database/services/resultadosService';
-import { FilaResultado } from '../Components/FilaResultado';
+import { getAllProdesResultados } from '../../database/services/resultadosService';
+import FilaResultado from './FilaResultado';
+import Loading from '../../Components/Loading';
 
-export const Tabla = () => {
+const Tabla = () => {
 	const [resultados, setresultados] = useState([]);
 
 	useEffect(() => {
@@ -18,7 +19,6 @@ export const Tabla = () => {
 					).reduce((a, b) => a + b, 0);
 					return puntajetorneo + puntajepreliminar;
 				};
-
 				resultado.puntajetotal = getPuntajeTotalByResultado(resultado);
 			});
 
@@ -33,7 +33,6 @@ export const Tabla = () => {
 			if (resultados && resultados.length > 0) {
 				const resultadosordenados =
 					resultados.sort(ordenarpuntajemayor);
-				console.log('resord', resultadosordenados);
 				setresultados(resultadosordenados);
 			}
 		};
@@ -41,30 +40,30 @@ export const Tabla = () => {
 	}, []);
 	return (
 		<div>
-			<table className='table'>
-				<thead>
-					<tr>
-						<th scope='col'>Puesto</th>
-						<th scope='col'>Nombre</th>
-						<th scope='col'>Puntaje</th>
-					</tr>
-				</thead>
-				<tbody>
-					{resultados.length === 0 ? (
+			{resultados.length === 0 ? (
+				<Loading />
+			) : (
+				<table className='table'>
+					<thead>
 						<tr>
-							<td>sin resultados</td>{' '}
+							<th scope='col'>Puesto</th>
+							<th scope='col'>Nombre</th>
+							<th scope='col'>Puntaje</th>
 						</tr>
-					) : (
-						resultados.map((resultado, index) => (
+					</thead>
+					<tbody>
+						{resultados.map((resultado, index) => (
 							<FilaResultado
 								key={index}
 								index={index}
 								resultado={resultado}
 							/>
-						))
-					)}
-				</tbody>
-			</table>
+						))}
+					</tbody>
+				</table>
+			)}
 		</div>
 	);
 };
+
+export default Tabla;
