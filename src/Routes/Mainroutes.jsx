@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { NavigableLayer } from '../Components/NavigableLayer';
 import { NotRequireAuth } from '../Components/NotRequireAuth';
@@ -17,7 +16,7 @@ export const Mainroutes = () => {
 	return (
 		<Routes>
 			<Route element={<NotRequireAuth redirectTo={'/'} />}>
-				{/* rutas que no se pueden acceder al estar logueado*/}
+				{/* rutas que no se pueden acceder al estar logueado */}
 				<Route exact path='login' element={<Login />} />
 				<Route exact path='register' element={<Register />} />
 				<Route
@@ -28,7 +27,7 @@ export const Mainroutes = () => {
 			</Route>
 
 			<Route element={<RequireAuth />}>
-				{/* rutas que se pueden acceder al estar logueado*/}
+				{/* rutas que se pueden acceder al estar logueado */}
 				<Route
 					index
 					element={

@@ -26,7 +26,7 @@ describe('Unit Test - Resultados Generados', () => {
 
 		expect(resultados.torneo).toBeInstanceOf(Object);
 		expect(Object.keys(resultados.torneo).length).toBe(16);
-		expect(resultados.torneo['campeon']).toBe(0);
+		expect(resultados.torneo.campeon).toBe(0);
 		expect(resultados.torneo['final-a']).toBe(0);
 	});
 

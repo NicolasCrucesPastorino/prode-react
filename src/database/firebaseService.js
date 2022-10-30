@@ -4,15 +4,11 @@ import { setDoc, doc, getDoc, getDocs, collection } from 'firebase/firestore';
 const { dbfirestore } = database;
 
 export const getAll = async folder => {
-	try {
-		const querySnapshot = await getDocs(collection(dbfirestore, folder));
-		return querySnapshot.docs.map(doc => ({
-			...doc.data(),
-			userid: doc.id,
-		}));
-	} catch (error) {
-		throw error;
-	}
+	const querySnapshot = await getDocs(collection(dbfirestore, folder));
+	return querySnapshot.docs.map(doc => ({
+		...doc.data(),
+		userid: doc.id,
+	}));
 };
 
 export const store = async (uid, folder, data) => {
@@ -20,11 +16,7 @@ export const store = async (uid, folder, data) => {
 	if (!uid) throw new Error('USER ID is requerired!!!');
 	if (!data) throw new Error('DATA is requerired!!!');
 
-	try {
-		return await setDoc(doc(dbfirestore, folder, uid), data);
-	} catch (error) {
-		throw error;
-	}
+	return await setDoc(doc(dbfirestore, folder, uid), data);
 };
 
 /***
@@ -36,11 +28,7 @@ export const getById = async (uid, folder) => {
 	if (!uid) throw new Error('USER ID is requerired!!!');
 	if (!folder) throw new Error('FOLDER is requerired!!!');
 
-	try {
-		const response = doc(dbfirestore, folder, uid);
-		const snap = await getDoc(response);
-		return snap.exists() ? snap.data() : null;
-	} catch (error) {
-		throw error;
-	}
+	const response = doc(dbfirestore, folder, uid);
+	const snap = await getDoc(response);
+	return snap.exists() ? snap.data() : null;
 };

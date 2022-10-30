@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import { getAllProdesResultados } from './../database/services/resultadosService';
 import { FilaResultado } from '../Components/FilaResultado';
@@ -58,6 +57,7 @@ export const Tabla = () => {
 					) : (
 						resultados.map((resultado, index) => (
 							<FilaResultado
+								key={index}
 								index={index}
 								resultado={resultado}
 							/>

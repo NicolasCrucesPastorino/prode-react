@@ -1,4 +1,3 @@
-import React from 'react';
 import { equipos } from '../../../Constantes';
 
 export const Octavos = props => {
@@ -30,7 +29,9 @@ export const Octavos = props => {
 							<option value=''>seleccione un pais</option>
 						)}
 						{Object.values(grupoA).map(equipo => (
-							<option value={equipo}>{equipo}</option>
+							<option key={equipo + '1-a'} value={equipo}>
+								{equipo}
+							</option>
 						))}
 					</select>
 				</div>
@@ -49,7 +50,9 @@ export const Octavos = props => {
 							<option value=''>seleccione un pais</option>
 						)}
 						{Object.values(grupoA).map(equipo => (
-							<option value={equipo}>{equipo}</option>
+							<option key={equipo + '2-a'} value={equipo}>
+								{equipo}
+							</option>
 						))}
 					</select>
 				</div>
@@ -63,7 +66,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoB).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '1-b'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<label> 2do Grupo B :</label>
@@ -74,7 +79,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoB).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '2-b'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<br></br>
@@ -87,7 +94,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoC).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '1-c'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<label> 2do Grupo C :</label>
@@ -98,7 +107,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoC).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '2-c'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<br></br>
@@ -111,7 +122,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoD).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '1-d'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<label> 2do Grupo D :</label>
@@ -122,7 +135,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoD).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '2-d'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<br></br>
@@ -135,7 +150,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoE).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '1-e'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<label> 2do Grupo E :</label>
@@ -146,7 +163,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoE).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '2-e'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<br></br>
@@ -159,7 +178,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoF).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '1-f'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<label> 2do Grupo F :</label>
@@ -170,7 +191,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoF).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '2-f'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<br></br>
@@ -183,7 +206,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoG).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '1-g'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<label> 2do Grupo G :</label>
@@ -194,7 +219,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoG).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '2-g'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<br></br>
@@ -207,7 +234,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoH).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '1-h'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<label> 2do Grupo H :</label>
@@ -218,7 +247,9 @@ export const Octavos = props => {
 					<option value=''>seleccione un pais</option>
 				)}
 				{Object.values(grupoH).map(equipo => (
-					<option value={equipo}>{equipo}</option>
+					<option key={equipo + '2-h'} value={equipo}>
+						{equipo}
+					</option>
 				))}
 			</select>
 			<br></br>

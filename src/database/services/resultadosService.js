@@ -2,30 +2,23 @@ import { getAll, getById, store } from './../firebaseService';
 import { firebaseFolder } from '../firebaseFolders';
 
 export const getresultadosuserprode = async uid => {
-	try {
-		return await getById(uid, firebaseFolder.RESULTADOS);
-	} catch (error) {
-		throw error;
-	}
+	if(!uid) throw new Error('No se ha especificado el uid del usuario');
+	return await getById(uid, firebaseFolder.RESULTADOS);
+	
 };
 
 export const storeresultadosuserprode = async (uid, resultados) => {
-	try {
+	if(!uid) throw new Error('No se ha especificado el uid del usuario');
 		return await store(uid, firebaseFolder.RESULTADOS, resultados);
-	} catch (error) {
-		throw error;
-	}
 };
 
 export const getAllProdesResultados = async () => {
-	try {
 		return await getAll(firebaseFolder.RESULTADOS);
-	} catch (error) {
-		throw error;
-	}
 };
 
 export const getPuntajeTotalById = async uid => {
+	if(!uid) throw new Error('No se ha especificado el uid del usuario');
+	
 	const resultados = await getresultadosuserprode(uid);
 	const puntajetorneo = Object.values(resultados.torneo).reduce(
 		(a, b) => a + b,

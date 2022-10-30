@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import AuthConsumer from './../../Hooks/UseAuth';
 import { BracketTorneo } from './torneo/BracketTorneo';
 import { Octavos } from './torneo/Octavos';

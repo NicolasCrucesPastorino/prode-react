@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const BracketEstatico = props => {
 	const torneo = props.torneo;
 	const octavos = props.octavos;
@@ -329,7 +327,7 @@ export const BracketEstatico = props => {
 										'participant ' + mostrarcolor('campeon')
 									}
 								>
-									<span>{torneo['campeon']}</span>
+									<span>{torneo.campeon}</span>
 								</div>
 							</div>
 						</div>
@@ -340,7 +338,7 @@ export const BracketEstatico = props => {
 										'participant ' + mostrarcolor('tercero')
 									}
 								>
-									<span>{torneo['tercero']}</span>
+									<span>{torneo.tercero}</span>
 								</div>
 							</div>
 						</div>

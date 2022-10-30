@@ -7,6 +7,7 @@ class Grupo {
 			par => new Partido(this.nombre, par.equipoA, par.equipoB),
 		);
 	}
+
 	agregarpartido(partido) {
 		this.partidos.push(partido);
 	}

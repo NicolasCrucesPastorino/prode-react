@@ -57,7 +57,7 @@ export const useProde = (prode = {}, puntos = generarPuntosIniciales()) => {
 	const [_resultados, _setResultados] = useState(resultados);
 	const [_octavos, setOctavos] = useState(octavos);
 	const [_torneo, _setTorneo] = useState(torneo);
-	const [_puntos, _setPuntos] = useState(puntos);
+	const [_puntos] = useState(puntos);
 
 	function getPartidoById(id) {
 		const groupName = id.split('-')[0];
@@ -84,42 +84,42 @@ export const useProde = (prode = {}, puntos = generarPuntosIniciales()) => {
 		);
 	}
 
-	function updateOctavos(key_octavos, value) {
-		validateOctavosKey(key_octavos);
-		setOctavos({ ..._octavos, [key_octavos]: value });
+	function updateOctavos(keyOctavos, value) {
+		validateOctavosKey(keyOctavos);
+		setOctavos({ ..._octavos, [keyOctavos]: value });
 	}
 
-	function getOctavoByKey(key_octavos) {
-		validateOctavosKey(key_octavos);
-		return _octavos[key_octavos];
+	function getOctavoByKey(keyOctavos) {
+		validateOctavosKey(keyOctavos);
+		return _octavos[keyOctavos];
 	}
 
-	function validateOctavosKey(key_octavos) {
-		if (!Object.keys(_octavos).includes(key_octavos))
+	function validateOctavosKey(keyOctavos) {
+		if (!Object.keys(_octavos).includes(keyOctavos))
 			throw new Error('Invalid octavos key');
 	}
 
-	function getTorneoByKey(key_torneo) {
-		validateTorneoKey(key_torneo);
-		return _torneo[key_torneo];
+	function getTorneoByKey(keyTorneo) {
+		validateTorneoKey(keyTorneo);
+		return _torneo[keyTorneo];
 	}
 
-	function updateTorneo(key_torneo, value) {
-		validateTorneoKey(key_torneo);
-		_setTorneo({ ..._torneo, [key_torneo]: value });
+	function updateTorneo(keyTorneo, value) {
+		validateTorneoKey(keyTorneo);
+		_setTorneo({ ..._torneo, [keyTorneo]: value });
 	}
 
-	function validateTorneoKey(key_torneo) {
-		if (!Object.keys(_torneo).includes(key_torneo))
+	function validateTorneoKey(keyTorneo) {
+		if (!Object.keys(_torneo).includes(keyTorneo))
 			throw new Error('Invalid torneo key');
 	}
 
-	function getPuntosPreliminaresByKey(key_puntos) {
-		return _puntos.preliminares[key_puntos];
+	function getPuntosPreliminaresByKey(keyPuntos) {
+		return _puntos.preliminares[keyPuntos];
 	}
 
-	function getPuntosTorneoByKey(key_puntos) {
-		return _puntos.torneo[key_puntos];
+	function getPuntosTorneoByKey(keyPuntos) {
+		return _puntos.torneo[keyPuntos];
 	}
 
 	async function updatePuntaje(uid) {

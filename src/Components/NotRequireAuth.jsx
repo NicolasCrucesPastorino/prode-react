@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import Authconsumer from '../Hooks/UseAuth';
 
@@ -9,5 +8,5 @@ export const NotRequireAuth = ({ redirectTo = '/home', children }) => {
 		return <Navigate to={redirectTo} remplace />;
 	}
 
-	return children ? children : <Outlet />;
+	return children || <Outlet />;
 };

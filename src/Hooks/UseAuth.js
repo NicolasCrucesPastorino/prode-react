@@ -48,55 +48,47 @@ const useAuth = () => {
 		lastname,
 		phone,
 	) => {
-		try {
-			const usercredentials = await createUserWithEmailAndPassword(
-				auth,
-				email,
-				password,
-			);
+		const usercredentials = await createUserWithEmailAndPassword(
+			auth,
+			email,
+			password,
+		);
 
-			await storeUserData(
-				usercredentials.user.uid,
-				displayName,
-				lastname,
-				phone,
-			);
+		await storeUserData(
+			usercredentials.user.uid,
+			displayName,
+			lastname,
+			phone,
+		);
 
-			const newuser = {
-				...usercredentials.user,
-				lastname,
-				displayName,
-				phone,
-			};
-			setsession(usercredentials.user.accessToken, newuser);
+		const newuser = {
+			...usercredentials.user,
+			lastname,
+			displayName,
+			phone,
+		};
+		setsession(usercredentials.user.accessToken, newuser);
 
-			return usercredentials;
-		} catch (error) {
-			throw error;
-		}
+		return usercredentials;
 	};
 
 	const logearseEnTuProde = async (email, password) => {
-		try {
-			const usercredentials = await signInWithEmailAndPassword(
-				auth,
-				email,
-				password,
-			);
+		const usercredentials = await signInWithEmailAndPassword(
+			auth,
+			email,
+			password,
+		);
 
-			const userdata = await getdatauserfromid(usercredentials.user.uid);
-			const totaldata = {
-				...userdata,
-				email: usercredentials.user.email,
-				uid: usercredentials.user.uid,
-				photoURL: usercredentials.user.photoURL,
-			};
+		const userdata = await getdatauserfromid(usercredentials.user.uid);
+		const totaldata = {
+			...userdata,
+			email: usercredentials.user.email,
+			uid: usercredentials.user.uid,
+			photoURL: usercredentials.user.photoURL,
+		};
 
-			setsession(usercredentials.user.accessToken, totaldata);
-			return usercredentials;
-		} catch (error) {
-			throw error;
-		}
+		setsession(usercredentials.user.accessToken, totaldata);
+		return usercredentials;
 	};
 
 	const signedout = () => {
@@ -121,7 +113,7 @@ const useAuth = () => {
 			image: user.photoURL || '',
 			uid: user.uid,
 			rol:
-				user.email === process.env['REACT_APP_ADMIN_USER']
+				user.email === process.env.REACT_APP_ADMIN_USER
 					? ROL.ADMIN
 					: ROL.USER,
 		};
@@ -152,6 +144,7 @@ const getAuthInstance = () => {
 };
 
 // Componente proveedor de contexto de autenticacion
+// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
 	const auth = useAuth();
 

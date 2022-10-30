@@ -1,10 +1,6 @@
-import React from 'react';
-import GoogleButton from 'react-google-button';
 import { useNavigate } from 'react-router-dom';
-import Authconsumer from '../Hooks/UseAuth';
 
 export const Login = () => {
-	const { userauth, signin, isSigned } = Authconsumer();
 	const navigate = useNavigate();
 
 	const handleOnClickRegister = () => {

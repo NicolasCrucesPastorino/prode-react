@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ROL } from '../../../Constantes';
 import authconsumer from './../../../Hooks/UseAuth';
 import { getresultadosuserprode } from './../../../database/services/resultadosService';
@@ -21,9 +20,6 @@ export const Partido = props => {
 	console.log('id', uid);
 	useEffect(() => {
 		const getresultadopuntos = async () => {
-			let id = consumer.userauth.uid;
-			id = uid;
-
 			const resultadosprode = await getresultadosuserprode(uid);
 			if (resultadosprode) {
 				setresultadopuntos(
@@ -51,7 +47,7 @@ export const Partido = props => {
 	console.log('resultado puntos', resultadopuntos);
 
 	const handleOnChange = evento => {
-		let goles = evento.target.value;
+		const goles = evento.target.value;
 
 		try {
 			if (evento.target.name === 'golesequipoA') {
@@ -72,7 +68,6 @@ export const Partido = props => {
 		} catch (error) {
 			console.error(error);
 			alert(error.message);
-			return;
 		}
 	};
 

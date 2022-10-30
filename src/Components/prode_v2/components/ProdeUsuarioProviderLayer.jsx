@@ -14,16 +14,11 @@ const ProdeUsuarioProviderLayer = ({ uid, prodeFontFunction, children }) => {
 
 	useEffect(() => {
 		const getProdeById = async (uid = '') => {
-			try {
-				console.log(prodeFontFunction);
-				const prode = await prodeFontFunction(uid);
-				console.log('prode inicial', prode);
-				setIsLoading(false);
-				setGlobalProde(prode === null ? {} : prode);
-				setIsLoading(true);
-			} catch (error) {
-				throw error;
-			}
+			const prode = await prodeFontFunction(uid);
+			console.log('prode inicial', prode);
+			setIsLoading(false);
+			setGlobalProde(prode === null ? {} : prode);
+			setIsLoading(true);
 		};
 		getProdeById(uid)
 			.then(() => {
@@ -32,7 +27,7 @@ const ProdeUsuarioProviderLayer = ({ uid, prodeFontFunction, children }) => {
 			.catch(error => {
 				console.error(error);
 				setIsLoading(false);
-				//alert("no tiene permisos para ver este prode");
+				// alert("no tiene permisos para ver este prode");
 				navigate('/reglas');
 			});
 	}, [uid]);

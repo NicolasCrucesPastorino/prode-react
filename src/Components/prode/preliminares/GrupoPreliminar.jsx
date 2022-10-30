@@ -1,4 +1,3 @@
-import React from 'react';
 import { Partido } from './Partido';
 
 export const GrupoPreliminar = props => {

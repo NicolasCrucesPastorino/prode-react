@@ -5,13 +5,10 @@ const Partido = props => {
 
 	const { updatePartido } = ConsumerProdeContext();
 
-	const SIN_PUNTOS = '#FFFFFF';
 	const SIN_COINCIDENCIAS = '#ff6d4e';
-	const COINCIDENCIA_PARCIAL = '#FFFB13';
-	const COINCIDENCIA_TOTAL = '#5EEA48';
 
 	const handleOnChange = evento => {
-		let goles = evento.target.value;
+		const goles = evento.target.value;
 
 		if (evento.target.name === 'golesequipoA') {
 			partido.golesequipoA = goles;

@@ -237,7 +237,7 @@ const prodeMok = {
       partidoid: "H-Corea del sur-Portugal",
       puntaje: 3,
     },
-  ],*/
+  ], */
 	puntajetotal: 134,
 };
 

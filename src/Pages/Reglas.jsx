@@ -1,4 +1,3 @@
-import React from 'react';
 import './Reglas.css';
 
 export const Reglas = () => {

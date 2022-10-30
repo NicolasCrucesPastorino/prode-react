@@ -12,6 +12,7 @@ class Partido {
 		this.golesequipoA = golesequipoA;
 		this.golesequipoB = golesequipoB;
 	}
+
 	setgolesequipoA(goles = '') {
 		this.validateGoles(goles);
 		this.golesequipoA = goles;
@@ -21,6 +22,7 @@ class Partido {
 		this.validateGoles(goles);
 		this.golesequipoB = goles;
 	}
+
 	gruponombre() {
 		return this.partidoid.split('-')[0];
 	}
@@ -36,6 +38,7 @@ class Partido {
 		if (parseInt(goles) < 0)
 			throw Error('los goles deben ser numeros positivos');
 	}
+
 	resultado() {
 		if (this.golesequipoA === '' || this.golesequipoB === '')
 			return 'sin resultados';

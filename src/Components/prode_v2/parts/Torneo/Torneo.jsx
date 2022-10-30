@@ -6,10 +6,6 @@ const Torneo = () => {
 	const { getOctavoByKey, getTorneoByKey, updateTorneo } =
 		ConsumerProdeContext();
 
-	const mostrarcolor = key_torneo => {
-		return 'red';
-	};
-
 	const handleOnChangeTorneo = event => {
 		updateTorneo(event.target.name, event.target.value);
 		console.log(getTorneoByKey(event.target.name));

@@ -1,6 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Preliminares } from '../Components/prode/preliminares/Preliminares';
 import { BracketEstatico } from '../Components/prode/torneo/estatico/BracketEstatico';

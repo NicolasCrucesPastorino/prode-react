@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { getAllProdesUsuarios } from '../../../../database/services/prodeService';
 import { storeresultadosuserprode } from '../../../../database/services/resultadosService';
 import { storesuperprode } from '../../../../database/services/superProdeService';
-import { calcularPuntaje } from '../../../../utils/superprodefunctions';
 import Loading from '../../../Loading';
 import SuccessToast, { showToast } from '../../../toasts/SuccessToast';
 import Octavos from '../../parts/Octavos';
@@ -29,15 +28,11 @@ const SuperProdeLogic = ({ uid }) => {
 	};
 
 	const actualizarPuntajesDeUsuarios = async () => {
-		try {
-			const prodesDeUsuarios = await getAllProdesUsuarios();
-			prodesDeUsuarios.forEach(async prodeUsuario => {
-				const puntaje = crearResultado(prodeUsuario, prode);
-				await storeresultadosuserprode(prodeUsuario.userid, puntaje);
-			});
-		} catch (error) {
-			throw error;
-		}
+		const prodesDeUsuarios = await getAllProdesUsuarios();
+		prodesDeUsuarios.forEach(async prodeUsuario => {
+			const puntaje = crearResultado(prodeUsuario, prode);
+			await storeresultadosuserprode(prodeUsuario.userid, puntaje);
+		});
 	};
 
 	return (

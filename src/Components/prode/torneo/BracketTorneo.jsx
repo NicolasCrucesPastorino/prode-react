@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import authconsumer from './../../../Hooks/UseAuth';
 import { getresultadosuserprode } from './../../../database/services/resultadosService';
 import './Bracket.scss';
@@ -44,7 +44,7 @@ export const BracketTorneo = props => {
 						return sinpuntaje;
 					}
 				} else {
-					//throw new Error("Clave del formulario no existe");
+					// throw new Error("Clave del formulario no existe");
 				}
 			} else {
 				return sinpuntaje;
@@ -579,9 +579,9 @@ export const BracketTorneo = props => {
 										onChange={handleOnChangeTorneo}
 										name='campeon'
 									>
-										{torneo['campeon'] ? (
-											<option value={torneo['campeon']}>
-												{torneo['campeon']}
+										{torneo.campeon ? (
+											<option value={torneo.campeon}>
+												{torneo.campeon}
 											</option>
 										) : (
 											<option value=''>CAMPEON</option>
@@ -607,9 +607,9 @@ export const BracketTorneo = props => {
 										onChange={handleOnChangeTorneo}
 										name='tercero'
 									>
-										{torneo['tercero'] ? (
-											<option value={torneo['tercero']}>
-												{torneo['tercero']}
+										{torneo.tercero ? (
+											<option value={torneo.tercero}>
+												{torneo.tercero}
 											</option>
 										) : (
 											<option value=''>TERCERO</option>
