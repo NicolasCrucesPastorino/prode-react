@@ -9,12 +9,13 @@ const SelectorEquipo = ({
 	const { getTorneoByKey } = ConsumerProdeContext();
 
 	return (
-		<select onChange={onChange} name={keySelector}>
-			<option value=''>{titleEmptyValue}</option>
-			{equipos.map(equipo => (
+		<select onChange={onChange} name={keySelector} defaultValue=''>
+			<option>{titleEmptyValue}</option>
+			{equipos.map((equipo, index) => (
 				<option
-					key={equipo}
+					key={keySelector + equipo + index}
 					value={equipo}
+					defaultValue=''
 					selected={getTorneoByKey(keySelector) === equipo}
 				>
 					{equipo}

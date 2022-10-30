@@ -127,9 +127,9 @@ const Torneo = () => {
 											getOctavoByKey('1-a'),
 											getOctavoByKey('2-b'),
 										]}
-										key_selector='cuartos-a-1'
+										keySelector='cuartos-a-1'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='CUARTOS'
+										titleEmptyValue='CUARTOS'
 									/>
 								</div>
 								<div className={'participant'}>
@@ -138,9 +138,9 @@ const Torneo = () => {
 											getOctavoByKey('1-c'),
 											getOctavoByKey('2-d'),
 										]}
-										key_selector='cuartos-a-2'
+										keySelector='cuartos-a-2'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='CUARTOS'
+										titleEmptyValue='CUARTOS'
 									/>
 								</div>
 							</div>
@@ -153,9 +153,9 @@ const Torneo = () => {
 											getOctavoByKey('1-e'),
 											getOctavoByKey('2-f'),
 										]}
-										key_selector='cuartos-b-1'
+										keySelector='cuartos-b-1'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='CUARTOS'
+										titleEmptyValue='CUARTOS'
 									/>
 								</div>
 								<div className={'participant'}>
@@ -164,9 +164,9 @@ const Torneo = () => {
 											getOctavoByKey('1-g'),
 											getOctavoByKey('2-h'),
 										]}
-										key_selector='cuartos-b-2'
+										keySelector='cuartos-b-2'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='CUARTOS'
+										titleEmptyValue='CUARTOS'
 									/>
 								</div>
 							</div>
@@ -184,9 +184,9 @@ const Torneo = () => {
 											getOctavoByKey('1-b'),
 											getOctavoByKey('2-a'),
 										]}
-										key_selector='cuartos-c-1'
+										keySelector='cuartos-c-1'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='CUARTOS'
+										titleEmptyValue='CUARTOS'
 									/>
 								</div>
 								<div className={'participant'}>
@@ -195,9 +195,9 @@ const Torneo = () => {
 											getOctavoByKey('1-d'),
 											getOctavoByKey('2-c'),
 										]}
-										key_selector='cuartos-c-2'
+										keySelector='cuartos-c-2'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='CUARTOS'
+										titleEmptyValue='CUARTOS'
 									/>
 								</div>
 							</div>
@@ -210,9 +210,9 @@ const Torneo = () => {
 											getOctavoByKey('1-f'),
 											getOctavoByKey('2-e'),
 										]}
-										key_selector='cuartos-d-1'
+										keySelector='cuartos-d-1'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='CUARTOS'
+										titleEmptyValue='CUARTOS'
 									/>
 								</div>
 								<div className={'participant'}>
@@ -221,9 +221,9 @@ const Torneo = () => {
 											getOctavoByKey('1-h'),
 											getOctavoByKey('2-g'),
 										]}
-										key_selector='cuartos-d-2'
+										keySelector='cuartos-d-2'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='CUARTOS'
+										titleEmptyValue='CUARTOS'
 									/>
 								</div>
 							</div>
@@ -243,9 +243,9 @@ const Torneo = () => {
 											getTorneoByKey('cuartos-a-1'),
 											getTorneoByKey('cuartos-a-2'),
 										]}
-										key_selector='semi-a-1'
+										keySelector='semi-a-1'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='SEMIFINAL'
+										titleEmptyValue='SEMIFINAL'
 									/>
 								</div>
 								<div className={'participant'}>
@@ -254,9 +254,9 @@ const Torneo = () => {
 											getTorneoByKey('cuartos-b-1'),
 											getTorneoByKey('cuartos-b-2'),
 										]}
-										key_selector='semi-a-2'
+										keySelector='semi-a-2'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='SEMIFINAL'
+										titleEmptyValue='SEMIFINAL'
 									/>
 								</div>
 							</div>
@@ -269,9 +269,9 @@ const Torneo = () => {
 											getTorneoByKey('cuartos-c-1'),
 											getTorneoByKey('cuartos-c-2'),
 										]}
-										key_selector='semi-b-1'
+										keySelector='semi-b-1'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='SEMIFINAL'
+										titleEmptyValue='SEMIFINAL'
 									/>
 								</div>
 								<div className={'participant'}>
@@ -280,9 +280,9 @@ const Torneo = () => {
 											getTorneoByKey('cuartos-d-1'),
 											getTorneoByKey('cuartos-d-2'),
 										]}
-										key_selector='semi-b-2'
+										keySelector='semi-b-2'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='SEMIFINAL'
+										titleEmptyValue='SEMIFINAL'
 									/>
 								</div>
 							</div>
@@ -302,9 +302,9 @@ const Torneo = () => {
 											getTorneoByKey('semi-a-1'),
 											getTorneoByKey('semi-a-2'),
 										]}
-										key_selector='final-a'
+										keySelector='final-a'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='FINAL'
+										titleEmptyValue='FINAL'
 									/>
 								</div>
 								<div className={'participant'}>
@@ -313,9 +313,9 @@ const Torneo = () => {
 											getTorneoByKey('semi-b-1'),
 											getTorneoByKey('semi-b-2'),
 										]}
-										key_selector='final-b'
+										keySelector='final-b'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='FINAL'
+										titleEmptyValue='FINAL'
 									/>
 								</div>
 							</div>
@@ -335,9 +335,9 @@ const Torneo = () => {
 											getTorneoByKey('final-a'),
 											getTorneoByKey('final-b'),
 										]}
-										key_selector='campeon'
+										keySelector='campeon'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='CAMPEON'
+										titleEmptyValue='CAMPEON'
 									/>
 								</div>
 							</div>
@@ -357,9 +357,9 @@ const Torneo = () => {
 												? getTorneoByKey('semi-b-1')
 												: getTorneoByKey('semi-b-2'),
 										]}
-										key_selector='tercero'
+										keySelector='tercero'
 										onChange={handleOnChangeTorneo}
-										title_empty_value='TERCERO'
+										titleEmptyValue='TERCERO'
 									/>
 								</div>
 							</div>

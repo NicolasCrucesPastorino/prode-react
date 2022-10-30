@@ -15,7 +15,6 @@ const ProdeUsuarioProviderLayer = ({ uid, prodeFontFunction, children }) => {
 	useEffect(() => {
 		const getProdeById = async (uid = '') => {
 			const prode = await prodeFontFunction(uid);
-			console.log('prode inicial', prode);
 			setIsLoading(false);
 			setGlobalProde(prode === null ? {} : prode);
 			setIsLoading(true);

@@ -12,7 +12,7 @@ const Octavos = () => {
 			<section>
 				{Object.keys(equipos).map((grupoNombre, index) => (
 					<PrimeroYsegundo
-						key={new Date().getTime() + index}
+						key={grupoNombre}
 						nombreGrupo={convertirGrupoNombreALetraMinuscula(
 							grupoNombre,
 						)}

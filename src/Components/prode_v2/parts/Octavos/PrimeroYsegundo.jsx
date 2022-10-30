@@ -22,7 +22,7 @@ const PrimeroYsegundo = ({ nombreGrupo = '', equipos = [] }) => {
 				<option value=''>seleccione un pais</option>
 				{equipos.map(equipo => (
 					<option
-						key={nombreGrupo + equipo + '1'}
+						key={nombreGrupo + primeroKey + equipo}
 						value={equipo}
 						selected={getOctavoByKey(primeroKey) === equipo}
 					>
@@ -36,7 +36,7 @@ const PrimeroYsegundo = ({ nombreGrupo = '', equipos = [] }) => {
 				<option value=''>seleccione un pais</option>
 				{equipos.map(equipo => (
 					<option
-						key={nombreGrupo + equipo + '2'}
+						key={nombreGrupo + segundoKey + equipo}
 						value={equipo}
 						selected={getOctavoByKey(segundoKey) === equipo}
 					>
