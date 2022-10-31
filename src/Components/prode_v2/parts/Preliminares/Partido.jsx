@@ -1,11 +1,25 @@
+import { puntaje } from '../../../../Constantes';
 import ConsumerProdeContext from '../../ProdeProvider';
 
-const Partido = props => {
-	const partido = props.partido;
+const Partido = ({ partido }) => {
+	const { updatePartido, getPuntosPreliminaresByKey } =
+		ConsumerProdeContext();
 
-	const { updatePartido } = ConsumerProdeContext();
+	const colorPuntaje = () => {
+		console.log('puntaje', getPuntosPreliminaresByKey(partido.partidoid));
+		switch (getPuntosPreliminaresByKey(partido.partidoid)) {
+			case puntaje.puntajepreliminar.COINCIDENCIA_TOTAL:
+				return 'green';
+			case puntaje.puntajepreliminar.COINCIDENCIA_PARCIAL:
+				return 'yellow';
+			case puntaje.puntajepreliminar.NO_COINCIDENCIA:
+				return 'red';
+			default:
+				return 'black';
+		}
+	};
 
-	const SIN_COINCIDENCIAS = '#ff6d4e';
+	// const SIN_COINCIDENCIAS = '#ff6d4e';
 
 	const handleOnChange = evento => {
 		const goles = evento.target.value;
@@ -25,7 +39,7 @@ const Partido = props => {
 	};
 
 	const style = { height: '32px', weight: '32px' };
-	const divstyle = { backgroundColor: SIN_COINCIDENCIAS };
+	const divstyle = { backgroundColor: colorPuntaje() };
 	return (
 		<div className='partidocontainer row' style={divstyle}>
 			<p className='equipo col-md-2'>{partido.equipoA}</p>
