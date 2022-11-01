@@ -8,7 +8,8 @@ const ProdeUsuarioProviderLayer = ({ uid, prodeFontFunction, children }) => {
 	const navigate = useNavigate();
 	const [isLoading, setIsLoading] = useState(false);
 	const [globalProde, setGlobalProde] = useState({});
-	const [puntos, setPuntos] = useState();
+
+	// const { userauth } = AuthConsumer();
 
 	const childWithProps = React.Children.map(children, child => {
 		return React.cloneElement(child, { ...child.props, uid });
@@ -17,11 +18,16 @@ const ProdeUsuarioProviderLayer = ({ uid, prodeFontFunction, children }) => {
 	useEffect(() => {
 		const getProdeById = async (uid = '') => {
 			const prode = await prodeFontFunction(uid);
+
 			const _puntos = await getresultadosuserprode(uid);
-			setPuntos(_puntos);
 			setIsLoading(false);
-			setGlobalProde(prode === null ? {} : prode);
-			setIsLoading(true);
+			if (prode === null) {
+				setGlobalProde({});
+			} else {
+				prode.puntos = _puntos;
+				setGlobalProde(prode);
+				setIsLoading(true);
+			}
 		};
 		getProdeById(uid)
 			.then(() => {
@@ -33,14 +39,14 @@ const ProdeUsuarioProviderLayer = ({ uid, prodeFontFunction, children }) => {
 				// alert("no tiene permisos para ver este prode");
 				navigate('/reglas');
 			});
-	}, [uid]);
+	}, []);
 
 	return (
 		<>
 			{isLoading === false ? (
 				<Loading />
 			) : (
-				<ProdeProvider prode={(globalProde, puntos)}>
+				<ProdeProvider prode={globalProde}>
 					{childWithProps}
 				</ProdeProvider>
 			)}

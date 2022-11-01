@@ -1,8 +1,11 @@
-/*
-
 const SIN_PUNTOS = '#FFFFFF';
-const SIN_COINCIDENCIAS = '#ff6d4e';
+const SIN_COINCIDENCIA = '#ff6d4e';
 const COINCIDENCIA_PARCIAL = '#FFFB13';
 const COINCIDENCIA_TOTAL = '#5EEA48';
 
-*/
+export const coloresPuntaje = {
+	SIN_PUNTOS,
+	SIN_COINCIDENCIA,
+	COINCIDENCIA_PARCIAL,
+	COINCIDENCIA_TOTAL,
+};

@@ -4,19 +4,18 @@ import { gruposEtapaPreliminares } from '../../../constants/grupos_etapa_prelimi
 import Grupo from '../../prode/preliminares/Models/Grupo';
 import {
 	crearResultado,
-	generarPuntosIniciales,
+	// generarPuntosIniciales,
 } from '../utils/resultadosGenerator';
 import { getSuperProde } from '../../../database/services/superProdeService';
 import { storeresultadosuserprode } from '../../../database/services/resultadosService';
 
-export const useProde = (prode = {}, puntos = generarPuntosIniciales()) => {
+export const useProde = (prode = {}) => {
 	const resultadosPorDefecto = gruposEtapaPreliminares.map(
 		grupo => new Grupo(grupo.nombre, grupo.partidos),
 	);
 
 	const octavosPorDefecto = () => {
 		const octavosPorDefecto = {};
-		console.log('generando nuevos octavos');
 		Object.keys(equipos).forEach(grupoNombre => {
 			const letraGrupo = grupoNombre.split('grupo')[1].toLowerCase();
 			octavosPorDefecto[`1-${letraGrupo}`] = '';
@@ -48,6 +47,7 @@ export const useProde = (prode = {}, puntos = generarPuntosIniciales()) => {
 		resultados = resultadosPorDefecto,
 		octavos = octavosPorDefecto(),
 		torneo = torneoPorDefecto,
+		puntos, //= generarPuntosIniciales(),
 	} = prode;
 
 	if (resultados && !resultados.every(grupo => grupo instanceof Grupo)) {
@@ -58,6 +58,8 @@ export const useProde = (prode = {}, puntos = generarPuntosIniciales()) => {
 	const [_octavos, setOctavos] = useState(octavos);
 	const [_torneo, _setTorneo] = useState(torneo);
 	const [_puntos] = useState(puntos);
+
+	console.log('puntos cargados', puntos);
 
 	function getPartidoById(id) {
 		const groupName = id.split('-')[0];

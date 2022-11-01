@@ -1,21 +1,21 @@
 import { puntaje } from '../../../../Constantes';
 import ConsumerProdeContext from '../../ProdeProvider';
+import { coloresPuntaje } from '../../../../constants/coloresPuntaje';
 
 const Partido = ({ partido }) => {
 	const { updatePartido, getPuntosPreliminaresByKey } =
 		ConsumerProdeContext();
 
 	const colorPuntaje = () => {
-		console.log('puntaje', getPuntosPreliminaresByKey(partido.partidoid));
 		switch (getPuntosPreliminaresByKey(partido.partidoid)) {
 			case puntaje.puntajepreliminar.COINCIDENCIA_TOTAL:
-				return 'green';
+				return coloresPuntaje.COINCIDENCIA_TOTAL;
 			case puntaje.puntajepreliminar.COINCIDENCIA_PARCIAL:
-				return 'yellow';
-			case puntaje.puntajepreliminar.NO_COINCIDENCIA:
-				return 'red';
+				return coloresPuntaje.COINCIDENCIA_PARCIAL;
+			case puntaje.puntajepreliminar.SIN_COINCIDENCIA:
+				return coloresPuntaje.SIN_COINCIDENCIA;
 			default:
-				return 'black';
+				return colorPuntaje.SIN_PUNTOS;
 		}
 	};
 
