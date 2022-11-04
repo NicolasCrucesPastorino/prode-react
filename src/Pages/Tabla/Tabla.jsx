@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAllProdesResultados } from '../../database/services/resultadosService';
 import FilaResultado from './FilaResultado';
-import Loading from '../../Components/Loading';
+// import Loading from '../../Components/Loading';
 
 const Tabla = () => {
 	const [resultados, setresultados] = useState([]);
@@ -41,7 +41,9 @@ const Tabla = () => {
 	return (
 		<div>
 			{resultados.length === 0 ? (
-				<Loading />
+				<div className='alert alert-warning' role='alert'>
+					No hay resultados!
+				</div>
 			) : (
 				<table className='table'>
 					<thead>

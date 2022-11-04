@@ -4,6 +4,7 @@ import { gruposEtapaPreliminares } from '../../../constants/grupos_etapa_prelimi
 import Grupo from '../../prode/preliminares/Models/Grupo';
 import {
 	crearResultado,
+	generarPuntosIniciales,
 	// generarPuntosIniciales,
 } from '../utils/resultadosGenerator';
 import { getSuperProde } from '../../../database/services/superProdeService';
@@ -47,7 +48,7 @@ export const useProde = (prode = {}) => {
 		resultados = resultadosPorDefecto,
 		octavos = octavosPorDefecto(),
 		torneo = torneoPorDefecto,
-		puntos, //= generarPuntosIniciales(),
+		puntos = generarPuntosIniciales(),
 	} = prode;
 
 	if (resultados && !resultados.every(grupo => grupo instanceof Grupo)) {
