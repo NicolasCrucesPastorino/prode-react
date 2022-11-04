@@ -18,16 +18,16 @@ const ProdeUsuarioProviderLayer = ({ uid, prodeFontFunction, children }) => {
 	useEffect(() => {
 		const getProdeById = async (uid = '') => {
 			const prode = await prodeFontFunction(uid);
-
 			const _puntos = await getresultadosuserprode(uid);
+
 			setIsLoading(false);
-			if (prode === null) {
+			if (prode === null && _puntos === null) {
 				setGlobalProde({});
-			} else {
+			} else if (prode !== null) {
 				prode.puntos = _puntos;
 				setGlobalProde(prode);
-				setIsLoading(true);
 			}
+			setIsLoading(true);
 		};
 		getProdeById(uid)
 			.then(() => {
@@ -36,7 +36,6 @@ const ProdeUsuarioProviderLayer = ({ uid, prodeFontFunction, children }) => {
 			.catch(error => {
 				console.error(error);
 				setIsLoading(false);
-				// alert("no tiene permisos para ver este prode");
 				navigate('/reglas');
 			});
 	}, []);

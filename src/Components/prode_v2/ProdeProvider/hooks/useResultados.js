@@ -1,6 +1,3 @@
-
-
-export const useResulados = (resultados ={}) => {
-    
-    return {};
-}
+export const useResulados = (resultados = {}) => {
+	return {};
+};
